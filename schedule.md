@@ -1,0 +1,37 @@
+
+|Date|Sections|Topics|
+|---|---|---|
+|8/27 | 1.1-1.2 | Intro to Linear Algebra, systems of equations |
+|8/29 | 1.3| Vector equations |
+|9/3  |1.4-1.5| Matrix equations; solution sets |
+|9/5  | 1.7| Linear independence |
+|9/10 |1.8-1.9| Linear transformations and the associated matrix|
+|9/12 |2.1| Matrix operations |
+|9/17 |2.2-2.3| Inverses and invertible matrices|
+|9/19 |3.1-3.2| Determinants |
+|9/24 |3.3-4.1| Cramer's Rule, Volumes; Vector Spaces  and Subspaces|
+|9/26 || Exam Review |
+|10/1 || First Exam |
+|10/3 || No class (Rosh Hashanah) |
+|10/8 |4.2| Null space, column space|
+|10/10 |4.3-4.4| Bases and linear independence; coordinates|
+|10/15 |4.5| Dimension|
+|10/17 |4.6-4.7| Rank, change of basis|
+|10/22 |5.1| Eigenvectors, eigenvalues|
+|10/24 |5.2-5.3| Characteristic polynomials, diagonalization|
+|10/29 | 5.4| Eigenvector and linear transformations|
+|10/31 || Review|
+|11/5  || Exam 2|
+|11/7  |6.1-6.2| Inner products, orthogonality|
+|11/12 |6.3|Orthogonal Projection|
+|11/14 |6.4-6.5| Gram-Schmidt, least squares|
+|11/19 |7.1| Diagonalization of symmetric matrices|
+|11/21 |7.2-7.3| Quadratic forms, constrained optimization|
+|11/26-11/28 || No Class; Thanksgiving break|
+|12/3 || Singular Value Decomposition |
+|12/5 || Review/Catch-up |
+|12/9-12/11| |Finals Period|Final Exam TBD |
+|12/12|| Reading Day |
+|12/13-12/15||Finals Period resumes| Final Exam TBD |
+
+: 2210 Class Schedule {.striped}
