@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Row Reduction </title>
+</head>
+
+<body>
+    <h1> Row Reduction</h1>
+    <h3> Specify Rows and Columns, then click Generate</h3>
+    <div>
+        <label for="rows">Rows (k):</label>
+        <input type="number" id="rows" min="1" value="2" style='width: 50px;'>
+        <label for="cols">Columns (n):</label>
+        <input type="number" id="cols" min="1" value="2" style='width: 50px;'>
+        <p>
+            <button onclick="generateMatrixInputs()">Generate Matrix</button>
+
+
+        </p>
+    </div>
+    <div id="matrix-inputs"></div>
+    <p>
+        <button id="resumeButton" onclick="reduceMatrixAndRender()">Process Matrix</button>
+    </p>
+
+
+    <div id="reduction-steps"></div>
+    <h3> Reduced Matrix</h3>
+    <div id="reduced-matrix"> </div>
+    <div id="restart-notice"></div>
+    <script>
+        function waitForButtonClick() {
+            return new Promise(resolve => {
+                const resumeButton = document.getElementById('resumeButton');
+                resumeButton.innerHTML = "Continue"
+                resumeButton.onclick = () => {
+                    resolve(); // Resolve the promise when the button is clicked
+                };
+            });
+        }
+        async function rowReduce(matrix) {
+            var steps = "";
+            const numRows = matrix.length;
+            const numCols = matrix[0].length;
+
+            for (let col = 0; col < numCols; col++) {
+                let pivotRow = -1;
+                for (let row = col; row < numRows; row++) {
+                    if (matrix[row][col] !== 0) {
+                        pivotRow = row;
+                        steps += `Pivot found at row ${pivotRow}, column ${col}<br>`;
+                        document.getElementById('reduction-steps').innerHTML = steps;
+                        document.getElementById('reduced-matrix').innerHTML = matrixToHtml(matrix)
+                        await waitForButtonClick();
+                        break;
+                    }
+                }
+                if (pivotRow === -1) {
+                    steps += `No pivot found in column ${col}, move to next column<br>`;
+                    document.getElementById('reduction-steps').innerHTML = steps;
+                    document.getElementById('reduced-matrix').innerHTML = matrixToHtml(matrix)
+                    await waitForButtonClick();
+                    continue; // No pivot in this column, move to next column
+                }
+                // Swap current row with pivot row if they are not the same
+                if (pivotRow !== col) {
+                    [matrix[col], matrix[pivotRow]] = [matrix[pivotRow], matrix[col]];
+                    steps += `Swap row ${col} with pivot row ${pivotRow}]<br>`;
+                    document.getElementById('reduction-steps').innerHTML = steps;
+                    document.getElementById('reduced-matrix').innerHTML = matrixToHtml(matrix)
+                    await waitForButtonClick();
+                }
+
+                // Normalize the pivot row
+                const pivot = matrix[col][col];
+                steps += `Divide pivot row ${col} by pivot value ${pivot}<br>`;
+                document.getElementById('reduction-steps').innerHTML = steps;
+                document.getElementById('reduced-matrix').innerHTML = matrixToHtml(matrix)
+                await waitForButtonClick();
+                for (let j = col; j < numCols; j++) {
+                    matrix[col][j] /= pivot;
+                }
+
+                // Eliminate all other elements in the current column
+                for (let i = 0; i < numRows; i++) {
+                    if (i !== col && matrix[i][col] !== 0) {
+                        const factor = matrix[i][col];
+                        steps += `Eliminate element in row ${i}, column ${col} with multiple ${factor}<br>`
+                        document.getElementById('reduction-steps').innerHTML = steps;
+                        document.getElementById('reduced-matrix').innerHTML = matrixToHtml(matrix)
+                        await waitForButtonClick();
+                        for (let j = col; j < numCols; j++) {
+                            matrix[i][j] -= factor * matrix[col][j];
+                        }
+                    }
+                }
+            }
+            return matrix;
+        }
+
+        function matrixToHtml(matrix) {
+            let html = '<table>';
+            for (let i = 0; i < matrix.length; i++) {
+                html += '<tr>';
+                for (let j = 0; j < matrix[i].length; j++) {
+                    html += `<td>${matrix[i][j].toFixed(2)}</td>`; // .toFixed(2) for rounding numbers
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+            return html;
+        }
+
+        function renderReducedMatrix(matrix) {
+            const reducedMatrix = rowReduce(matrix);
+            const html = matrixToHtml(reducedMatrix);
+            document.getElementById('reduced-matrix').innerHTML = html;
+        }
+
+
+        function generateMatrixInputs() {
+            const rows = parseInt(document.getElementById('rows').value, 10);
+            const cols = parseInt(document.getElementById('cols').value, 10);
+            let inputsHtml = '<p>Enter Matrix Entries, then click Process:</p><table>';
+            for (let i = 0; i < rows; i++) {
+                inputsHtml += '<tr>';
+                for (let j = 0; j < cols; j++) {
+                    inputsHtml += `<td><input type='number' id='cell-${i}-${j}' style='width: 70px;' /></td>`;
+                }
+                inputsHtml += '</tr>';
+            }
+            inputsHtml += '</table>';
+            document.getElementById('matrix-inputs').innerHTML = inputsHtml;
+        }
+        function getEnteredMatrix() {
+            const rows = parseInt(document.getElementById('rows').value, 10);
+            const cols = parseInt(document.getElementById('cols').value, 10);
+            let matrix = [];
+
+            for (let i = 0; i < rows; i++) {
+                let row = [];
+                for (let j = 0; j < cols; j++) {
+                    const cellValue = parseFloat(document.getElementById(`cell-${i}-${j}`).value);
+                    if (!isNaN(cellValue)) {
+                        row.push(cellValue);
+                    } else {
+                        row.push(0); // Default to 0 if the input is not a number
+                    }
+                }
+                matrix.push(row);
+            }
+
+            return matrix;
+        }
+        async function reduceMatrixAndRender() {
+            const matrix = getEnteredMatrix();
+            const reducedMatrix = await rowReduce(matrix); // Assuming reduceMatrix is your function to reduce the matrix
+            document.getElementById('resumeButton').innerHTML = "Done"
+            const reducedHtml = matrixToHtml(reducedMatrix); // Convert the reduced matrix to HTML
+            document.getElementById('reduced-matrix').innerHTML = reducedHtml; // Display the reduced matrix
+            document.getElementById('restart-notice').innerHTML = '<h3>Reload Page to Try Another Matrix</h3>'
+        }
+        reduceMatrixAndRender();
+
+    </script>
+
+
+</body>
+
+</html>
