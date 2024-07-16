@@ -1,0 +1,71 @@
+---
+format: html
+title: Row Reduction Algorithm (thanks GitHub copilot)
+author: Jeremy Teitelbaum
+---
+
+```{python}
+#| echo: false
+import numpy as np
+from sympy import Matrix, pprint
+
+def row_reduce(matrix):
+    # Convert the matrix to a float type for division operations
+    A = np.array(matrix, dtype=float)
+    rows, cols = A.shape
+    print("\n Forward Pass")
+    for i in range(min(rows, cols)):
+        print(f"\nProcessing column {i}")
+        
+        # Find the pivot element
+        pivot = A[i, i]
+        if pivot == 0:
+            # Find a row below with a non-zero pivot and swap
+            for j in range(i + 1, rows):
+                if A[j, i] != 0:
+                    print(f"Row {i} <-> Row {j}")
+                    A[[i, j]] = A[[j, i]]
+                    pivot = A[i, i]
+                    break
+        if pivot == 0:
+            print(f"Cannot eliminate column {i} as pivot is zero")
+            continue  # Cannot eliminate this column
+
+        # Normalize the pivot row
+        print(f"Row {i} <- (Row {i})/{pivot}")
+        A[i] = A[i] / pivot
+
+        # Eliminate the entries below the pivot
+        for j in range(i + 1, rows):
+            print(f"Row {j} <-Row {j} - ({A[j,i]})*Row {i}")
+            A[j] = A[j] - A[j, i] * A[i]
+        
+        print("\n--Result so far--")
+        pprint(Matrix(A))
+
+    # Back substitution to eliminate above the pivot
+    print("\nBackward Pass")
+    for i in range(min(rows, cols) - 1, -1, -1):
+        pivot = A[i, i]
+        if pivot == 0:
+            continue
+        for j in range(i - 1, -1, -1):
+            print(f"Row {j} <- Row {j} - ({A[j,i]}) * Row {i}")
+            A[j] = A[j] - A[j, i] * A[i]
+
+    return A
+
+# Example usage:
+matrix = [
+    [2, 1, -1, -1,5],
+    [-3, -1, 2, -2,1],
+    [-2, 1, 2, -3,-2],
+    [4,-2,-4,6,4],
+    [1, 2, 3, 4,11]
+]
+print("\n--Input Matrix--")
+pprint(Matrix(matrix))
+reduced_matrix = row_reduce(matrix)
+print("\n--Reduced Matrix--")
+pprint(Matrix(reduced_matrix))
+```
