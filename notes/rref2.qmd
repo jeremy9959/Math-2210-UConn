@@ -1,0 +1,44 @@
+---
+format: html
+title: Row Reduction
+author: Jeremy Teitelbaum
+---
+
+```{ojs}
+viewof matrix_rows = Inputs.number([1,10],{value: 2, label: "Matrix Rows", step: 1, })
+viewof matrix_cols = Inputs.number([1,10],{value: 2, step: 1, label: "Matrix Cols"})
+```
+
+
+::: {#matrix-inputs}
+
+:::
+```{ojs}
+// |echo: false
+// |output: false
+{
+    var rows = matrix_rows ; 
+var cols = matrix_cols ; 
+var inputsHtml = '<p>Enter Matrix Entries, then click Process:</p><table>';
+for (let i = 0; i < rows; i++) {
+    inputsHtml += '<tr>';
+    for (let j = 0; j < cols; j++) {
+        inputsHtml += `<td><input type='number' id='cell-${i}-${j}' style='width: 70px;' /></td>`;
+    }
+    inputsHtml += '</tr>';
+}
+inputsHtml += '</table>';
+document.getElementById('matrix-inputs').innerHTML = inputsHtml;}
+```
+
+```{ojs}
+viewof process = Inputs.button("Process")
+```
+
+```{ojs}
+reduce = {
+    process ; 
+
+
+
+}

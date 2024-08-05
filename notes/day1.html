@@ -8,7 +8,7 @@
 <link href="day1_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="day1_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="day1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+  <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Jeremy Teitelbaum">
   <title>1.1-1.2 Systems of Linear Equations</title>
@@ -156,8 +156,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -383,13 +382,9 @@ a_{k1} x_1 + a_{k2} x_2 + \cdots + a_{kn} x_{n} &amp;= b_{k}
 6x+10y&amp;=20
 \end{aligned}
 \]</span></p>
-<div id="dc4aeb6e" class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div>
-<figure>
 <p><img data-src="day1_files/figure-revealjs/cell-3-output-1.png" width="811" height="449"></p>
-</figure>
-</div>
 </div>
 </div>
 </section>
@@ -401,13 +396,9 @@ a_{k1} x_1 + a_{k2} x_2 + \cdots + a_{kn} x_{n} &amp;= b_{k}
 2x -y &amp;= 5
 \end{aligned}
 \]</span></p>
-<div id="d686cda4" class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<div>
-<figure>
 <p><img data-src="day1_files/figure-revealjs/cell-4-output-1.png" width="819" height="449"></p>
-</figure>
-</div>
 </div>
 </div>
 </section>
@@ -419,13 +410,9 @@ a_{k1} x_1 + a_{k2} x_2 + \cdots + a_{kn} x_{n} &amp;= b_{k}
 6x+10y&amp;= 11 \\
 \end{aligned}
 \]</span></p>
-<div id="5ee6587a" class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
-<div>
-<figure>
 <p><img data-src="day1_files/figure-revealjs/cell-5-output-1.png" width="811" height="449"></p>
-</figure>
-</div>
 </div>
 </div>
 </section>
@@ -475,7 +462,7 @@ a_{k1} &amp; a_{k2} &amp; \cdots &amp; a_{kn} &amp; b_{k} \\
 </section>
 <section id="row-reduction-1" class="slide level2">
 <h2>Row Reduction 1</h2>
-<div id="22e5c709" class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 0.  1.  4. -4.]
  [ 1.  3.  3. -2.]
@@ -494,7 +481,7 @@ a_{k1} &amp; a_{k2} &amp; \cdots &amp; a_{kn} &amp; b_{k} \\
  [ 0.  1.  4. -4.]]</code></pre>
 </div>
 </div>
-<div id="76465913" class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>
  Row[3]-&gt; 2*Row[3]+Row[2]
@@ -522,7 +509,7 @@ Divide rows by leading coeffs
 </section>
 <section id="row-reduction-2" class="slide level2">
 <h2>Row Reduction 2</h2>
-<div id="6b6eabe5" class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 0  1 -4  8]
  [ 2 -3  2  1]
@@ -541,7 +528,7 @@ Row[2]-&gt;-2*Row[2]+Row[3]
  [ 0  1 -4  8]]</code></pre>
 </div>
 </div>
-<div id="c56edc54" class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Row[3]-&gt;2*Row[3]+Row[2]
@@ -598,7 +585,7 @@ x_{1} &amp;= 11-5(1-x_{4})+x_{4}=6+6x_{4} \\
 </section>
 <section id="reduced-echelon-form-continued" class="slide level2">
 <h2>Reduced echelon form continued</h2>
-<div id="707621a5" class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>Remember our echelon matrix from before
 
@@ -610,13 +597,12 @@ We can reduce this
 
 
 X[1]-&gt;X[1]-7/3X[2]
-
 [[ 1.  0. -3. 16.]
  [-0.  1.  2. -6.]
  [ 0.  0.  1.  1.]]</code></pre>
 </div>
 </div>
-<div id="d209ea09" class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>
  X[1]-&gt;X[1]+3X[3]
@@ -624,8 +610,7 @@ X[1]-&gt;X[1]-7/3X[2]
 [[ 1.  0.  0. 19.]
  [-0.  1.  2. -6.]
  [ 0.  0.  1.  1.]]
-
- X[2]-&gt;X[2]-2*X[3]
+X[2]-&gt;X[2]-2*X[3]
 
 [[ 1.  0.  0. 19.]
  [-0.  1.  0. -8.]
@@ -671,7 +656,7 @@ X[1]-&gt;X[1]-7/3X[2]
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div id="58c48b08" class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>Matrix is
 ⎡1  2  3  4⎤
@@ -683,7 +668,7 @@ X[1]-&gt;X[1]-7/3X[2]
 </code></pre>
 </div>
 </div>
-<div id="d5538959" class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="12">
 <div class="cell-output cell-output-stdout">
 <pre><code>Reduced matrix is
 ⎡1  0  -1  -2⎤
@@ -704,7 +689,7 @@ x_{1} &amp;= -2+x_{3} \\
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<div id="024974cc" class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <pre><code>Matrix is
 ⎡1  3  5  7⎤
@@ -716,7 +701,7 @@ x_{1} &amp;= -2+x_{3} \\
 </code></pre>
 </div>
 </div>
-<div id="ee618c81" class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>Reduced matrix is
 ⎡1  0  -1  0⎤
@@ -726,13 +711,13 @@ x_{1} &amp;= -2+x_{3} \\
 ⎣0  0  0   1⎦
 Pivot columns are (1, 2)
 Column 3 is a free variable
+
+This is an inconsistent system
 </code></pre>
 </div>
 </div>
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -761,6 +746,7 @@ Column 3 is a free variable
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1021,9 +1007,10 @@ Column 3 is a free variable
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1033,17 +1020,8 @@ Column 3 is a free variable
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
