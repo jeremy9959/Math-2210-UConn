@@ -2,6 +2,11 @@
 format: revealjs
 title: 1.3 Matrix Equations
 author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
 ---
 
 ## Vectors
@@ -38,6 +43,8 @@ $$
 ## Geometric interpretation
 
 ```{python}
+import sys
+print(sys.version_info)
 import matplotlib.pyplot as plt
 
 # Starting point of the vector
