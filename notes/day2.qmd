@@ -1,5 +1,5 @@
 ---
-format: revealjs
+format: beamer
 title: 1.3 Matrix Equations
 author: Jeremy Teitelbaum
 jupyter:
