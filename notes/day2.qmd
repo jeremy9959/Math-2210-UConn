@@ -1,6 +1,6 @@
 ---
 format: beamer
-title: 1.3 Matrix Equations
+title: 1.3 Vector Equations
 author: Jeremy Teitelbaum
 jupyter:
     kernelspec:
