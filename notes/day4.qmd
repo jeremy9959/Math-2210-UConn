@@ -10,7 +10,7 @@ jupyter:
         display_name: "base"
 ---
 ```{python}
-from sympy import Matrix, latex, BlockMatrix
+from sympy import Matrix, latex, BlockMatrix, symbols
 from IPython.display import display,Latex
 from numpy.random import randint, seed
 ```
@@ -108,3 +108,30 @@ $$
 $$
 where $\widehat{c_{i}v_{i}}$ means to omit this term.  Since $c_{i}\not=0$ you can divide this equation by $-c_{i}$ and write $v_{i}$ in terms of the other vectors. 
 
+## Example
+
+For what value(s) of $h$ are the following vectors linearly dependent?
+
+```{python}
+h=symbols('h')
+v1 = Matrix([[1],[-1],[4]])
+v2 = Matrix([[3], [-5], [7]])
+v3 = Matrix([[-1],[5],[h]])
+display(Latex(f"$v_1={latex(v1)}, v_2={latex(v2)}, v_3={latex(v3)}$"))
+```
+
+They are dependent if $v_3$ is a linear combination of  $v_1$ and $v_2$. In other words if
+$$
+v_3 = x_1v_1 + x_2v_2
+$$
+has a solution.
+
+$$\begin{matrix}
+-1 &=& x_1 + 3x_2 \\
+5 &=& -x_1-5x_2 \\
+\end{matrix}
+$$
+
+and then $h=4x_1+7x_2$.
+
+The solution is $x_1=5,x_2=-2$ so $h=6$  is the only value where the three are dependent.

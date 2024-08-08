@@ -1,0 +1,10 @@
+---
+format: beamer
+title: 1.8-1.9: Matrices and Linear Transformations
+author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
