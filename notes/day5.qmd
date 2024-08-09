@@ -1,6 +1,6 @@
 ---
 format: beamer
-title: 1.8-1.9: Matrices and Linear Transformations
+title: 1.8-1.9 Matrices and Linear Transformations
 author: Jeremy Teitelbaum
 jupyter:
     kernelspec:
@@ -8,3 +8,42 @@ jupyter:
         language: "python"
         display_name: "base"
 ---
+```{python}
+from sympy import Matrix, latex, symbols
+from numpy.random import randint, seed
+from IPython.display import Latex, display
+seed(104)
+x,y,z=symbols('x y z')
+```
+
+##  Linear Transformations and Matrices
+
+If $A$ is an $n\times m$ matrix, and $x$ is any vector in $\mathbf{R}^{m}$, then $Ax$ is a vector in $\mathbf{R}^{n}$.
+
+So we can define a function $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$
+by
+$$
+T(x) = Ax.
+$$
+
+For example if
+```{python}
+A = Matrix(randint(-5,5,size=(3,2)))
+v = Matrix([[x],[y]])
+display(Latex(f"$$A={latex(A)}"+r"\hbox{\rm\ and\ }"+f"v={latex(v)}$$"))
+display(Latex(f"then $$T(v)=Av={latex(A@v)}$$"))
+```
+
+## Function terminology
+
+In general if $f:X\to Y$ is a function then $f$ is a "rule" that
+associates exactly one element $y\in Y$ to each element $x\in X$.
+The $y$ corresponding to $x$ is called $f(x)$. Furthermore:
+
+- $X$ is called the domain of $f$
+- $Y$ is called the codomain of $f$
+- the set of $y\in Y$ so that there is an $x\in X$ with $f(x)=y$ is called the *range* of $f$.
+- if $f(x)=y$, then $y$ is called the *image* of $x$ under $f$. 
+
+If $A$ is an $n\times m$ matrix, then the domain of $f(x)=Ax$
+is $\mathbf{R}^{m}$ and the codomain is $\mathbf{R}^{n}$.
