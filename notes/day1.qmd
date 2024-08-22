@@ -72,12 +72,7 @@ Given two equations in two unknowns there are three possibilities:
 
 ## Infinitely many common solutions
 
-$$
-\begin{aligned}
-3x+5y&=10 \\
-6x+10y&=20
-\end{aligned}
-$$
+
 
 ```{python}
 x = np.linspace(-10, 10, 50)
@@ -91,12 +86,7 @@ C = plt.ylabel("y")
 
 ## One common solution
 
-$$
-\begin{aligned}
-3x+5y &= 10 \\
-2x -y &= 5
-\end{aligned}
-$$
+
 
 ```{python}
 x = np.linspace(-10, 10, 50)
@@ -111,12 +101,7 @@ C = plt.ylabel("y")
 
 ## No common solutions
 
-$$
-\begin{aligned}
-3x+5y&=10\\
-6x+10y&= 11 \\
-\end{aligned}
-$$
+
 
 ```{python}
 x = np.linspace(-10, 10, 50)
