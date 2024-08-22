@@ -1,0 +1,245 @@
+---
+format: beamer
+title: 1.8-1.9 Matrices and Linear Transformations
+author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
+```{python}
+from sympy import Matrix, latex, symbols, BlockMatrix
+from numpy.random import randint, seed
+from IPython.display import Latex, display
+seed(104)
+x,y,z=symbols('x y z')
+```
+
+##  Linear Transformations and Matrices
+
+If $A$ is an $n\times m$ matrix, and $x$ is any vector in $\mathbf{R}^{m}$, then $Ax$ is a vector in $\mathbf{R}^{n}$.
+
+So we can define a function $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$
+by
+$$
+T(x) = Ax.
+$$
+
+For example if
+```{python}
+A = Matrix(randint(-5,5,size=(3,2)))
+v = Matrix([[x],[y]])
+display(Latex(f"$$A={latex(A)}"+r"\hbox{\rm\ and\ }"+f"v={latex(v)}$$"))
+display(Latex(f"then $$T(v)=Av={latex(A@v)}$$"))
+```
+
+## Function terminology
+
+In general if $f:X\to Y$ is a function then $f$ is a "rule" that
+associates exactly one element $y\in Y$ to each element $x\in X$.
+The $y$ corresponding to $x$ is called $f(x)$. Furthermore:
+
+- $X$ is called the domain of $f$
+- $Y$ is called the codomain of $f$
+- the set of $y\in Y$ so that there is an $x\in X$ with $f(x)=y$ is called the *range* of $f$.
+- if $f(x)=y$, then $y$ is called the *image* of $x$ under $f$. 
+
+If $A$ is an $n\times m$ matrix, then the domain of $f(x)=Ax$
+is $\mathbf{R}^{m}$ and the codomain is $\mathbf{R}^{n}$.
+
+## Examples of matrix transformations
+
+If 
+$$
+A = \left[\begin{matrix} 1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 0 \end{matrix}\right]
+$$
+
+then 
+$$
+A\left[\begin{matrix} x \\ y \\ z\end{matrix}\right] = \left[\begin{matrix} x \\ y \\ 0\end{matrix}\right]
+$$
+
+is called a *projection*, in this case onto the $xy$-plane. 
+
+## Rotations in 2d
+
+If 
+$$
+A(\theta) =\left[\begin{matrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{matrix}\right]
+$$
+
+then 
+$$
+A(\theta)\left[\begin{matrix} x \\ y \end{matrix}\right]
+ = 
+\left[\begin{matrix} x\cos\theta-y\sin\theta \\ x\sin\theta+y\cos\theta\end{matrix}\right]
+$$
+
+rotates the vector $(x,y)$ through an angle $\theta$ counterclockwise.
+
+To see this, write $x=r\cos\phi$ and $y=r\sin\phi$. Then:
+$$\begin{matrix}
+r\cos\phi\cos\theta-r\sin\phi\sin\theta &=& r\cos(\phi+\theta) \\
+r\cos\phi\sin\theta + r\sin\phi\cos\theta&=&r\sin(\phi+\theta)\end{matrix}
+$$
+
+## Linear Transformations
+
+Let $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$ be a function.
+Then $T$ is called a *linear transformation* if
+
+- $T(ax)=aT(x)$ for every scalar $a$, and 
+- $T(x+y)=T(x)+T(y)$ for any two vectors $x,y\in\mathbf{R}^{m}$.
+
+Any matrix transformation $T(x)=Ax$, where $A$ is $n\times m$,
+is linear.
+
+If $T$ is linear, then $T(0)=0$ (because $T(0x)=0T(x)=0$.)
+
+
+## Linear Transformations
+
+```{python}
+A = Matrix([[1,0,-2],[-2,1,6],[3,-2,-5]])
+b = Matrix([[-1],[7],[-3]])
+display(Latex(f"Let $$T(x)={latex(A)}x.$$ Find a vector $x$ so that $T(x)=b$ and determine if this $x$ is unique."))
+U =BlockMatrix([A,b])
+X = U.as_explicit().rref()[0]
+display(Latex(f"Hint: The rref form for the augmented matrix $[A\quad b]$ is $${latex(X)}$$"))
+```
+
+## Another problem
+
+```{python}
+A = Matrix([[1,-2,1],[3,-4,5],[0,1,1],[-3,5,-4]])
+b = Matrix([[1],[9],[3],[-6]])
+display(Latex(f"Let $$T(x)={latex(A)}x.$$ Find a vector $x$ so that $T(x)=b$ and determine if this $x$ is unique."))
+U =BlockMatrix([A,b])
+X = U.as_explicit().rref()[0]
+display(Latex(f"Hint: The rref form for the augmented matrix $[A\quad b]$ is $${latex(X)}$$"))
+```
+
+## Linear Transformations
+
+If $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$$ is linear, and $v_1,\ldots, v_k$
+are vectors in $\mathbf{R}^{m}$, then if you know 
+$$T(v_1),\ldots, T(v_k)$$
+you know
+$$
+T(a_1 v_1 + \cdots + a_k v_k)
+$$
+for any constants $a_i$.  In other words, you can compute $T$ for any vector in the span of $v_1,\ldots, v_k$.
+
+## Linear Transformations
+
+In particular if $$T(\left[\begin{matrix} 1 \\ 0 \end{matrix}\right])=\left[\begin{matrix} a \\ b \end{matrix}\right]$$
+and $$T(\left[\begin{matrix} 0 \\ 1 \end{matrix}\right])=\left[\begin{matrix} c \\ d\end{matrix}\right]$$  then
+$$
+T(\left[\begin{matrix} x \\ y\end{matrix}\right]) = 
+T(x\left[\begin{matrix} 1 \\ 0\end{matrix}\right] + y\left[\begin{matrix} 0 \\ 1 \end{matrix}\right]) = 
+xT(\left[\begin{matrix} 1 \\ 0\end{matrix}\right]) + 
+yT(\left[\begin{matrix} 0 \\ 1 \end{matrix}\right]) = \left[\begin{matrix} ax+cy \\ bx + dy \end{matrix}\right]
+$$
+and $T(x)=Ax$ where
+$$
+A = \left[\begin{matrix} a & c \\ b & d \end{matrix}\right]
+$$
+
+## Matrices and Linear Transformations
+
+We have seen that, given a matrix $A$, then $T(x)=Ax$ is a linear transformation.
+
+Now suppose $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$ is a linear transformation. 
+
+Let $e_i\in\mathbf{R}^{m}$ be the vector $$e_{i} = \left[\begin{matrix} 0 \\ \vdots \\ 1 \\ \vdots \\ 0\end{matrix}\right]$$
+where the $1$ is in row $i$ of $e_{i}$.
+
+## Matrices and Linear Transformations
+
+Let $$A(T)=[T(e_1)\quad T(e_2)\cdots T(e_m))]$$ whose columns are the $T(e_i)$.  This is 
+an $n\times m$ matrix because each $T(e_i)\in\mathbf{R}^{n}$.
+
+Notice that $Ae_i = T(e_i)$ for $i=1,\ldots, m$. As a result, by linearlity, $Av=T(v)$ for any vector $v\in\mathbf{R}^{m}$.
+
+Therefore *every linear transformation comes from multiplication by a matrix.*
+
+## The identity map
+
+The map $T:\mathbf{R}^{m}\to\mathbf{R}^{m}$ given by $Tx=x$ is called the identity map.  
+
+Since $T(e_i)=e_i$
+for $i=1,\ldots, m$ the matrix of $T$ is the $m\times m$ matrix with $1$'s on the diagonal and zeros elsewhere.
+$$
+\left[\begin{matrix} 1 & 0 &0 &\cdots & 0 \\
+0 & 1 & 0 &\cdots & 0 \\
+0 & 0 & \ddots & 1&0 \\
+0 & 0 & \cdots & 0&1 \end{matrix}\right]
+$$
+
+## Matrices and Linear Transformations
+
+If $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$ is linear, then $T$ is determined by what it does to the standard basis vectors $e_{i}$.  
+
+For example, if $m=n=2$, and $T$ is the reflection map $T(x,y)=(y,x)$, then $T(e_1)=e_2$ and $T(e_2)=e_1$ and therefore $Tx=Ax$ where
+$$
+A = \left[\begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix}\right].
+$$
+
+## One-to-one and onto maps
+
+A function $T:A\to B$ is *one-to-one* if the only way that $T(x)=T(y)$
+is if $x=y$. 
+
+Eg the function $f(x)=x^2$ is *not* one-to-one, because $f(-1)=f(1)$ even
+though $-1\not=1$.  But the function $f(x)=3x$ is one-to-one, because if $3x=3y$ then $x$ and $y$ must be equal. 
+
+A function $T:A\to B$ is *onto* if, for any $b\in B$, there is an $a\in A$ so that $T(a)=b$. 
+
+The function $f(x)=x^2$ is not *onto*, because the equation $-1=x^2$ does not have a solution (at least in real numbers.)  The function $f(x)=3x$ is *onto*, because the equation $y=3x$ always has a solution ($x=y/3$).
+
+## One-to-one linear maps
+
+If $T$ is linear, then $T(x)=T(y)$ if and only if $T(x)-T(y)=T(x-y)=0$.
+So $T$ is one-to-one if the only solution to $T(v)=0$ is $v=0$.
+
+Since $T$ comes from a matrix $A$, the map is one-to-one if and only if
+the matrix equation $Ax=0$ has only zero as its solution.  
+
+This happens if and only if *the columns of $A$ are linearly independent.*
+
+## Onto linear maps
+
+If $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$ is linear, then $T(x)$ is onto if
+only if $T(x)=b$ has a solution for any $b\in\mathbf{R}^{n}$.  This
+means that the matrix equation
+$$
+Ax=b
+$$ has a solution for any $b\in\mathbf{R}^{n}$.  
+
+Since $Ax$ is a linear combination of the columns of $A$, every equation $Ax=b$ has a solution only if every $b$ is a linear combination of the columns of $A$.  In other words, $A$ is onto if and only if the columns of $A$ span $\mathbf{R}^{n}$. 
+
+## Theorem 12
+
+Theorem 12 in the book summarizes these two key facts.
+
+**Theorem:** Let $T(x)=Ax$ be a linear map from $\mathbf{R}^{m}$ to $\mathbf{R}^{n}$, where $A$ is an $n\times m$ matrix.
+
+1. $T$ is one-to-one if and only if the columns of $A$ are linearly independent vectors in $\mathbf{R}^{n}$.
+
+2. $T$ is onto if and only if the columns of $A$ span $\mathbf{R}^{n}$.
+
+## Algebraic version
+
+Algebraically:
+
+1. $T(x)=Ax$ is one-to-one if and only if the rref of $A$ has no free variables - in other words, if every column has a pivot. 
+
+2. $T(x)=Ax$ is onto if and only if every row of $A$ has a pivot.
+
+Note that if $A$ is an $n\times m$ matrix, then:
+
+- if $m>n$, the map cannot be one-to-one.
+- if $n>m$, the map cannot be onto. 
