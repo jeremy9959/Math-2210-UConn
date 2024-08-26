@@ -1,5 +1,5 @@
 ---
-title: Math 2210Q Fall 2024 
+title: "Math 2210Q Fall 2024"
 format: html
 ---
 
