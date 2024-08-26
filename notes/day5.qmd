@@ -188,6 +188,22 @@ $$
 A = \left[\begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix}\right].
 $$
 
+## Reflections
+
+![reflections](reflections.png){width="40%"}
+
+## Shears
+
+![shears](shears.png){width="80%"}
+
+## Contractions/Expansions
+
+![contractions and expansions](ContractionsExpansions.png){width="80%"}
+
+## Projections
+
+![projections](Projections.png){width="80%"}
+
 ## One-to-one and onto maps
 
 A function $T:A\to B$ is *one-to-one* if the only way that $T(x)=T(y)$

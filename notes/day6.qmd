@@ -1,0 +1,143 @@
+---
+format: beamer
+title: 2.1 Matrix Operations
+author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
+
+## Basic terminology
+
+An $n\times m$ matrix $A$ can be written as an
+$n\times m$ array of numbers.
+
+It can also be written as 
+$$
+A=\left[\begin{matrix} \mathbf{a}_{1} & \mathbf{a}_{2}&\cdots&\mathbf{a}_{m}\end{matrix}\right]
+$$
+
+where each $\mathbf{a}_{i}$ is one of the $m$ columns of $A$, and is a vector in $\mathbf{R}^{n}$.
+
+## Special matrices
+
+The $m\times n$ zero matrix has all entries equal to zero.
+
+The main diagonal of an $m\times n$ matrix  are the entries $a_{11},a_{22},\ldots$ (which ends at either $a_{nn}$ or $a_{mm}$ depending on which is smaller).
+
+A square matrix is diagonal if all entries off the main diagonal are zero.
+
+## Addition 
+Assuming matrices $A$ and $B$ **are the same shape** you can add them  element by element:
+$$
+C=A+B
+$$
+
+and obtain another matrix of the same shape. 
+
+## Scalar multiplication
+
+You can also multiply $A$ by a constant $r$ (meaning multiply every element by $r$) to get another matrix $B=rA$ of the same shape.
+
+## Properties
+
+![properties](properties.png){width="100%"}
+
+
+## Matrix Multiplication
+
+If $A$ is and $m\times n$ matrix and $B$ is a $k\times p$ matrix, then the product $AB$ is defined ONLY WHEN $n=k$.
+
+In other words you can multiply $m\times n$ times $n\times p$.
+
+The result is an $m\times p$ matrix.
+
+## Matrix multiplication
+
+If $A$ is an $m\times n$ matrix and $B$ is an $n\times p$ matrix:
+
+$$
+B=\left[\begin{matrix} b_1 & b_2 &\cdots & b_p\end{matrix}\right]
+$$
+
+then 
+
+$$
+AB = \left[\begin{matrix} Ab_1 & Ab_2 &\cdots & Ab_p\end{matrix}\right]
+$$
+
+This makes sense because:
+
+- each column $b_1$ has $n$ rows
+- $Ab_1$ makes sense and has $m$ rows
+- so $AB$ is an $m\times p$ matrix.
+
+## Example
+
+```{python}
+from sympy import Matrix, latex, BlockMatrix, symbols
+from IPython.display import display,Latex
+from numpy.random import randint, seed
+seed(31)
+A = Matrix(randint(-10,10,size=(2,4)))
+B = Matrix(randint(-10,10,size=(4,3)))
+display(Latex(f"$A={latex(A)}$"))
+display(Latex(f"$B={latex(B)}$"))
+display(Latex(f"$AB={latex(A@B)}$"))
+```
+
+## Dot product rule
+
+If $A$ is $m\times n$ and $B$ is $n\times p$, then
+the $i,j$ entry of $AB$ is the dot product of 
+row $i$ of $A$ with column $j$ of $B$.
+
+$$
+\mathrm{Row}_{i}(A) = [a_{i1}, a_{i2},\ldots, a_{in}]
+$$
+$$
+\mathrm{Col}_{j}(B) = \left[\begin{matrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj}\end{matrix}\right]
+$$
+
+$$
+A_{ij} = a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{in}b_{nj}
+$$
+
+## Summation Notation
+Here $A$ is $m\times n$ and $B$ is $n\times p$. 
+$(AB)_{ij}$ means the $i,j$ entry of the matrix product $AB$. 
+
+$$
+(AB)_{ij} = \sum_{t=1}^{n}a_{it}b_{tj}
+$$
+
+## Properties
+
+![MatrixMultProps](MatrixMultProps.png){width="100%"}
+
+**IMPORTANT:** In general, $AB\not=BA$.  Matrix multiplication is NOT COMMUTATIVE.
+
+## Transpose
+
+The *transpose* of an $m\times n$ matrix $A$ is the
+$n\times m$ matrix obtained from $A$ by interchanging rows and columns.
+
+```{python}
+A = Matrix(randint(-3,3,size=(3,5)))
+display(Latex(f"$A={latex(A)}$"))
+display(Latex(f"Transpose $A^T={latex(A.T)}$"))
+```
+
+## Transpose and products
+
+The transpose of a product is the product of the tranposes, in the reversed order.
+
+$$
+(AB)^{T}=B^{T}A^{T}
+$$
+
+This makes sense: If $A$ is $m\times n$ and $B$ is $n\times p$, then $(AB)$ is $m\times p$ so $(AB)^{T}$ is $p\times m$.  
+
+On the other hand $B^{T}$ is $p\times n$ and $A^{T}$ is $n\times m$ so $B^{T}A^{T}$ is also $p\times m$. 
