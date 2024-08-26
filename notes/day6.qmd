@@ -141,3 +141,50 @@ $$
 This makes sense: If $A$ is $m\times n$ and $B$ is $n\times p$, then $(AB)$ is $m\times p$ so $(AB)^{T}$ is $p\times m$.  
 
 On the other hand $B^{T}$ is $p\times n$ and $A^{T}$ is $n\times m$ so $B^{T}A^{T}$ is also $p\times m$. 
+
+## Matrix Powers
+
+If $A$ is a matrix, then $A^{n}=A\cdot A\cdot A\cdots A$ makes sense (at least for integers $n\ge 0$).
+
+## Inverse Matrix
+
+If $A$ is an $n\times n$ matrix, and $I_{n}$ is the $n\times n$ identity matrix having ones on the diagonal
+and zero elsewhere, then the inverse $A^{-1}$ of $A$ (if it exists) is the matrix such that
+$A^{-1}A=I_{n}$.  
+
+Suppose $A^{-1}A=I_{n}$.  What about a matrix $B$ such that $AB=I_{n}?$.  
+
+- Let $u$ be $(A^{-1})^{-1}$, meaning that $uA^{-1}=I_{n}$.  Consider $(uA^{-1})(AA^{-1})$.
+
+- On the one hand this is $AA^{-1}$ since $uA^{-1}=I_{n}$.  On the other hand this is $uA^{-1}=I_{n}$
+since the middle $A^{-1}A$ yield $I_{n}$.  So $AA^{-1}=I_{n}$ and t he inverse works on both sides.
+
+## Not all square matrices have inverses
+
+Let $A=\left[\begin{matrix} 1 & 0 \\ 0 & 0\end{matrix}\right]$.  If $AB=I_{2}$
+then
+
+$$
+\left[\begin{matrix} 1 & 0 \\ 0 & 0\end{matrix}\right]\left[\begin{matrix} x & y\\ c&d\end{matrix}\right]
+=\left[\begin{matrix} 1 & 0 \\ 0 & 1\end{matrix}\right]
+$$
+
+so 
+
+$$
+\left[\begin{matrix} x & y\\0 & 0\end{matrix}\right]=\left[\begin{matrix} 1 & 0 \\ 0 & 1\end{matrix}\right]
+$$
+
+which is clearly impossible. 
+
+## Two by two inverse
+
+If
+
+$$A=\left[\begin{matrix} a & b\\c&d\end{matrix}\right]$$
+
+then 
+$$
+A^{-1} = \frac{1}{ad-bc}\left[\begin{matrix} d& -b\\-c&a\end{matrix}\right]$$
+
+Just multiply them out and check that it works. Here $ad-bc\not=0$.  If $ad-bc=0$ then there is no inverse.
