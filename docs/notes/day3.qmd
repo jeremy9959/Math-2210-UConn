@@ -1,0 +1,364 @@
+
+---
+format: beamer
+title: 1.4-1.5 Matrix Equation Ax=b
+author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
+<!--
+matrix x vector multiplication
+matrix equations Ax=b
+corresponds to linear combinations of columns
+Has a solution if b is in span of columns of A
+When does Ax=b have a solution for every b?
+relationship between pivots in the augmented matrix and consistency
+
+Solution sets of homogeneous equations
+has a nontrivial solution of there is a free variable
+solution set is the span of a set of vectors
+solutions can be written parametrically
+
+Nonhomogeneous systems
+
+Ax=b where b isn't zero
+solution has form u + variable vectors
+variable vectors correspond to free variables
+- row reduce augmented matrix
+- write the basic variables in terms of the free ones
+- write a typical solution in terms of the free variables if any
+- interpret as vectors
+
+Example: chemical equations
+
+aC3H8 + bO2 -> cCO2 + dH2O
+
+what are the weights? this is a system of linear equations
+
+Linear independence
+
+definition
+dependence -- one is a combination of others
+
+if p>n, then p vectors in R^n are dependent
+
+-->
+## Matrix Equations
+
+A system of $n$ linear equations in $k$ unknowns can be written in matrix form
+$$
+Ax = b
+$$
+
+Here $A$ is the $n\times k$ matrix of coefficients
+$$
+A = \begin{pmatrix} a_{11} & \cdots& a_{1k} \\
+\vdots &\vdots & \vdots \\
+a_{n1} & \cdots & a_{nk} \\
+\end{pmatrix}
+$$
+
+
+## Matrix multiplication (Matrix x Vector)
+
+
+The vectors $x$ and $b$ are
+$$
+x = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n\end{pmatrix}, b = \begin{pmatrix} b_1 \\ b_2 \\\vdots\\b_n\end{pmatrix}
+$$
+
+The matrix product $Ax$ is *by definition* the linear combination of the columns of $A$ with weights given by $x$.
+
+Notice that if $A$ is $n\times m$, then $b$ must be in $\mathbf{R}^{m}$ and the product is in $\mathbf{R}^{n}$.
+
+## Matrix Multiplication
+
+$$
+\begin{pmatrix} 1 & 3 & 2\\2 & 4 & 1\\ -1 & -1 & 0\end{pmatrix}\begin{pmatrix} 1 \\2\\3\end{pmatrix} = \begin{pmatrix}13 \\13 \\-3\end{pmatrix}
+$$
+
+$$
+\begin{pmatrix} 13 \\ 13 \\ -3 \end{pmatrix} =
+\begin{pmatrix} 1 \\ 2 \\ -1\end{pmatrix} + 2\begin{pmatrix}3 \\4 \\-1\end{pmatrix} + 3\begin{pmatrix} 2\\1\\0\end{pmatrix}
+$$
+
+## Matrix Multiplication
+
+The "dot product" $a\cdot b$ of two vectors $a$ and $b$ in $\mathbf{R}^{m}$, where
+$$
+a=\begin{pmatrix} a_1\\ a_2\\ \vdots \\ a_m\end{pmatrix},
+b=\begin{pmatrix} b_1\\ b_2\\ \vdots \\ b_m\end{pmatrix},
+$$
+is the sum
+$$
+a\cdot b = a_1b_1 + a_2b_2 +\cdots a_m b_m
+$$
+
+## Matrix Multiplication
+
+The entries of the product $Ab$ (where $A$ is $n\times m$ and $b$
+is in $\mathbf{R}^{m}$) are the successive dot products of the rows
+of $A$ with $b$.
+
+Each row of $A$ has $m$ entries, and $b$ has $m$ entries; there are $n$ dot products, so the product is in $\mathbf{R}^{n}$.
+
+
+
+## Solving a matrix equation
+
+Given the matrix equation $Mx=b$, to solve it,
+use row reduction on the augmented matrix 
+$[M b]$.
+
+For M and b as above the augmented matrix is
+```{python}
+from sympy import Matrix
+M = Matrix([[1,3,2,13],[2,4,1,13],[-1,-1,0,-3]])
+M 
+```
+
+Applying row reduction yields
+```{python}
+M.rref()[0]
+```
+
+This gives $x_1=1,x_2=2,x_3=3$ as the only solution to this equation.
+
+## Another example
+
+Consider the following $M$ and $b$.
+
+```{python}
+M = Matrix([[3,5,-4],[-3,-2,4],[6,1,-8]])
+M 
+```
+```{python}
+b = Matrix([[7],[-1],[-4]])
+b 
+```
+
+### Augmented form
+```{python}
+Maug=Matrix([[3,5,-4,7],[-3,-2,4,-1],[6,1,-8,-4]])
+Maug
+```
+
+## Example continued
+
+### Reduced form
+
+```{python}
+Maug.rref()[0]
+```
+
+### Solution
+$x_3$ is a free variable. 
+
+$$\begin{matrix}
+x_2 &=& 2 \\
+x_1 &=& -1-\frac{4}{3} x_3\\
+\end{matrix}
+$$
+
+## Vector form
+
+$$
+x = \begin{pmatrix} -1 \\ 2 \\ 0\end{pmatrix} + x_3\begin{pmatrix} -\frac{4}{3} \\ 0 \\ 1\end{pmatrix}
+$$
+
+## Inconsistency
+
+A system is  inconsistent if the only non zero entry in a row occurs by itself in the last column. Consider $Mx=b$.
+
+### Matrix M
+```{python}
+M = Matrix([[1,2,3],[0,1,1],[1,1,2]])
+b = Matrix([[1],[1],[1]])
+M
+```
+
+### Vector b
+```{python}
+b 
+```
+
+## Inconsistency example
+Reduced form - last row shows inconsistent.
+```{python}
+M=Matrix([[1,2,3,1],[0,1,1,1],[1,1,2,1]])
+M.rref()[0]
+```
+
+
+## Summary
+
+Let $A$ be an $n\times m$ matrix. Then the following statements are either all true or all false:
+
+1. $Ax=b$ has a solution for any $b\in\mathbf{R}^{m}$
+2. Any $b$ in $\mathbf{R}^{m}$ is a linear combination of the columns of $A$.
+3. The columns of $A$ span $\mathbf{R}^{m}$.
+4. The rref of $A$ has a pivot in every row. 
+
+
+## Homogeneous Systems
+
+A *homogeneous system* is a matrix equation $Ax=0$, so  the target vector $b$ is zero.
+
+In general:
+
+- The solutions are parameterized by $s$ vectors,
+where $s$ is the number of free variables in the reduced matrix $A$.
+
+- The values of the variables corresponding to pivots are determined by the free variables.
+
+- If there are no free variables, the only solution to the inhomogeneous system is zero. 
+
+Also notice that if $v$ and $w$ satisfy $Av=Aw=0$ then 
+also $A(v+w)=0$ and $A(cv)=0$.
+
+## Some examples
+
+```{python}
+from sympy import Matrix, latex, BlockMatrix
+from numpy.random import randint, seed
+from IPython.display import Latex
+from numpy import set_printoptions
+
+set_printoptions(precision=2)
+
+seed(101)
+A = Matrix(randint(-20, 20, size=(5, 3)))
+display(Latex("Matrix $A$=" + f"${latex(A)}$"))
+display(Latex(f"Reduced form=${latex(A.rref()[0])}$"))
+```
+
+There are no free variables, so the zero vector is the only solution.
+
+## Example
+```{python}
+seed(101)
+A = Matrix(randint(-20, 20, size=(3, 5)) * 1.0)
+display(Latex("Matrix $A$=" + f"${latex(A)}$"))
+display(Latex(f"Reduced form=${latex(A.rref()[0].evalf(2))}$"))
+```
+
+Here there are two free variables ($x_4$ and $x_5$).  The solutions
+are
+$$\begin{matrix}
+x_1 &=& -1.7x_4+.55x_5 \\
+x_2 &=& -4.3x_4 + 2.0x_5 \\
+x_3 &=& 11x_4-5x_4
+\end{matrix}
+$$
+
+## Parametric form for solutions
+
+In vector form this is
+$$
+\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5\end{matrix}\right] =
+x_4\left[\begin{matrix} -1.7 \\ -4.3 \\ 11 \\ 1 \\ 0 \end{matrix}\right] +
+x_5 \left[\begin{matrix} .55 \\ 2.0 \\ -5 \\ 0 \\ 1 \end{matrix}\right]
+$$
+
+## Some special cases
+
+Notice that:
+
+* if a matrix has more columns than rows ($A$ is $n\times m$ and $m>n$) -- or more variables than equations -- 
+
+* then the homogeneous system $Ax=b$ always has infinitely many solutions, and in fact there are always at least $m-n$ free variables. 
+
+## Nonhomogeneous systems
+
+If $b\not=0$ then $Ax=b$ is called a nonhomogeneous or inhomogeneous system.
+
+**Key Observation:** 
+
+1. If $v$ is a solution to the homogeneous system $Ax=0$, and $w$ is a solution to the inhomogeneous system $Ax=b$,
+then $v+w$ is also a solution to $Ax=b$ because $A(v+w)=Av+Aw=0+b=b$.
+
+2.  If $v$ and $w$ are two solutions to $Ax=b$, then $v-w$ is a solution to $Ax=0$ because $A(v-w)=Av-Aw=b-b=0.$
+
+Therefore the solutions (if any) to the inhomogeneous system are of the form $v+w$ where $v$ is any *one* solution to $Ax=b$ and $w$ is any solution to $Ax=0$. 
+
+## Examples
+
+
+```{python}
+seed(102)
+A = Matrix(randint(-20, 20, size=(2, 3)) * 1.0)
+b = Matrix(randint(-20, 20, size=(2, 1)) * 1.0)
+display(Latex("Matrix $A$=" + f"${latex(A)}$"))
+display(Latex(f"b=${latex(b)}$"))
+display(
+    Latex(
+        f"Reduced form of augmented=${latex(BlockMatrix([A,b]).as_explicit().rref()[0].evalf(2))}$"))
+```
+
+Solution:
+$$\begin{matrix}
+x_1 &= & -.83x_3-.59 \\
+x_2 &=& -.24x_3+.12\\
+\end{matrix}
+$$
+
+$$\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \end{matrix}\right]=
+\left[\begin{matrix}-.59 \\ .12 \\ 0\end{matrix}\right] + x_3\left[\begin{matrix} -.83 \\ -.24 \\ 1\end{matrix}\right]
+$$
+
+## An example
+
+Propane combusion: $C_{3}H_{8}$ and $O_{2}$ combine to yield
+$CO_{2}$ and $H_{2}O$.  
+
+Balancing:
+$$
+(x_1)C_{3}H_{8} + (x_{2})O_{2} = x_{3}(CO_{2})+x_{4}(H_{2}O)
+$$
+
+This means
+$$\begin{matrix}
+3x_{1}&=&x_{3}\\
+8x_{1}&=&2x_{4}\\
+2x_{2}&=&x_{4} \\
+\end{matrix}
+$$
+
+Matrix form $Ax=0$ where 
+$$
+A=\left[\begin{matrix} 3 & 0 & -1 & 0 \\8 & 0 & 0 & -2\\0 & 2 & 0 &-1\end{matrix}\right]
+$$
+
+## Solution
+
+```{python}
+A = Matrix([[3, 0, -1, 0], [8, 0, 0, -2], [0, 2, 0, -1]])
+display(Latex(f"A=${latex(A)}$"))
+display(Latex(f"reduced form=${latex(A.rref()[0])}$"))
+```
+
+The solution has one free variable $x_{4}$ and we have
+$$\begin{matrix}
+x_1 &=& 1/4 x_4 \\
+x_2 &=& 1/2 x_4 \\
+x_3 &=& 3/4 x_4 \\
+\end{matrix}
+$$
+
+## Parametric form
+You get
+
+$$
+\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \\ x_4\end{matrix}\right] = 
+x_4\left[\begin{matrix} 1/4 \\ 1/2 \\ 3/4 \\ 1\end{matrix}\right]
+$$
+
+You can rescale this to get
+
+$$
+\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \\ x_4\end{matrix}\right] = 
+x_4\left[\begin{matrix} 1 \\ 2 \\ 3 \\ 4\end{matrix}\right]
+$$

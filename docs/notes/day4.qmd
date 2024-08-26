@@ -1,0 +1,137 @@
+
+---
+format: beamer
+title: 1.7 Linear Independence
+author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
+```{python}
+from sympy import Matrix, latex, BlockMatrix, symbols
+from IPython.display import display,Latex
+from numpy.random import randint, seed
+```
+
+## Linear Independence
+
+A set $v_1,\ldots, v_k$ of vectors in $\mathbf{R}^{n}$ is 
+*linearly independent* if the only solution to the equation
+$$
+x_1v_1+x_2v_2+\cdots+x_kv_k=0
+$${#eq-lindep}
+
+is the trivial solution where all $x_i=0$.
+
+A set of vectors that is not linearly independent is called *linearly dependent*.
+
+A nontrivial solution to equation @eq-lindep is called a *linear dependence relation* or just a *linear relation* among the vectors. 
+
+## Example
+
+```{python}
+seed(103)
+v1 = Matrix(randint(-20,20,size=(3,1)))
+v2 = Matrix(randint(-20,20,size=(3,1)))
+v3 = Matrix(randint(-20,20,size=(3,1)))
+
+display(Latex(f"Suppose:\n v1=${latex(v1)}$, v2=${latex(v2)}$, v3=${latex(v3)}$"))
+display(Latex("Consider the matrix of the homogeneous system:"))
+B = BlockMatrix([v1,v2,v3]).as_explicit()
+display(Latex(f"${latex(B)}$"))
+display(Latex("Apply row reduction to obtain:"))
+C = B.rref()[0]
+display(Latex(f"${latex(C)}$"))
+display(Latex("No free variables $\Rightarrow$ no nontrivial solution"))
+display(Latex("Vectors are linearly independent"))
+```
+
+## Example
+
+```{python}
+seed(103)
+v1 = Matrix(randint(-20,20,size=(3,1)))
+v2 = Matrix(randint(-20,20,size=(3,1))) + 2*v1
+v3 = v1 -3*v2
+
+display(Latex(f"Suppose:\n v1=${latex(v1)}$, v2=${latex(v2)}$, v3=${latex(v3)}$"))
+display(Latex("Consider the matrix of the homogeneous system:"))
+B = BlockMatrix([v1,v2,v3]).as_explicit()
+display(Latex(f"${latex(B)}$"))
+display(Latex("Apply row reduction to obtain:"))
+C = B.rref()[0]
+display(Latex(f"${latex(C)}$"))
+display(Latex("One free variable so vectors are dependent"))
+```
+
+## Example continued
+
+```{python}
+display(Latex(f"Recall that\n v1=${latex(v1)}$, v2=${latex(v2)}$, v3=${latex(v3)}$"))
+```
+The non trivial solution is
+$$\begin{matrix}
+x_1 &=& -x_3 \\
+x_2 &=& 3x_3 \\
+\end{matrix}
+$$
+
+so (cancelling out $x_3$) the linear relation is
+
+$$
+- v_1 + 3 v_2 +  v_3 = 0 
+$$
+
+## Special cases
+
+- A single vector is a linearly independent set if and only if it is zero.
+
+- Two vectors $v_1$ and $v_2$ are linearly independent unless $v_2$ is a multiple of $v_1$.
+
+- If $m<n$, then any set of $m$ vectors in $\mathbf{R}^{n}$ is linearly dependent. This is because a reduced $m\times n$ matrix, which has more columns than rows, must have at least one free variable.
+
+## Another characterization
+
+A set $v_1,\ldots, v_k$ of vectors in $\mathbf{R}^{m}$ is dependent if and only if one of the vectors $v_{i}$ is a linear combination of the others. 
+
+- If $v_1 = \sum_{i=2}^{k} c_{i} v_{i}$ then
+$$
+-v_1+c_2v_2 + \cdots + c_k v_k=0
+$$
+is the linear relation.
+
+- if $c_1 v_1 + \cdots c_k v_k =0$ is the linear relation, at least one of the $c_i$ isn't zero, so for that $i$ write
+$$
+-c_i v_i = c_1 v_1 + \cdots + \widehat{c_{i}v_{i}} + \cdots + c_{k}v_{k}
+$$
+where $\widehat{c_{i}v_{i}}$ means to omit this term.  Since $c_{i}\not=0$ you can divide this equation by $-c_{i}$ and write $v_{i}$ in terms of the other vectors. 
+
+## Example
+
+For what value(s) of $h$ are the following vectors linearly dependent?
+
+```{python}
+h=symbols('h')
+v1 = Matrix([[1],[-1],[4]])
+v2 = Matrix([[3], [-5], [7]])
+v3 = Matrix([[-1],[5],[h]])
+display(Latex(f"$v_1={latex(v1)}, v_2={latex(v2)}, v_3={latex(v3)}$"))
+```
+
+They are dependent if $v_3$ is a linear combination of  $v_1$ and $v_2$. In other words if
+$$
+v_3 = x_1v_1 + x_2v_2
+$$
+has a solution.
+
+$$\begin{matrix}
+-1 &=& x_1 + 3x_2 \\
+5 &=& -x_1-5x_2 \\
+\end{matrix}
+$$
+
+and then $h=4x_1+7x_2$.
+
+The solution is $x_1=5,x_2=-2$ so $h=6$  is the only value where the three are dependent.

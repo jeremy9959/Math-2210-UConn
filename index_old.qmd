@@ -1,0 +1,17 @@
+---
+title: "Math 2210 Fall 2024"
+format: html
+---
+
+## Linear Algebra (Math 2210Q)
+
+1. [Syllabus](syllabus.qmd)
+2. [Schedule](schedule.qmd)
+2. Notes
+    - [8/27](notes/day1.qmd)
+    - [8/29](notes/day2.qmd)
+    - [9/3](notes/day3.qmd)
+    - [9/5](notes/day4.qmd)
+    - [9/10](notes/day5.qmd)
+    - [9/12](notes/day6.qmd)
+

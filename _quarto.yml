@@ -1,0 +1,9 @@
+project:
+  type: default
+  output-dir: docs
+  render:
+    - index.qmd
+    - schedule.qmd
+    - syllabus.qmd
+    - notes/day*.qmd
+    

@@ -1,0 +1,115 @@
+---
+title: Syllabus
+format: html
+---
+
+## Syllabus 
+
+| Math 2210Q - Linear Algebra
+| Fall Semester 2024
+| University of Connecticut
+
+#### Overview
+
+ Linear Algebra is a foundational subject in mathematics which is essential to a wide range of applications ranging from population genetics
+to neural networks.  In this course we will learn the central ideas of linear
+algebra including systems of linear equations, vector spaces and linear transformations, orthogonal geometry, eigenvalues and eigenvectors.
+
+#### Instructor
+
+| Jeremy Teitelbaum 
+| 231 Monteith Hall 
+| Email: `jeremy.teitelbaum@uconn.edu` 
+| [Math Department Page](https://math.uconn.edu/teitelbaum)  
+| [Personal Web Page](https://jeremy9959.net)
+
+#### Textbook
+
+*Linear Algebra and its Applications, 6th Edition* by Steven Lay, Judi McDonald, and David Lay.
+
+We will be making use of the Pearson MyLab online resources that accompany this text, including the online homework system.
+
+#### Time and Place
+
+| August 26, 2024 - December 6, 2024 
+| Tuesdays and Thursdays 9:30AM-10:45AM 
+| Monteith 319
+
+#### Assessments
+
+Grades in this course will be determined as follows.
+
+| Online Homework: 15%
+| In-class quizzes (roughly weekly): 10%
+| Two midterm exams (20% each).  These are *tentatively* scheduled for 10/1 and 11/5.
+| A final exam (35%). This will take place at the regularly scheduled time, TBD.
+
+I will not offer make-ups for quizzes, but I will drop the lowest two scores from consideration.
+
+#### Disclaimer
+
+The instructor reserves the right to modify or adapt this syllabus to account for disruptions due to weather or other unexpected circumstances.
+
+#### University Policies
+
+Students with disabilities should work with the [Center for
+Students with Disabilities](https://csd.uconn.edu) to 
+ request academic accommodations. The CSD is located in Wilbur Cross, Room 204 and
+can be reached at (860) 486-2020 or at csd@uconn.edu.  Detailed
+information regarding the process to request accommodations is
+available on the CSD website at [www.csd.uconn.edu](https://csd.uconn.edu).  
+
+Students are bound by the university's policies on academic misconduct.
+Academic misconduct is dishonest or unethical academic behavior that includes, but is not limited to, misrepresenting mastery in an academic area (e.g., cheating), failing to properly credit information, research, or ideas to their rightful originators or representing such information, research, or ideas as your own (e.g., plagiarism).
+
+Students, faculty, and staff are bound by the university's [policy against discrimination,
+harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/12/29/policy-against-discrimination-harassment-and-related-interpersonal-violence/)
+
+{{< pagebreak >}}
+
+## Math 2210 Schedule
+
+---
+title: Schedule
+format: html
+---
+
+| Date        | Sections | Topics                                              |
+| ----------- | -------- | --------------------------------------------------- | -------------- |
+| 8/27        | 1.1-1.2  | [Intro to Linear Algebra, systems of equations](notes/day1.pdf)       |
+| 8/29        | 1.3      | [Vector equations](notes/day2.pdf)                                   |
+| 9/3         | 1.4-1.5  | [Matrix equations; solution sets](notes/day3.pdf)                   |
+| 9/5         | 1.7      | [Linear independence](notes/day4.qmd)                                |
+| 9/10        | 1.8-1.9  | [Linear transformations and the associated matrix](notes/day5.pdf)    |
+| 9/12        | 2.1      | [Matrix operations](notes/day6.pdf)                              |
+| 9/17        | 2.2-2.3  | Inverses and invertible matrices                    |
+| 9/19        | 3.1-3.2  | Determinants                                        |
+| 9/24        | 3.3-4.1  | Cramer's Rule, Volumes; Vector Spaces and Subspaces |
+| 9/26        |          | Exam Review                                         |
+| 10/1        |          | First Exam                                          |
+| 10/3        |          | No class (Rosh Hashanah)                            |
+| 10/8        | 4.2      | Null space, column space                            |
+| 10/10       | 4.3-4.4  | Bases and linear independence; coordinates          |
+| 10/15       | 4.5      | Dimension                                           |
+| 10/17       | 4.6-4.7  | Rank, change of basis                               |
+| 10/22       | 5.1      | Eigenvectors, eigenvalues                           |
+| 10/24       | 5.2-5.3  | Characteristic polynomials, diagonalization         |
+| 10/29       | 5.4      | Eigenvector and linear transformations              |
+| 10/31       |          | Review                                              |
+| 11/5        |          | Exam 2                                              |
+| 11/7        | 6.1-6.2  | Inner products, orthogonality                       |
+| 11/12       | 6.3      | Orthogonal Projection                               |
+| 11/14       | 6.4-6.5  | Gram-Schmidt, least squares                         |
+| 11/19       | 7.1      | Diagonalization of symmetric matrices               |
+| 11/21       | 7.2-7.3  | Quadratic forms, constrained optimization           |
+| 11/26-11/28 |          | No Class; Thanksgiving break                        |
+| 12/3        |          | Singular Value Decomposition                        |
+| 12/5        |          | Review/Catch-up                                     |
+| 12/9-12/11  |          | Finals Period                                       | Final Exam TBD |
+| 12/12       |          | Reading Day                                         |
+| 12/13-12/15 |          | Finals Period resumes                               | Final Exam TBD |
+
+: 2210 Class Schedule {.striped}
+
+
+See the mylab site for the course for the assigned homework problems.
