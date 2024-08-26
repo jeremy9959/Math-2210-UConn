@@ -1,5 +1,5 @@
 ---
-title: Syllabus
+title: Math 2210Q Fall 2024 
 format: html
 ---
 
@@ -68,11 +68,6 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 {{< pagebreak >}}
 
 ## Math 2210 Schedule
-
----
-title: Schedule
-format: html
----
 
 | Date        | Sections | Topics                                              |
 | ----------- | -------- | --------------------------------------------------- | -------------- |
