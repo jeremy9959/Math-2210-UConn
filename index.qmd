@@ -1,6 +1,5 @@
 ---
 title: "Math 2210Q Fall 2024"
-format: html
 ---
 
 ## Syllabus 
