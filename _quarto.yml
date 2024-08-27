@@ -7,3 +7,8 @@ project:
     - syllabus.qmd
     - notes/day*.qmd
 
+format:
+  html:
+    theme: cosmo
+  pdf:
+    toc: false
