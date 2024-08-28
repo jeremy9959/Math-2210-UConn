@@ -1,0 +1,100 @@
+---
+format: beamer
+title: 2.1 Matrix Operations
+author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
+
+## Elementary Matrices
+
+An elementary matrix is obtained by doing a single row operation on the identity matrix.  
+
+There are three types.
+
+## Elementary Matrices - Permutations
+
+Suppose
+
+$$
+I = \left[\begin{matrix} 1 & 0 & 0 &\cdots & 0 \\ 0 & 1 & 0 &\cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\
+0 & 0 & 0 & \ddots & 0\\
+0 & 0 & 0 &\cdots & 1\end{matrix}\right]
+$$
+
+Switch the first and third rows (for example) and you get
+
+$$
+I = \left[\begin{matrix} 0 & 0 & 1 &\cdots & 0 \\ 0 & 1 & 0 &\cdots & 0 \\ 1 & 0 & 0 & \cdots & 0 \\
+0 & 0 & 0 & \ddots & 0\\
+0 & 0 & 0 &\cdots & 1\end{matrix}\right]
+$$
+
+## Elementary Matrices - Permutations
+
+If $E$ is the elementary matrix obtained from $I_n$
+by swapping rows $i$ and $j$, and $A$ is an $n\times m$ matrix, then $EA$ is obtained from $A$ by swapping rows $i$ and $j$. 
+
+Such an $E$ is an invertible matrix. 
+
+## Elementary Matrices - scaling
+
+If $E$ is the elementary matrix obtained from $I_{n}$ by multiplying row $i$ by $a$, and $A$ is any $n\times m$ matrix, then $EA$ is obtained from $A$ by scaling row $i$ by $a$.
+
+Such an $E$ is an invertible matrix.
+
+## Elementary Matrices - adding
+
+If $E$ is the elementary matrix obtained from $I_{n}$ by replacing row $i$ by the sum of row $i$ and row $j$, and $A$ is any $n\times m$ matrix, then $EA$ is the matrix obtained from $A$ by adding rows $i$ and $j$.
+
+Such an $E$ is an invertible matrix. 
+
+## Theorem on elementary matrices
+
+If $A$ is an $n\times m$ matrix, there is a sequence of elementary matrices $E_{1},\ldots, E_{k}$ so that
+$$
+E_{k}\cdots E_{2}E_{1}A
+$$
+
+is in row reduced echelon from.
+
+If $A$ is a square $n\times n$ matrix, then its row reduced form has only diagonal entries.  
+
+## Invertible matrices
+
+If the rref of a square matrix $A$ has pivots in every column then $A$ is invertible.
+
+$$
+E_{k}\cdots E_{2}E_{1}A = I_{n}
+$$
+
+so 
+
+$$
+A^{-1} = E_{1}^{-1}E_{2}^{-1}\cdots E_{k}^{-1}
+$$
+
+## Invertible matrices
+
+If the rref does *not* have a pivot in every column, then it is not invertible.   Because in that case there is a vector $v$ which is not zero such that 
+
+$$
+E_{k}\cdots E_{2}E_{1}Av=0
+$$
+
+so $Av=0$.  But if $A$ were invertible then $A^{-1}Av=0$ implies $v=0$, which is  not true. 
+
+## Computing the inverse
+
+You can compute the inverse matrix of an $n\times n$ square matrix $A$ by finding the RREF of the $n\times 2n$ matrix
+
+$$
+\left[\begin{matrix} A & I_{n}\end{matrix}\right]
+$$
+
+## Theorem on Invertible Matrices
+
+![Inverses](InvertibleMatrixTheorem.png)
