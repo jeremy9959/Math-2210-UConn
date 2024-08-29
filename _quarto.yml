@@ -6,6 +6,7 @@ project:
     - schedule.qmd
     - syllabus.qmd
     - notes/day*.qmd
+    - quizzes/*.qmd
 
 format:
   html:
