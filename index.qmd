@@ -73,7 +73,7 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 8/27        | 1.1-1.2  | [Intro to Linear Algebra, systems of equations](notes/day1.pdf)       |
 | 8/29        | 1.3      | [Vector equations](notes/day2.pdf)                                   |
 | 9/3         | 1.4-1.5  | [Matrix equations; solution sets](notes/day3.pdf)                   |
-| 9/5         | 1.7      | [Linear independence](notes/day4.qmd)                                |
+| 9/5         | 1.7      | [Linear independence](notes/day4.pdf)                                |
 | 9/10        | 1.8-1.9  | [Linear transformations and the associated matrix](notes/day5.pdf)    |
 | 9/12        | 2.1      | [Matrix operations](notes/day6.pdf)                              |
 | 9/17        | 2.2-2.3  | Inverses and invertible matrices                    |
