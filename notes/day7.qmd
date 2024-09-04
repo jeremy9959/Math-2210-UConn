@@ -98,3 +98,28 @@ $$
 ## Theorem on Invertible Matrices
 
 ![Inverses](InvertibleMatrixTheorem.png)
+
+## Invertible Linear Maps
+
+Let $T:\mathbf{R}^{n}\to\mathbf{R}^{n}$
+be a linear transformation.
+
+Then $T$ is *invertible* if there is an "inverse function" $S:\mathbf{R}^{n}\to\mathbf{R}^{n}$ such that $S(T(x))=T(S(x))=x$ for all $x\in\mathbf{R}^{n}$. 
+
+## Matrices and maps
+
+Let $T:\mathbf{R}^{n}\to\mathbf{R}^{n}$ be a linear transformation and let $A$ be its standard matrix.  Then $T$ is invertible if and only if $A$ is an invertible matrix.
+
+If $T$ is invertible, then $T$ is *onto*.  Let $x\in\mathbf{R}^{n}$.  Then $T(S(x))=x$ so $S(x)$ is the element that maps to $T$.  If $y=S(x)$,
+then $Ay=x$ so the range of $A$ is all of $\mathbf{R}^{n}$ and so $A$ is invertible.
+
+Conversely if $A$ is invertible then $S(x)=A^{-1}x$ has the desired properties.
+
+## Inverses are unique
+
+Note: if $T$ has an inverse, it is one-to-one.  Because if $T(x)=T(y)$,then
+$S(T(x))=S(T(y))$ and therefore $x=y$. 
+
+Note: inverse functions are unique.  If $S(T(x))=T(S(x))=x$ and $U(T(x))=T(U(x))=x$ then $T(S(x))=T(U(x))$.  Since $T$ is one-to-one, $S(x)=U(x)$.
+
+Note: One can show that the inverse of a linear transformation is linear. This is problem 48 on page 149 of the text.
