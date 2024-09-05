@@ -123,3 +123,17 @@ $S(T(x))=S(T(y))$ and therefore $x=y$.
 Note: inverse functions are unique.  If $S(T(x))=T(S(x))=x$ and $U(T(x))=T(U(x))=x$ then $T(S(x))=T(U(x))$.  Since $T$ is one-to-one, $S(x)=U(x)$.
 
 Note: One can show that the inverse of a linear transformation is linear. This is problem 48 on page 149 of the text.
+
+## Some T/F problems from the homework
+
+Suppose that $A$ is an $n\times n$ matrix.  True or False:
+
+1. If the columns of $A$ span $\mathbf{R}^{n}$, then they are linearly independent.
+
+2. The equation $Ax=b$ always has at least one solution for each $b\in\mathbf{R}^{n}$.
+
+3. If the linear transformation $T(x)=Ax$ is one-to-one from $\mathbf{R}^{n}$ to $\mathbf{R}^{n}$, then $A$ has $n$ pivots.
+
+4. If $A$ has two identical columns, it is not invertible. 
+
+5.  If $A^{T}$ is invertible, so is $A$.
