@@ -92,7 +92,7 @@ $$\left[
 \end{array}\right]
 $$
 
-The $i,j$ *cofactor* $C_{ij}$ of $A$ is $(-1)^{i+j}\det(A_{ij})$.
+The $i,j$ *cofactor* $C_{ij}$ of $A$ is $(-1)^{i+j}\det(A_{ij})$.  The sign here is important!
 
 ## Cofactor Expansion
 
@@ -137,3 +137,60 @@ for i in range(3):
     display(Latex(f"$M_{{2{i+1}}}={latex(N)},C_{{2{i+1}}}={(-1)**(1+i)*(N.det())}$"))
 display(Latex(f"$\det(M)={M.det()}$"))
 ```
+
+
+
+## Triangular Matrices
+
+Suppose that $A$ is an $n\times n$ triangular matrix, meaning that all of the entries $a_{ij}$ where $i>j$
+are zero (or all of its entries $a_{ij}$ where $i<j$ are zero)
+
+Then the determinant of $A$ is the product of its diagonal entries.
+
+$$
+A = \left[\begin{matrix} 1 & 2 & 5 \\ 0 & 7 & -1 \\ 0 & 0 & 3\end{matrix}\right]
+$$
+
+$$\det(A)=(1)(7)(3) = 21$$
+
+Note: this is a nice result to see by mathematical induction.
+
+## Row operations and determinants
+
+The three row operations on a square matrix $A$ have the following effects:
+
+1.  Adding a multiple of one row to another does not affect the determinant.
+2.  Interchanging two rows changes the sign of the determinant.
+3.  Multiplying a row by a constant $k$ multiplies the determinant by $k$. 
+
+Note: the same is true of "column" operations.
+
+## Computing determinants by reduction
+
+$$
+A=\left[\begin{matrix} -5 & 4 & 4 \\ -5 & 2 & -4 \\ 0 & 4 & -4\end{matrix}\right]
+$$
+Replace row 2 with row 2 minus row 1. 
+
+$$
+\left[\begin{matrix} -5 & 4 & 4 \\ 0& -2& -8 \\ 0 & 4 & -4\end{matrix}\right]
+$$
+
+Replace row 3 by row 3 plus 2 row 2.
+
+$$
+\left[\begin{matrix} -5 & 4 & 4 \\ 0 & -2 & -8 \\ 0 & 0 & -20\end{matrix}\right]
+$$
+
+So determinant is $(-5)(-2)(-20)=-200$.
+
+## Fundamental properties
+
+Let $A$ and $B$ be  $n\times n$ matrices. 
+
+1.  $\det(AB)=\det(A)\det(B)$.
+2.  $A$ is invertible if and only if $\det(A)$ is nonzero.
+
+
+
+
