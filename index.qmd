@@ -76,8 +76,8 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 9/5         | 1.7      | [Linear independence](notes/day4.pdf)                                |
 | 9/10        | 1.8-1.9  | [Linear transformations and the associated matrix](notes/day5.pdf)    |
 | 9/12        | 2.1      | [Matrix operations](notes/day6.pdf)                              |
-| 9/17        | 2.2-2.3  | Inverses and invertible matrices                    |
-| 9/19        | 3.1-3.2  | Determinants                                        |
+| 9/17        | 2.2-2.3  | [Inverses and invertible matrices](notes/day7.pdf)                 |
+| 9/19        | 3.1-3.2  | [Determinants](notes/day8.pdf)                                        |
 | 9/24        | 3.3-4.1  | Cramer's Rule, Volumes; Vector Spaces and Subspaces |
 | 9/26        |          | Exam Review                                         |
 | 10/1        |          | First Exam                                          |
