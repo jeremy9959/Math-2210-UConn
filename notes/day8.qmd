@@ -190,6 +190,28 @@ Let $A$ and $B$ be  $n\times n$ matrices.
 
 1.  $\det(AB)=\det(A)\det(B)$.
 2.  $A$ is invertible if and only if $\det(A)$ is nonzero.
+3.  $\det(A^{T})=\det(A)$
+
+
+## Cramer's Rule
+
+Look at the equation $Ax=b$ where $A$ is an $n\times n$ matrix. 
+
+Let $A_{i}(b)$ be the matrix obtained by replacing column $i$ with $b$.
+Then
+
+$$
+x_{i}=\frac{\det(A_{i}(b))}{\det(A)}
+$$
+
+This is true because $A_{i}(b)=AI_{i}(b)$.  The determinant of $I_{i}(b)$ is $b_{i}$.
+
+Cramer's rule is actually pretty useless in practice.
+
+## Volumes
+
+Let $A$ be a square matrix of size $n\times n$.  The linear map $x\mapsto Ax$ expands volumes
+by a factor of $|\det(A)|$. 
 
 
 
