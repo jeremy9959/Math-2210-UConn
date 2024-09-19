@@ -165,6 +165,7 @@ The three row operations on a square matrix $A$ have the following effects:
 
 Note: the same is true of "column" operations.
 
+
 ## Computing determinants by reduction
 
 $$
@@ -206,13 +207,13 @@ $$
 
 This is true because $A_{i}(b)=AI_{i}(b)$.  The determinant of $I_{i}(b)$ is $b_{i}$.
 
-Cramer's rule is actually pretty useless in practice.
 
 ## Volumes
 
 Let $A$ be a square matrix of size $n\times n$.  The linear map $x\mapsto Ax$ expands volumes
 by a factor of $|\det(A)|$. 
 
+This is a generalization of the fact that the volume of a parallelogram is the base times the height.
 
 
 

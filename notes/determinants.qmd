@@ -24,3 +24,70 @@ $$
 $$
 
 This is sometimes expressed by saying that the determinant is a linear function of each row (holding the others fixed).
+
+## Another construction of the determinant
+
+We can *define* the determinant as follows.  Define a function $T$
+from the $n\times n$ matrices to the real numbers by requiring the
+following properties:
+
+1. $T(I)=1$ where $I$ is the $n\times n$ identity matrix. 
+2. If $B$ is obtained from $A$ by interchanging two rows, then $T(B)=-T(A)$.
+3. If we view $T$ as a function of the rows $A_1, \ldots, A_n$ of $A$,
+then $T$ is a linear function of any one row, holding the others constant.  In other words
+$$
+T(A_1, \ldots, u+kv,\ldots, A_n) = T(A_1,\ldots, u,\ldots A_n)+kT(A_1,\ldots, v,\ldots, A_n)
+$$
+
+Then there is exactly one function with these properties and it is the determinant. 
+
+## Some consequences
+
+Suppose that $T$ has the above properties.  
+
+- If a matrix $A$ has a repeated row, then $T(A)=0$.  To see this, switch the two equal rows to get $T(A)=-T(A)$ so $T(A)=0$.
+
+- If a matrix $A$ has a row of zeros, then $T(A)=0$.  Because if $A'$
+is obtained from $A$ by multiplying its zero row by $2$, then $T(A')=2T(A)$ but also $T(A')=T(A)$ so $T(A)=0$.
+
+- If $A'$ is obtained from $A$ by replacing $A_{i}$ with $A_{i}+cA_{j}$
+(here $A_{i}$ and $A_{j}$ are rows of $A$, and $c$ is a constant) then $T(A')=T(A)$. This is because 
+$$
+T(A_1,A_2,\ldots, A_i+A_j,\ldots, A_n)=T(A_1,A_2,\ldots A_i,\ldots, A_n)+ cT(A_1,A_2,\ldots, A_j,\ldots, A_n)
+$$
+The first term on the right is $T(A)$ and the second term is zero since it has two copies of $A_{j}$. 
+
+## Triangular matrices
+
+If $A$ is triangular then $T(A)$ is the product of its diagonal entries.  
+
+Note that either $A$ has a zero row (in which case $T(A)=0$ which is the product of its diagonal entries) or you can add multiples of one row to another to make $A$ diagonal with changing those diagonal entries.
+
+But if $A$ is diagonal, $T(A)$ is the product of the diagonal entries by the linearity property. 
+
+## Computing T
+
+Given a matrix $A$, you can compute $T(A)$ by using row swapping
+and adding rows to make $A$ upper triangular, and then take the product of the diagonal entries.
+ 
+
+## Elementary matrices
+
+Suppose $E$ is an elementary matrix.  Then
+
+- if $E$ is a row-swapping matrix, $T(E)=-1$.
+- if $E$ is a row-scaling matrix by factor $c$, then $T(E)=c$.
+- if $E$ is a matrix adding one row to another, then $T(E)=1$.
+
+Also, we see from the above that $T(EA)=T(E)T(A)$.
+
+More generally $T(E_1E_2\ldots E_n)=T(E_1)T(E_2)\ldots E_n$.
+
+## T(AB)=T(A)T(B)
+
+This is because $A$ and $B$ are products of elementary matrices. 
+
+## T is the determinant
+
+Because the determinant has the given properties, and those properties determine the value of $T$ on any matrix by row reduction.
+
