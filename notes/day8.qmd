@@ -198,14 +198,40 @@ Let $A$ and $B$ be  $n\times n$ matrices.
 
 Look at the equation $Ax=b$ where $A$ is an $n\times n$ matrix. 
 
-Let $A_{i}(b)$ be the matrix obtained by replacing column $i$ with $b$.
-Then
+If $Y$ is an $n\times n$ matrix, Let $Y_{i}(x)$ be the matrix obtained by replacing column $i$ with $x$
+and let $Y_{i}(b)$ be the matrix obtained from $Y$ by replacing the $i^{th}$ column
+by $b$. 
+
+Then $AI_{i}(x)=A_{i}(b)$.
+
+A $2\times 2$ example:
+
+$$
+\left[\begin{matrix} a & b \\ c & d\end{matrix}\right]\left[\begin{matrix} 1 & x \\ 0 & y \end{matrix}\right]
+= \left[\begin{matrix} a & ax+by \\ c & cx+dy\end{matrix}\right] = \left[\begin{matrix} a & u \\ c & v \end{matrix}\right]
+$$
+
+so $\det(A)y = \det(A_{2}(b))$ and therefore
+
+$$
+y=\det(A_{2}(b))/\det(A)
+$$
+
+## More on Cramer's Rule
+
+The general form of Cramer's rule is:
 
 $$
 x_{i}=\frac{\det(A_{i}(b))}{\det(A)}
 $$
 
-This is true because $A_{i}(b)=AI_{i}(b)$.  The determinant of $I_{i}(b)$ is $b_{i}$.
+This is true because $A_{i}(x)=AI_{i}(x)$.  The determinant of $I_{i}(x)$ is $x_{i}$.
+So
+
+$$
+\det(A)x_{i} = \det(A_{i}(b))
+$$
+
 
 
 ## Volumes
