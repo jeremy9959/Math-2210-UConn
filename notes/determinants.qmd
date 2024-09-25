@@ -91,3 +91,5 @@ This is because $A$ and $B$ are products of elementary matrices.
 
 Because the determinant has the given properties, and those properties determine the value of $T$ on any matrix by row reduction.
 
+
+

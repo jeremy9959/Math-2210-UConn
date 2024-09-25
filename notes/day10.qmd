@@ -1,0 +1,83 @@
+---
+title: Basis and Linear Independence
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## Basis
+
+A set of vectors in $\mathbf{R}^{n}$ (or in any vector space $V$) is called a **basis** if
+
+- it spans $V$
+- it is linearly independent.
+
+Examples: if $A$ is an invertible $n\times n$ matrix,
+its columns are linearly independent and span $\mathbf{R}^{n}$ and therefore are a basis for $\mathbf{R}^{n}$.
+
+The vectors $1,x,x^2,\ldots, x^n$ span the polynomials of degree at most $n$ and are linearly indepenent.
+
+The "standard vectors" $e_{i}$ for $i=1,\ldots, n$ are a basis for $\mathbf{R}^{n}$.
+
+## Subspace basis
+
+The vectors $(1,3,2)$ and $(-1,-1,0)$ are linearly indepedent and span a subspace $H$ of $\mathbf{R}^{3}$.  
+
+Therefore they are a basis for $H$.
+
+## Every spanning set contains a basis
+
+If a set $S$ of vectors $v_1,\ldots, v_n$ spans a subspace $H$, then a subset of $S$ is a basis.
+
+**Proof:** If the vectors are linearly indepenent, they are already a basis.
+
+If they are dependent, then one is a linear combination of the others.  Remove that one from $S$. The result still spans.  
+
+Continue removing dependent vectors until the remaining vectors are independent, and you've found your basis.
+
+## A basis is a minimal spanning set 
+
+If $H$ is a subspace of $V$, suppose you have a bunch of vectors in $H$.
+
+Too many vectors makes them dependent.  To few means they can't span.  If they are a basis, there are enough to span, but not to become dependent. 
+
+## Basis for $\mathrm{Nul}(A)$.
+
+The null space of $A$ is spanned by the vectors with weights given by the free variables in the row reduced from of $A$.  
+
+Those vectors are independent and therefore form a basis.
+
+
+
+## Basis for $\mathrm{Col}(A)$.
+
+Given vectors $v_1,\ldots, v_k$, make an $m\times k$
+matrix with the $v_{i}$ as columns.
+
+To find a linear relation among the columns of $A$, we need to solve $Ax=0$.  
+
+But $Ax=0$ if and only if $EAx=0$ where $E$ is an elementary matrix.
+
+Put another way, row reduction doesn't change the $x$ such that $Ax=0$. 
+
+So we can assume $A$ is in row reduced echelon form.
+
+## More on basis for $\mathrm{Col}(A)$. 
+
+Once $A$ is in row reduced form, we see that:
+
+- the columns corresponding to free variables are linear combinations of the pivot columns
+
+- the pivot columns are linearly independent.
+
+## Basis for $\mathrm{Col}(A)$.
+
+The columns of $A$ corresponding to the pivot columns in the row reduced version of $A$ are a basis for the column space.
+
+So: a basis for the null space is made up of $k$
+vectors where $k$ is the number of free variables,
+and a basis for the column space is made up of $r$
+vectors where $r$ is the number of pivot columns.
+
+Notice that $k+r=n$ where $n$ is the total number of columns of $A$.
+
+
