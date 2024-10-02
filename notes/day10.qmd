@@ -135,7 +135,7 @@ is a function that satisfies $T(u+v)=T(u)+T(v)$ and $T(cv)=cT(v)$ for all $u,v\i
 
 The *kernel* of a linear transformation is the set of vectors that map to zero:
 $$
-\mathrm{kernel}(T)=\{x\in V: T(x)=0\bar}$$
+\mathrm{kernel}(T)=\{x\in V: T(x)=0\}$$
 
 The *range* or *image* of a linear transformation is the set of vectors $w\in W$
 such that there is a $v\in V$ with $T(v)=w$. 
@@ -156,3 +156,83 @@ $$
 \left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right]
 $$
 is called the *coordinate vector* for $v$ relative to $B$.
+
+## Coordinates (example)
+
+Suppose that 
+$$
+e_1 = \left[\begin{matrix} 1 \\ 1 \end{matrix}\right], e_2 = \left[\begin{matrix} 1 \\ -1\end{matrix}\right]
+$$
+
+These form a basis of $\mathbf{R}^{2}$.   If
+$$
+v = c_1 e_1 + c_2 e_2
+$$
+then 
+$$
+v=\left[\begin{matrix} c_1 + c_2 \\ c_1-c_2\end{matrix}\right]
+$$
+
+## Coordinates continued
+
+Suppose 
+$$
+v=\left[\begin{matrix} 2 \\ 1\end{matrix}\right].
+$$
+What are the coordinates of $v$ in the $e_1, e_2$ basis?
+
+![Coords](coords.jpg)
+
+## Coordinates
+
+In general, each choice of basis for a vector space gives a different system of coordinates on that vector space.
+
+Consider the  polynomials with degree at most 2.  This vector
+space has basis $1,x,x^2$.
+
+Consider the polynomials $a(x)=\frac{x(x-1)}{2}$, $b(x)=1-x^2$,
+and $c(x)=\frac{x(x+1)}{2}$.
+
+They form another basis for the degree 2 polynomials.
+
+## Coordinates continued
+
+If $$f=c_0+c_1x+c_2x^2$$
+
+ then the coordinates of $f$ in terms of $a,b,c$ are $f(-1),f(0),f(1)$:
+
+$$
+f(x) = f(-1)a(x)+f(0)b(x)+f(1)c(x).
+$$
+
+## Coordinates
+
+If $b_1,\ldots, b_n$ is a basis, let $B$ be the matrix whose columns are the vectors $b_{i}$.  Then if we write
+
+$$
+w=B\left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right]
+$$
+
+we have $w=c_1b_1+\cdots+c_nb_n$ and so the $c_i$ are the coordinates of $w$ relative to $B$.  To *find* the $c_i$ for a given $w$,
+we need the inverse of $B$:
+
+$$
+B^{-1}w = \left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right].
+$$
+
+## Coordinates
+
+In our 2-d example, we have 
+$$
+B = \left[\begin{matrix} 1 & 1 \\ 1 & -1\end{matrix}\right]
+$$
+so 
+$$
+B^{-1} = \frac{1}{2}\left[\begin{matrix} 1 & 1 \\ 1 & -1\end{matrix}\right]
+$$
+
+In particular
+$$
+B^{-1}\left[\begin{matrix} 2 \\1\end{matrix}\right] = \left[\begin{matrix} 3/2 \\ 1/2\end{matrix}\right]
+$$
+as above. 
