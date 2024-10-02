@@ -71,7 +71,8 @@ Once $A$ is in row reduced form, we see that:
 
 ## Basis for $\mathrm{Col}(A)$.
 
-The columns of $A$ corresponding to the pivot columns in the row reduced version of $A$ are a basis for the column space.
+The **columns of $A$** corresponding to the pivot columns in the row reduced version of $A$ are a basis for the column space.
+(note that these are *not* the columns of the reduced matrix).
 
 So: a basis for the null space is made up of $k$
 vectors where $k$ is the number of free variables,
@@ -80,4 +81,78 @@ vectors where $r$ is the number of pivot columns.
 
 Notice that $k+r=n$ where $n$ is the total number of columns of $A$.
 
+## Example
 
+Suppose that
+
+$$
+A=\left[\begin{matrix} 2 & 4 & 5& 1\\ 1 & -3 & -2& 0\\ 0 & -2 & -3 & 1\end{matrix}\right]
+$$
+
+The row reduced form of $A$ is
+$$
+\left[\begin{matrix}1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 1\\0 & 0 & 1 & -1\end{matrix}\right]
+$$
+
+Since the first three columns are pivot columns, the first three columns of $A$ span the column space of $A$, and the last column satisfies $c_4 = c_1+c_2-c_3$.
+
+## Example continued
+
+The nullspace of $A$ is the solution to the homogeneous system, and it is given by
+the equations 
+$$\begin{array}{ccc}
+x_1 &=&-x_4 \\
+x_2 &=& -x_4 \\
+x_3 &=& x_4
+\end{array}
+$$
+
+so the null space is spanned by 
+$$
+\left[\begin{matrix} -1 \\ -1 \\ 1 \\ 1\end{matrix}\right]
+$$
+
+## Null Space and Col Space
+
+![Null Space vs Col Space](NulvsCol.png)
+
+## Row space
+
+The *row space* of a matrix is the span of its rows.  
+
+Row operations do not change
+the row space, so one can find a basis for the row space of $A$ by putting $A$ in reduced form.
+
+The rows with a pivot (that is, the nonzero rows) form a basis for the row space. 
+
+This is because they are clearly linearly independent (and they span by definition).
+
+
+## Linear Transformations
+
+A linear transformation (or linear map) $T:V\to W$, where $V$ and $W$ are vector spaces,
+is a function that satisfies $T(u+v)=T(u)+T(v)$ and $T(cv)=cT(v)$ for all $u,v\in V$ and $c\in\mathbf{R}$.
+
+The *kernel* of a linear transformation is the set of vectors that map to zero:
+$$
+\mathrm{kernel}(T)=\{x\in V: T(x)=0\bar}$$
+
+The *range* or *image* of a linear transformation is the set of vectors $w\in W$
+such that there is a $v\in V$ with $T(v)=w$. 
+
+## Coordinate systems
+
+**Unique representation:**
+Suppose that $B=\{b_1,\ldots, b_n\}$ are a basis for a vector space $V$.  Then any vector $v$
+can be written in exactly one way as a linear combination of the $b_{i}$:
+$$
+v = c_1 b_1+\ldots+c_n b_n
+$$
+
+The coefficients $c_1,\ldots, c_n$ are called the *coordinates* of $v$ relative to the basis $B$. 
+
+The vector
+$$
+\left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right]
+$$
+is called the *coordinate vector* for $v$ relative to $B$.
