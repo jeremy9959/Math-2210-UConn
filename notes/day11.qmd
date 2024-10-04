@@ -1,0 +1,50 @@
+---
+title: Dimension
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## Dimension
+
+**Theorem:** Suppose $B=\{b_1,\ldots, b_n\}$ is a basis for a vector space $V$. Then
+any set $u_1,\ldots, u_m$ of $n+1$ or more vectors is linearly dependent.
+
+**Proof:** Write each $u_i$ in coordinates using $b_i$.  There are $n$ coordinates $[u_i]_B$ for each $i$,
+and $m>n$ such coordinate vectors, so these coordinate vectors are linearly dependent. 
+
+
+Therefore there are 
+constants:
+$$
+a_1 [u_1]_B +\cdots + a_m[u_m]_B=0
+$$
+where not all $a_i$ are zero.  That means that the coordinate vector of
+$$
+h=a_1 u_1 + \cdots + a_m u_m
+$$
+
+is zero, which means $h$ is zero.  So the $u_i$ are dependent. 
+
+
+
+
+## Dimension 
+
+**Theorem:** If $V$ has a basis$B$  with $n$ vectors, then every basis of $V$ has $n$ vectors. 
+
+**Proof:** If $B'$ is another basis, it must have $n$ or fewer elements, because if it had more than $n$ it would
+be linearly dependent.  If it had fewer than $n$, then the original basis $B$ would be dependent.  So the only possibility
+is that $B'$ also has $n$ elements.
+
+**Definition:** If $V$ has a finite basis, it is called finite dimensional and the dimension of $V$ is the number of elements in a finite basis.  Otherwise we say $V$ is infinite
+dimensional.
+
+## Dimension of subspaces
+
+If $H$ is a subspace of a finite dimensional space $V$, then the dimension of $H$ is at most that of $V$; if they have the same dimension, then $H=V$.
+
+Also:
+
+- Any linearly independent subset of a vector space $H$ can be extended to a basis.  
+
+- Any spanning set contains a basis. 
