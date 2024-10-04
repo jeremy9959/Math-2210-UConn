@@ -1,0 +1,5 @@
+---
+title: Rank and Change of Basis
+author: Jeremy Teitelbaum
+format: beamer
+---

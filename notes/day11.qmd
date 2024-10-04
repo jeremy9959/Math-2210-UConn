@@ -4,6 +4,8 @@ author: Jeremy Teitelbaum
 format: beamer
 ---
 
+
+
 ## Dimension
 
 **Theorem:** Suppose $B=\{b_1,\ldots, b_n\}$ is a basis for a vector space $V$. Then
@@ -12,25 +14,34 @@ any set $u_1,\ldots, u_m$ of $n+1$ or more vectors is linearly dependent.
 **Proof:** Write each $u_i$ in coordinates using $b_i$.  There are $n$ coordinates $[u_i]_B$ for each $i$,
 and $m>n$ such coordinate vectors, so these coordinate vectors are linearly dependent. 
 
-
-Therefore there are 
-constants:
-$$
-a_1 [u_1]_B +\cdots + a_m[u_m]_B=0
-$$
-where not all $a_i$ are zero.  That means that the coordinate vector of
-$$
-h=a_1 u_1 + \cdots + a_m u_m
+More explicitly, since $B$ spans, we can write:
+$$\begin{array}{ccc}
+u_1 &=& a_{11} b_1 + a_{12}b_2 +\cdots + a_{1n}b_n\\
+&\vdots& \\
+u_m &=& a_{m1} b_1 + a_{m2}b_2 + \cdots + a_{mn}b_n
+\end{array}
 $$
 
-is zero, which means $h$ is zero.  So the $u_i$ are dependent. 
+## Dimension continued 
 
+Our goal is to find a non trivial solution to $\sum_{j=1}^{m} c_j u_j = 0$. The coefficient of $b_i$
+in this linear combination is 
+$$
+\sum_{j=1}^{m} c_j a_{ji}.
+$$
+Since the $b_i$ are linearly independent, we must have
+$$
+\sum_{j=1}^{m} c_j a_{ji}=0
+$$
+for each $i$.  
 
+This is a homogeneous linear system of $n$ equations in $m$ unknowns where $m>n$.  Thus it must have a nontrivial
+solution.
 
 
 ## Dimension 
 
-**Theorem:** If $V$ has a basis$B$  with $n$ vectors, then every basis of $V$ has $n$ vectors. 
+**Theorem:** If $V$ has a basis $B$  with $n$ vectors, then every basis of $V$ has $n$ vectors. 
 
 **Proof:** If $B'$ is another basis, it must have $n$ or fewer elements, because if it had more than $n$ it would
 be linearly dependent.  If it had fewer than $n$, then the original basis $B$ would be dependent.  So the only possibility
@@ -45,6 +56,57 @@ If $H$ is a subspace of a finite dimensional space $V$, then the dimension of $H
 
 Also:
 
-- Any linearly independent subset of a vector space $H$ can be extended to a basis.  
+- Any linearly independent subset of a vector space $H$ can be extended to a basis.  (Assume $H$ finite dimensional)
 
 - Any spanning set contains a basis. 
+
+## Construction of a basis
+
+Suppose $b_1,\ldots, b_k$ are linearly independent in a vector space $V$.  Either they span $V$, in which case they are already a basis,
+or they don't span $V$.
+
+If they don't span $V$ there is a $b_{k+1}$ in $V$ that is not in the span of the $b_i$ for $i\le k$.  Then $b_1, \ldots, b_{k+1}$ is still
+linearly independent.  
+
+If $V$ is finite dimensional of dimension $n$, this process cannot continue indefinitely because once you have $n$ linearly independent vectors you have a basis.  
+
+## Every (finite) spanning set contains a basis
+
+Suppose $B$ is a (finite) set of vectors that span $V$.  If $B$ is linearly independent, it is already a basis.  If not, then one vector in $B$ is dependent on the others, so you can delete it and the remaining vectors still span.
+
+Repeating this process reduces the size of the set of spanning vectors; eventually this has to reach a basis.
+
+## Example
+
+Suppose that 
+$$
+H=\left\{\left[\begin{matrix}s-2t \\ s+t \\3t\end{matrix}\right]:s,t\in\mathbf{R}\right\} 
+$$
+
+What is the dimension of this space?  Find a basis.
+
+We can rewrite this as
+$$
+H=\{s\left[\begin{matrix} 1 \\ 1 \\ 0\end{matrix}\right] + t\left[\begin{matrix} -2 \\ 1 \\ 3\end{matrix}\right]: s,t\in \mathbf{R}\} 
+$$
+so $H$ is spanned by the two given vectors.
+
+Since they are linearly independent (look at the last entry) the dimension of $H$ is $2$.
+
+## Example
+
+The polynomials $1$, $2t$, $4t^2-2$ and $8t^3-12t$ are called the first four Hermite polynomials.  They come up in the solution of certain differential equations.
+
+Show that they form a basis for the polynomials of degree $3$, so every such polynomial has a unique expansion in terms of the Hermite polynomials. 
+
+## Example
+
+Relative to the basis $1,t,t^2, t^3$ the Hermite polynomials have coordinate vectors
+$$
+\left[\begin{matrix} 1 \\ 0 \\ 0 \\ 0\end{matrix}\right],
+\left[\begin{matrix} 0 \\ 2 \\ 0 \\ 0\end{matrix}\right],
+\left[\begin{matrix} -2 \\ 0 \\ 4 \\ 0\end{matrix}\right],
+\left[\begin{matrix} 0 \\ -12 \\ 0 \\ 8\end{matrix}\right]
+$$
+
+These are four vectors in a four dimensional space, so they are a basis if they are linearly independent.  Check this -- note that the associated matrix is already upper triangular.
