@@ -3,3 +3,140 @@ title: Rank and Change of Basis
 author: Jeremy Teitelbaum
 format: beamer
 ---
+
+## Rank
+
+Let $A$ be an $n\times m$ matrix.  
+
+The row rank of $A$ is the dimension of the space spanned by the rows of $A$. 
+
+The column rank of $A$ is the dimension of the space spanned by the columns of $A$. 
+
+The nullity of $A$ is the dimension of the null space of $A$.
+
+
+## Row rank = column rank
+
+Perhaps surprisingly, the row and column ranks are the same.
+
+To see this, put $A$ into row reduced echelon form.  The dimension of the column space is the number of linearly independent columns, which is the number of columns containing a pivot. 
+
+The rows of $A$ containing a pivot form a basis for the row space of $A$.  
+
+Since the number of pivots is the same whether you look at rows or columns, the ranks are the same.
+
+## The Rank Theorem
+
+Let $A$ be an $n\times m$ matrix.  Then:
+
+$$
+\mathrm{rank}(A)+\mathrm{nullity}(A)=\mathrm{number\ of\ columns}(A) = m
+$$
+
+This is because:
+
+- the rank of $A$ is the number of pivot columns 
+- the dimension of the null space is the dimension of the solution space to $Ax=0$ which is the number of free variables in the row reduced form of $A$.
+
+These two numbers (pivots plus free variables) add up to the total number of columns.
+
+## More on invertible matrices
+
+If $A$ is square of size $n\times n$, then:
+
+- $A$ is invertible if and only if $\mathrm{rank}(A)=n$.
+- $A$ is invertible if and only if $\mathrm{nullity}(A)=0$.
+
+These are restatements of earlier conditions; the first
+says that the columns of $A$ are linearly independent, the second says that there are no free variables in the rref for $A$.
+
+## A few things to think about
+
+- If $V$ has dimension $n$, and $H$ is a subspace of $V$ of dimension $n$, then $H=V$.
+
+- Suppose that $A$ is a $4\times 7$ matrix.  Then the rank of $A$ is *at most* $4$ and the nullity of $A$ is *at least* $3$.
+
+- Suppose that $A$ is a $7\times 4$ matrix.  Then the rank of $A$ is at most $4$.  The nullity is between $0$ and $4$.
+
+## Change of basis
+
+A choice of a basis for a vector space gives a set of coordinates for that vector space.
+
+If we have *two* bases, then we have two sets of coordinates.  How are they related?
+
+Suppose $x_1,\ldots, x_n$ and $y_1, \ldots, y_n$ are both bases of $V$.
+
+We can write each $x_i$ in terms of the $y_j$ to get a matrix.
+
+## Change of basis
+
+$$\begin{array}{ccc}
+x_1 &=& a_{11}y_1 + a_{21}y_2 + \cdots + a_{n1}y_n \\
+&\vdots&\\
+x_n &=& a_{1n}y_1 + a_{2n}y_2 + \cdots + a_{nn}y_n \\
+\end{array}
+$$
+
+If a vector $v=c_1 x_1 + \cdots +c_n x_n$ then, written in terms of the $y_i$ we have
+
+
+\begin{align*}
+v=(c_1 a_{11}+c_2 a_{12}+\cdots+ c_n a_{1n})x_1 + \cdots \\ +
+(c_1 a_{n1} + \cdots + c_n a_{nn})x_n
+\end{align*}
+
+
+## Change of basis continued
+
+The coordinates $[v]_{x}$ of $v$ in the $x$ basis are computed from the coordinates $[v]_{y}$ in the $y$-basis as:
+$$
+[v]_{x} = A[v]_{y}
+$$
+
+where
+
+$$
+A = \left[\begin{matrix} a_{11} & a_{12} & \cdots & a_{1n}\\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}\end{matrix}\right].
+$$
+
+**NOTE**: The columns of $A$ are the coordinates $[x_i]_{y}$ of the
+$x$-basis elements in terms of the $y$-basis.
+
+## Example
+
+If $e_1,e_2$ are the standard basis for $\mathbf{R}^{2}$ and $y_1,y_2$
+are the vectors $(1,1)$ and $(-1,1)$ then to convert from the $y_1, y_2$ basis to the  standard basis we should make the matrix $A$ whose columns are the $y_1,y_2$ in terms of the standard basis.
+
+$$
+A=\left[\begin{matrix} 1 & -1 \\ 1 & 1 \end{matrix}\right]
+$$
+
+So if $v=ay_1+by_2$ then 
+$$
+A\left[\begin{matrix} a \\ b\end{matrix}\right]=\left[\begin{matrix}a-b \\ a+b\end{matrix}\right]
+$$
+and so $v=(a-b)e_1+(a+b)e_2$.
+
+## Example continued
+
+To go backwards, suppose we have $v=ae_1+be_2$.  The inverse of $A$
+is 
+$$
+A^{-1} = \left[\begin{matrix} 1/2 & 1/2 \\ -1/2 & 1/2\end{matrix}\right].
+$$
+
+Then 
+$$
+\left[\begin{matrix} 1/2 & 1/2 \\ -1/2 & 1/2\end{matrix}\right]\left[\begin{matrix} a \\ b\end{matrix}\right]
+=\left[\begin{matrix} (a+b)/2 \\ (b-a)/2\end{matrix}\right]
+$$
+
+To check:
+$$
+(a+b)/2\left[\begin{matrix} 1 \\ 1\end{matrix}\right] + (b-a)/2\left[\begin{matrix} -1 \\1\end{matrix}\right]= \left[\begin{matrix}
+a \\ b\end{matrix}\right]
+$$
+
+Notice also that the columns of $A^{-1}$ are the standard basis written in the $y_1,y_2$ coordinates.
