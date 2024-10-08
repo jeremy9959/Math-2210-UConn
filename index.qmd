@@ -80,7 +80,7 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 9/19        | 3.1-3.2  | [Determinants](notes/day8.pdf)                                        |
 | 9/24        | 3.3-4.1  | [Cramer's Rule, Volumes; Vector Spaces and Subspaces](notes/day8.pdf)|
 | 9/26        |          | Exam Review                                         |
-| 10/1        |          | First Exam                                          |
+| 10/1        |          | First Exam    [Solutions](notes/solutions.pdf)                                      |
 | 10/3        |          | No class (Rosh Hashanah)                            |
 | 10/8        | 4.2      | [Null space, column space](notes/day9.pdf)                            |
 | 10/10       | 4.3-4.4  | [Bases and linear independence; coordinates](notes/day10.pdf)         |
