@@ -2,6 +2,11 @@
 title: Eigenvalues and Eigenvectors
 format: beamer
 author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
 ---
 
 ## Eigenvalues and Eigenvectors
@@ -181,6 +186,84 @@ where $I_{n}$ is the $n\times n$ identity matrix.
 
 ## Independence of Eigenvectors
 
-If $v_1,\ldots, v_n$ are eigenvectors with eigenvalues $\lambda_1,\ldots,\lambda_n$, and all the $\lambda_i$ are different, then the $v_{i}$ are linearly independent.
+If $v_1,\ldots, v_n$ are eigenvectors for a matrix $A$ with eigenvalues $\lambda_1,\ldots,\lambda_n$, and all the $\lambda_i$ are different, then the $v_{i}$ are linearly independent. (Note that the $v_i$ are nonzero.)
+
+To see this, suppose that 
+$$
+c_1 v_1 + c_2 v_2 + \cdots c_n v_n = 0.
+$$
+
+Then 
+$$
+A(c_1 v_1 + c_2 v_2 + \cdots c_n v_n)=c_1\lambda_1 v_1 + \cdots c_n\lambda_n v_n=0
+$$
+
+Multiply the first relation by $\lambda_1$ and subtract.  You get
+$$
+c_2(\lambda_2-\lambda_1)v_2 + \cdots + c_n(\lambda_n-\lambda_1)v_n=0.
+$$
+Since the differences of the $\lambda_i$ with $\lambda_1$ are not zero, we see that $v_2,\ldots, v_n$
+are dependent.
+
+By repeating this you can show that smaller and smaller collections of the $v_i$ are dependent until you ultimately get $v_n=0$.  
 
 ## Characteristic Equation
+
+Finding eigenvalues and eigenvectors of a matrix is a hard problem.  We can make the following observation.
+
+Suppose $\lambda$ is an eigenvalue of $A$ where $A$ is an $n\times n$ matrix.   Then there is a vector $v\not=0$ so that $Av=\lambda v$.
+This means that the matrix
+$A-\lambda I_n$ is *not* invertible because $v$ is in its null space.  
+
+As a result, $\det(A-\lambda I_n=0$.  
+
+Conversely, if $\det(A-\lambda I_n)=0$, then there is a vector $v$ in the null space and that $v$ is an eigenvector.
+
+It turns out that $\det(A-\lambda I_n)$ is a polynomial in $\lambda$, so the eigenvalues of $A$ are the roots of this polynomial.
+
+## Example
+
+Let 
+$$
+A=\left[\begin{matrix} 3 & 5 \\ 2 & 4\end{matrix}\right].
+$$
+
+The determinant of $A-\lambda$ is
+$$
+\det(\left[\begin{matrix} 3-\lambda & 5\\2 & 4-\lambda\end{matrix}\right])=(3-\lambda)(4-\lambda)-10
+$$
+
+The polynomial on the right is
+$$
+(3-\lambda)(4-\lambda)-10=\lambda^2-7\lambda+12-10=\lambda^2-7\lambda+2.
+$$
+
+Its roots are $\frac{7\pm\sqrt{41}}{2}$. These are the eigenvalues of $A$; they are approximately
+$6.70156$ and $0.29843$.
+
+
+## Example continued
+
+To find the eigenvectors, we have to compute the null space of $A-\lambda I$.  This is no fun
+algebraically but with some work you find that the eigenvectors are:
+
+```{python}
+from sympy import Matrix, latex
+from IPython.display import Latex
+M = Matrix([[3,5],[2,4]])
+L=M.eigenvects()
+display(Latex(f"$${latex(L[0][2][0])}$$ and $${latex(L[1][2][0])}$$"))
+```
+
+## Similarity
+
+Two (square) matrices $A$ and $B$ are *similar* if there is an invertible matrix $P$ so that 
+$A=PBP^{-1}$.
+
+Similar matrices have the same eigenvalues because they have the same characteristic polynomial.
+
+$$
+\begin{array}{rcl}
+\det(PBP^{-1}-\lambda I) &=& \det(P(B-\lambda I)P^{-1})\\& =& \det(P)\det(B-\lambda I)\det(P^{-1})\\ &=&\det(B-\lambda I)
+\end{array}
+$$

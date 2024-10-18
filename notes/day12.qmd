@@ -2,6 +2,11 @@
 title: Rank and Change of Basis
 author: Jeremy Teitelbaum
 format: beamer
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
 ---
 
 ## Rank
@@ -141,3 +146,65 @@ $$
 
 Notice also that the columns of $A^{-1}$ are the standard basis written in the $y_1,y_2$ coordinates.
 
+## Change of basis theorem
+
+**Theorem 15** (page 275 of the text): Let $B=\{b_1,\ldots, b_n\}$ and $C=\{c_1,\ldots,c_n\}$ be two bases of a vector space $V$.
+Then there is a (unique) $n\times n$ matrix $P_{C\leftarrow B}$ such that
+$$
+[x]_{C} = P_{C\leftarrow B}[x]_{B}.
+$$
+
+This matrix is called the "change of basis" or "change of coordinates" matrix from $B$ to $C$.
+
+The columns of $P_{C\leftarrow B}$ are the $C$-coordinates of the $B$-basis vectors.  That is, the $i^{th}$ column of
+$P_{C\leftarrow B}$ is $[b_{i}]_{C}$; its entries are $a_1,\ldots, a_n$ where
+$$
+b_{i} = a_{1}c_{1}+a_{2}c_{2}+\cdots+a_{n}c_{n}.
+$$
+
+## Computing the change of basis matrix
+
+To compute the change of basis matrix $P_{C\leftarrow B}$,
+suppose we have $b_1,\ldots, b_n$ and $c_1,\ldots, c_n$ as vectors in $\mathbf{R}^{n}$.  
+
+Let $B$ be the matrix whose columns are the $b_{i}$, and $C$ be the matrix whose columns are the $c_{i}$. 
+
+Note that $B$ is the change of basis matrix from $B$ to the standard basis, and $C$ is the change of basis matrix from $C$ to the standard basis.  So $C^{-1}$ is the change of basis matrix from the standard basis to $C$. 
+
+Form the augmented matrix $[C|B]$ and do row reduction.  Since $C$ is invertible this will yield $[I | P]$ where $I$ is the identity matrix.  
+
+The matrix $P$ is the desired change of basis matrix $P_{C\leftarrow B}$.  In fact $P=C^{-1}B$.  
+
+
+## Numerical Example
+
+Suppose that $B=\{(1,1), (1,-1)\}$ and
+$C=\{(2,1),(1,-2)\}$.  We want $P_{C\leftarrow B}$. The augmented matrix is
+$$
+\left[\begin{matrix} 2 & 1 & 1 & 1 \\ 1 & -2 & 1 & -1\end{matrix}\right]
+$$
+
+The row reduced version is:
+
+```{python}
+from sympy import Matrix, latex
+from IPython.display import Latex
+M = Matrix([[2,1,1,1],[1,-2,1,-1]])
+M.rref()[0]
+display(Latex(f"$${latex(M.rref()[0])}$$")) 
+```
+
+So the change of basis matrix is
+$$
+\left[\begin{matrix} 3/5 & 1/5\\-1/5 & 3/5\end{matrix}\right]
+$$
+
+## Checking the example.
+
+Let $v = (2,0)=b_1+b_2$.  The coordinates of $v$ in the b-basis are $(1,1)$.  Multiplying:
+
+$$
+\left[\begin{matrix} 3/5 & 1/5\\-1/5 & 3/5\end{matrix}\right]\left[\begin{matrix} 1 \\ 1 \end{matrix}\right]=\left[\begin{matrix} 4/5 \\ 2/5\end{matrix}\right]
+$$
+
+Now $4/5(2,1)+2/5(1,-2)=(2,0)$ so the coordinates of $(2,0)$ in the c-basis are in fact $(4/5,2/5)$. 
