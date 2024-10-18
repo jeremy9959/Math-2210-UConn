@@ -268,7 +268,7 @@ Notice that:
 
 * if a matrix has more columns than rows ($A$ is $n\times m$ and $m>n$) -- or more variables than equations -- 
 
-* then the homogeneous system $Ax=b$ always has infinitely many solutions, and in fact there are always at least $m-n$ free variables. 
+* then the homogeneous system $Ax=0$ always has infinitely many solutions, and in fact there are always at least $m-n$ free variables. 
 
 ## Nonhomogeneous systems
 

@@ -1,0 +1,238 @@
+---
+title: Basis and Linear Independence
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## Basis
+
+A set of vectors in $\mathbf{R}^{n}$ (or in any vector space $V$) is called a **basis** if
+
+- it spans $V$
+- it is linearly independent.
+
+Examples: if $A$ is an invertible $n\times n$ matrix,
+its columns are linearly independent and span $\mathbf{R}^{n}$ and therefore are a basis for $\mathbf{R}^{n}$.
+
+The vectors $1,x,x^2,\ldots, x^n$ span the polynomials of degree at most $n$ and are linearly indepenent.
+
+The "standard vectors" $e_{i}$ for $i=1,\ldots, n$ are a basis for $\mathbf{R}^{n}$.
+
+## Subspace basis
+
+The vectors $(1,3,2)$ and $(-1,-1,0)$ are linearly indepedent and span a subspace $H$ of $\mathbf{R}^{3}$.  
+
+Therefore they are a basis for $H$.
+
+## Every spanning set contains a basis
+
+If a set $S$ of vectors $v_1,\ldots, v_n$ spans a subspace $H$, then a subset of $S$ is a basis.
+
+**Proof:** If the vectors are linearly indepenent, they are already a basis.
+
+If they are dependent, then one is a linear combination of the others.  Remove that one from $S$. The result still spans.  
+
+Continue removing dependent vectors until the remaining vectors are independent, and you've found your basis.
+
+## A basis is a minimal spanning set 
+
+If $H$ is a subspace of $V$, suppose you have a bunch of vectors in $H$.
+
+Too many vectors makes them dependent.  To few means they can't span.  If they are a basis, there are enough to span, but not to become dependent. 
+
+## Basis for $\mathrm{Nul}(A)$.
+
+The null space of $A$ is spanned by the vectors with weights given by the free variables in the row reduced from of $A$.  
+
+Those vectors are independent and therefore form a basis.
+
+
+
+## Basis for $\mathrm{Col}(A)$.
+
+Given vectors $v_1,\ldots, v_k$, make an $m\times k$
+matrix with the $v_{i}$ as columns.
+
+To find a linear relation among the columns of $A$, we need to solve $Ax=0$.  
+
+But $Ax=0$ if and only if $EAx=0$ where $E$ is an elementary matrix.
+
+Put another way, row reduction doesn't change the $x$ such that $Ax=0$. 
+
+So we can assume $A$ is in row reduced echelon form.
+
+## More on basis for $\mathrm{Col}(A)$. 
+
+Once $A$ is in row reduced form, we see that:
+
+- the columns corresponding to free variables are linear combinations of the pivot columns
+
+- the pivot columns are linearly independent.
+
+## Basis for $\mathrm{Col}(A)$.
+
+The **columns of $A$** corresponding to the pivot columns in the row reduced version of $A$ are a basis for the column space.
+(note that these are *not* the columns of the reduced matrix).
+
+So: a basis for the null space is made up of $k$
+vectors where $k$ is the number of free variables,
+and a basis for the column space is made up of $r$
+vectors where $r$ is the number of pivot columns.
+
+Notice that $k+r=n$ where $n$ is the total number of columns of $A$.
+
+## Example
+
+Suppose that
+
+$$
+A=\left[\begin{matrix} 2 & 4 & 5& 1\\ 1 & -3 & -2& 0\\ 0 & -2 & -3 & 1\end{matrix}\right]
+$$
+
+The row reduced form of $A$ is
+$$
+\left[\begin{matrix}1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 1\\0 & 0 & 1 & -1\end{matrix}\right]
+$$
+
+Since the first three columns are pivot columns, the first three columns of $A$ span the column space of $A$, and the last column satisfies $c_4 = c_1+c_2-c_3$.
+
+## Example continued
+
+The nullspace of $A$ is the solution to the homogeneous system, and it is given by
+the equations 
+$$\begin{array}{ccc}
+x_1 &=&-x_4 \\
+x_2 &=& -x_4 \\
+x_3 &=& x_4
+\end{array}
+$$
+
+so the null space is spanned by 
+$$
+\left[\begin{matrix} -1 \\ -1 \\ 1 \\ 1\end{matrix}\right]
+$$
+
+## Null Space and Col Space
+
+![Null Space vs Col Space](NulvsCol.png)
+
+## Row space
+
+The *row space* of a matrix is the span of its rows.  
+
+Row operations do not change
+the row space, so one can find a basis for the row space of $A$ by putting $A$ in reduced form.
+
+The rows with a pivot (that is, the nonzero rows) form a basis for the row space. 
+
+This is because they are clearly linearly independent (and they span by definition).
+
+
+## Linear Transformations
+
+A linear transformation (or linear map) $T:V\to W$, where $V$ and $W$ are vector spaces,
+is a function that satisfies $T(u+v)=T(u)+T(v)$ and $T(cv)=cT(v)$ for all $u,v\in V$ and $c\in\mathbf{R}$.
+
+The *kernel* of a linear transformation is the set of vectors that map to zero:
+$$
+\mathrm{kernel}(T)=\{x\in V: T(x)=0\}$$
+
+The *range* or *image* of a linear transformation is the set of vectors $w\in W$
+such that there is a $v\in V$ with $T(v)=w$. 
+
+## Coordinate systems
+
+**Unique representation:**
+Suppose that $B=\{b_1,\ldots, b_n\}$ are a basis for a vector space $V$.  Then any vector $v$
+can be written in exactly one way as a linear combination of the $b_{i}$:
+$$
+v = c_1 b_1+\ldots+c_n b_n
+$$
+
+The coefficients $c_1,\ldots, c_n$ are called the *coordinates* of $v$ relative to the basis $B$. 
+
+The vector
+$$
+\left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right]
+$$
+is called the *coordinate vector* for $v$ relative to $B$.
+
+## Coordinates (example)
+
+Suppose that 
+$$
+e_1 = \left[\begin{matrix} 1 \\ 1 \end{matrix}\right], e_2 = \left[\begin{matrix} 1 \\ -1\end{matrix}\right]
+$$
+
+These form a basis of $\mathbf{R}^{2}$.   If
+$$
+v = c_1 e_1 + c_2 e_2
+$$
+then 
+$$
+v=\left[\begin{matrix} c_1 + c_2 \\ c_1-c_2\end{matrix}\right]
+$$
+
+## Coordinates continued
+
+Suppose 
+$$
+v=\left[\begin{matrix} 2 \\ 1\end{matrix}\right].
+$$
+What are the coordinates of $v$ in the $e_1, e_2$ basis?
+
+![Coords](coords.jpg)
+
+## Coordinates
+
+In general, each choice of basis for a vector space gives a different system of coordinates on that vector space.
+
+Consider the  polynomials with degree at most 2.  This vector
+space has basis $1,x,x^2$.
+
+Consider the polynomials $a(x)=\frac{x(x-1)}{2}$, $b(x)=1-x^2$,
+and $c(x)=\frac{x(x+1)}{2}$.
+
+They form another basis for the degree 2 polynomials.
+
+## Coordinates continued
+
+If $$f=c_0+c_1x+c_2x^2$$
+
+ then the coordinates of $f$ in terms of $a,b,c$ are $f(-1),f(0),f(1)$:
+
+$$
+f(x) = f(-1)a(x)+f(0)b(x)+f(1)c(x).
+$$
+
+## Coordinates
+
+If $b_1,\ldots, b_n$ is a basis, let $B$ be the matrix whose columns are the vectors $b_{i}$.  Then if we write
+
+$$
+w=B\left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right]
+$$
+
+we have $w=c_1b_1+\cdots+c_nb_n$ and so the $c_i$ are the coordinates of $w$ relative to $B$.  To *find* the $c_i$ for a given $w$,
+we need the inverse of $B$:
+
+$$
+B^{-1}w = \left[\begin{matrix} c_1 \\ \vdots \\ c_n\end{matrix}\right].
+$$
+
+## Coordinates
+
+In our 2-d example, we have 
+$$
+B = \left[\begin{matrix} 1 & 1 \\ 1 & -1\end{matrix}\right]
+$$
+so 
+$$
+B^{-1} = \frac{1}{2}\left[\begin{matrix} 1 & 1 \\ 1 & -1\end{matrix}\right]
+$$
+
+In particular
+$$
+B^{-1}\left[\begin{matrix} 2 \\1\end{matrix}\right] = \left[\begin{matrix} 3/2 \\ 1/2\end{matrix}\right]
+$$
+as above. 

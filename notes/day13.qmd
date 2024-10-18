@@ -1,0 +1,186 @@
+---
+title: Eigenvalues and Eigenvectors
+format: beamer
+author: Jeremy Teitelbaum
+---
+
+## Eigenvalues and Eigenvectors
+
+If $A$ is a diagonal matrix:
+$$
+A=\left[\begin{matrix} 2 & 0 \\ 0 & 1/3\end{matrix}\right]
+$$
+then the linear transformation $x\mapsto Ax$ "stretches" along the $x$-axis and "shrinks" along the $y$-axis.
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Define the vertices of the unit square centered at the origin
+square_vertices = [
+    [-0.5, -0.5],
+    [0.5, -0.5],
+    [0.5, 0.5],
+    [-0.5, 0.5],
+    [-0.5, -0.5],  # Close the square
+]
+
+# Define the vertices of the rectangle centered at the origin
+rectangle_vertices = [
+    [-1, -1 / 6],
+    [1, -1 / 6],
+    [1, 1 / 6],
+    [-1, 1 / 6],
+    [-1, -1 / 6],  # Close the rectangle
+]
+
+# Extract x and y coordinates for the square
+x_coords_square, y_coords_square = zip(*square_vertices)
+
+# Extract x and y coordinates for the rectangle
+x_coords_rectangle, y_coords_rectangle = zip(*rectangle_vertices)
+
+# Create the plot with two subplots
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+
+# Plot the unit square
+ax1.plot(x_coords_square, y_coords_square, "b-")  # Draw the square with blue lines
+ax1.axhline(0, color="black", linewidth=0.5)
+ax1.axvline(0, color="black", linewidth=0.5)
+ax1.set_aspect("equal", adjustable="box")
+ax1.set_xlim([-3, 3])
+ax1.set_ylim([-3, 3])
+ax1.set_xlabel("X axis")
+ax1.set_ylabel("Y axis")
+ax1.set_title("Unit Square (Before x->Ax)")
+
+# Plot the rectangle
+ax2.plot(
+    x_coords_rectangle, y_coords_rectangle, "b-"
+)  # Draw the rectangle with blue lines
+ax2.axhline(0, color="black", linewidth=0.5)
+ax2.axvline(0, color="black", linewidth=0.5)
+ax2.set_aspect("equal", adjustable="box")
+ax2.set_xlim([-3, 3])
+ax2.set_ylim([-3, 3])
+ax2.set_xlabel("X axis")
+ax2.set_ylabel("Y axis")
+ax2.set_title("Rectangle (after x->Ax)")
+
+# Display the plot
+plt.tight_layout()
+plt.show()
+```
+
+## Eigenvalues and Eigenvectors
+
+If $A$ is upper triangular, say
+$$
+A=\left[\begin{matrix} 2 & 1 \\ 0 & 1/3\end{matrix}\right]
+$$
+then $A$ stretches along the $x$-axis by $2$ as before.  Less obviously, it shrinks along the direction given by the vector $(-3/5,1)$.
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Define the vertices of the first parallelogram centered at the origin
+parallelogram1_vertices = [
+    [0, 0],
+    [1, 0],
+    [1 - 3/5, 1],
+    [-3/5, 1],
+    [0, 0]  # Close the parallelogram
+]
+
+# Define the vertices of the second parallelogram centered at the origin
+parallelogram2_vertices = [
+    [0, 0],
+    [2, 0],
+    [2 - 1/5, 1/3],
+    [-1/5, 1/3],
+    [0, 0]  # Close the parallelogram
+]
+
+# Extract x and y coordinates for the first parallelogram
+x_coords_parallelogram1, y_coords_parallelogram1 = zip(*parallelogram1_vertices)
+
+# Extract x and y coordinates for the second parallelogram
+x_coords_parallelogram2, y_coords_parallelogram2 = zip(*parallelogram2_vertices)
+
+# Create the plot with two subplots
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+
+# Plot the first parallelogram
+ax1.plot(x_coords_parallelogram1, y_coords_parallelogram1, 'b-')  # Draw the parallelogram with blue lines
+ax1.axhline(0, color='black', linewidth=0.5)
+ax1.axvline(0, color='black', linewidth=0.5)
+ax1.set_aspect('equal', adjustable='box')
+ax1.set_xlim([-3, 3])
+ax1.set_ylim([-3, 3])
+ax1.set_xlabel('X axis')
+ax1.set_ylabel('Y axis')
+ax1.set_title('Parallelogram with Vectors (1,0) and (-3/5,1)')
+
+# Plot the second parallelogram
+ax2.plot(x_coords_parallelogram2, y_coords_parallelogram2, 'b-')  # Draw the parallelogram with blue lines
+ax2.axhline(0, color='black', linewidth=0.5)
+ax2.axvline(0, color='black', linewidth=0.5)
+ax2.set_aspect('equal', adjustable='box')
+ax2.set_xlim([-3, 3])
+ax2.set_ylim([-3, 3])
+ax2.set_xlabel('X axis')
+ax2.set_ylabel('Y axis')
+ax2.set_title('Parallelogram with Vectors (2,0) and (-1/5,1/3)')
+
+# Display the plot
+plt.tight_layout()
+plt.show()
+```
+
+## Eigenvalues and Eigenvectors
+
+An **eigenvector** for a matrix $A$ is a vector $v$ which gets shrunk or lengthened by $A$ by some factor $\lambda$.  
+
+The factor $\lambda$ is called the **eigenvalue**.
+
+More formally, a vector $v$ is called an eigenvector for $A$ (with eigenvalue $\lambda$) if $v$ is not zero and
+$$
+Av=\lambda v.
+$$
+
+## Eigenvalues and Eigenvectors
+
+In the example above, the vectors $\left[\begin{matrix} 1 \\ 0\end{matrix}\right]$ and $\left[\begin{matrix} -3/5 \\ 1\end{matrix}\right]$ are eigenvectors for the matrix
+$$
+A = \left[\begin{matrix} 2 & 1 \\ 0 & 1/3\end{matrix}\right]
+$$
+with eigenvalues $2$ and $1/3$ respectively.
+$$
+ \left[\begin{matrix} 2 & 1 \\ 0 & 1/3\end{matrix}\right]\left[\begin{matrix} 1 \\ 0\end{matrix}\right] = 2\left[\begin{matrix} 1 \\ 0\end{matrix}\right]
+$$
+$$
+\left[\begin{matrix} 2 & 1 \\ 0 & 1/3\end{matrix}\right]\left[\begin{matrix} -3/5 \\ 1\end{matrix}\right] = \left[\begin{matrix} -1/5 \\ 1/3\end{matrix}\right]=(1/3)\left[\begin{matrix} -3/5 \\ 1\end{matrix}\right]
+$$
+
+## Triangular Matrices
+
+If $A$ is (upper) triangular then the diagonal entries for $A$ are all eigenvalues.  There are $n$ linearly independent eigenvectors.
+
+## Eigenspaces
+
+Suppose that $\lambda$ is a constant.  The vectors $v$ such that 
+$$
+Av=\lambda v
+$$
+form a subspace called the *eigenspace* for $\lambda$. 
+
+This subspace is the nullspace of the matrix
+$$
+A-\lambda I_{n}
+$$
+where $I_{n}$ is the $n\times n$ identity matrix.
+
+## Independence of Eigenvectors
+
+If $v_1,\ldots, v_n$ are eigenvectors with eigenvalues $\lambda_1,\ldots,\lambda_n$, and all the $\lambda_i$ are different, then the $v_{i}$ are linearly independent.
+
+## Characteristic Equation

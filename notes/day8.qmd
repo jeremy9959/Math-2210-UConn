@@ -1,0 +1,245 @@
+---
+format: 
+    beamer:
+        include-in-header:
+            - text: |
+                    \usepackage{colortbl}
+                    \usepackage{xcolor}
+title: 3.1 Determinants
+author: Jeremy Teitelbaum
+jupyter:
+        kernelspec:
+                name: "base"
+                language: "python"
+                display_name: "base"
+---
+
+## Recall the 2x2 case
+
+
+If 
+$$
+A=\left[\begin{matrix} a & b \\ c & d \end{matrix}\right]
+$$
+is a $2\times 2$ matrix, then the "determinant" of $A$
+(written $\mathrm{det}(A)$) is
+$$
+\mathrm{det}(A)=ad-bc 
+$$
+
+The matrix $A$ is invertible if and only if $\mathrm{det}(A)\not=0$; if it's non-zero then 
+$$
+A^{-1}=\frac{1}{ad-bc}\left[\begin{matrix} d & -b \\ -c & a\end{matrix}\right]
+$$
+
+## Generalization
+
+The determinant of an $n\times n$ matrix is defined inductively starting from the $2\times 2$ case.
+
+Let $A$ be an $n\times n$ matrix and let $A_{i}$ be the
+$(n-1)\times (n-1)$ submatrix obtained by deleting the $i^{th}$ row and column.
+
+Then (by definition)
+$$
+\det(A) = \sum_{i=1}^{n} (-1)^{n-1}a_{1i}\det(A_{i}).
+$$
+
+This works because you can use the same formula on $A_{i}$ (which is smaller) to find its determinant.  When you get to the $2\times 2$ case you know the answer. 
+
+## 3x3 case
+
+$\det(A_{1})=a_{22}a_{33}-a_{23}a_{32}$:
+$$
+\left[\begin{array}{>{\columncolor{gray!30}}ccc}
+\rowcolor{gray!30} a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33} \\
+\end{array}\right]
+$$
+$\det(A_{2})=a_{21}a_{33}-a_{23}a_{31}$:
+$$
+\left[\begin{array}{ccc}
+\rowcolor{gray!30} a_{11} & a_{12} & a_{13} \\
+a_{21} & \cellcolor{gray!30} a_{22} & a_{23} \\
+a_{31} & \cellcolor{gray!30} a_{32} & a_{33} \\
+\end{array}\right]
+$$
+$\det(A_{3})=a_{21}a_{32}-a_{22}a_{31}$:
+$$
+\left[\begin{array}{ccc}
+\rowcolor{gray!30} a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & \cellcolor{gray!30} a_{23} \\
+a_{31} & a_{32} & \cellcolor{gray!30} a_{33} \\
+\end{array}\right]
+$$
+$$
+\det(A)=a_{11}\det(A_{1})-a_{12}\det(A_{2})+a_{13}\det(A_{3}
+$$
+
+## Cofactors
+
+We can generalize the work above by introducing the submatrix $A_{ij}$ obtained by deleting row $i$ and column $j$ from our matrix.
+
+$$\left[
+\begin{array}{ccccccc}
+ a_{11} & a_{12} & a_{13} & \cdots &\cellcolor{gray!30} a_{1j}&\cdots& a_{1n} \\
+ a_{21} & a_{22} & a_{23} & \cdots &\cellcolor{gray!30}a_{2j}&\cdots& a_{2n} \\
+ a_{31} &  a_{32} & a_{33} & \cdots &\cellcolor{gray!30}a_{3j}&\cdots& a_{3n} \\
+\vdots & \vdots & \vdots & \ddots &\cellcolor{gray!30}\vdots&\vdots &\vdots \\
+ \rowcolor{gray!30}a_{i1} &  a_{i2} & \cellcolor{gray!30}a_{i3} & \cdots &a_{ij}&\cdots& a_{in} \\
+\vdots & \vdots & \vdots & \ddots &\cellcolor{gray!30}\vdots&\vdots &\vdots \\
+ a_{n1} &  a_{n2} & a_{n3} & \cdots &\cellcolor{gray!30}a_{nj}&\cdots & a_{nn} \\
+\end{array}\right]
+$$
+
+The $i,j$ *cofactor* $C_{ij}$ of $A$ is $(-1)^{i+j}\det(A_{ij})$.  The sign here is important!
+
+## Cofactor Expansion
+
+The determinant can be expanded along any row or column yielding the same result.
+
+Fix $i$ and compute along row $i$:
+$$
+\det(A) = \sum_{j=1}^{n} a_{ij}C_{ij} 
+$$
+
+or fix $j$ and compute along column $j$:
+$$
+\det(A) = \sum_{i=1}^{n} a_{ij}C_{ij}
+$$
+
+## Example (first row expansion)
+
+```{python}
+from sympy import latex, Matrix
+from IPython.display import Latex, display
+import numpy as np
+
+np.random.seed(1203)
+M = Matrix(np.random.randint(-10, 10, size=(3, 3)))
+display(Latex(f"$M={latex(M)}$"))
+for i in range(3):
+    N = M.copy()
+    N.row_del(0)
+    N.col_del(i)
+    display(Latex(f"$M_{{1{i+1}}}={latex(N)},C_{{1{i+1}}}={(-1)**(i)*(N.det())}$"))
+display(Latex(f"$\det(M)={M.det()}$"))
+```
+
+## Example (second row expansion)
+
+```{python}
+display(Latex(f"$M={latex(M)}$"))
+for i in range(3):
+    N = M.copy()
+    N.row_del(1)
+    N.col_del(i)
+    display(Latex(f"$M_{{2{i+1}}}={latex(N)},C_{{2{i+1}}}={(-1)**(1+i)*(N.det())}$"))
+display(Latex(f"$\det(M)={M.det()}$"))
+```
+
+
+
+## Triangular Matrices
+
+Suppose that $A$ is an $n\times n$ triangular matrix, meaning that all of the entries $a_{ij}$ where $i>j$
+are zero (or all of its entries $a_{ij}$ where $i<j$ are zero)
+
+Then the determinant of $A$ is the product of its diagonal entries.
+
+$$
+A = \left[\begin{matrix} 1 & 2 & 5 \\ 0 & 7 & -1 \\ 0 & 0 & 3\end{matrix}\right]
+$$
+
+$$\det(A)=(1)(7)(3) = 21$$
+
+Note: this is a nice result to see by mathematical induction.
+
+## Row operations and determinants
+
+The three row operations on a square matrix $A$ have the following effects:
+
+1.  Adding a multiple of one row to another does not affect the determinant.
+2.  Interchanging two rows changes the sign of the determinant.
+3.  Multiplying a row by a constant $k$ multiplies the determinant by $k$. 
+
+Note: the same is true of "column" operations.
+
+
+## Computing determinants by reduction
+
+$$
+A=\left[\begin{matrix} -5 & 4 & 4 \\ -5 & 2 & -4 \\ 0 & 4 & -4\end{matrix}\right]
+$$
+Replace row 2 with row 2 minus row 1. 
+
+$$
+\left[\begin{matrix} -5 & 4 & 4 \\ 0& -2& -8 \\ 0 & 4 & -4\end{matrix}\right]
+$$
+
+Replace row 3 by row 3 plus 2 row 2.
+
+$$
+\left[\begin{matrix} -5 & 4 & 4 \\ 0 & -2 & -8 \\ 0 & 0 & -20\end{matrix}\right]
+$$
+
+So determinant is $(-5)(-2)(-20)=-200$.
+
+## Fundamental properties
+
+Let $A$ and $B$ be  $n\times n$ matrices. 
+
+1.  $\det(AB)=\det(A)\det(B)$.
+2.  $A$ is invertible if and only if $\det(A)$ is nonzero.
+3.  $\det(A^{T})=\det(A)$
+
+
+## Cramer's Rule
+
+Look at the equation $Ax=b$ where $A$ is an $n\times n$ matrix. 
+
+If $Y$ is an $n\times n$ matrix, Let $Y_{i}(x)$ be the matrix obtained by replacing column $i$ with $x$
+and let $Y_{i}(b)$ be the matrix obtained from $Y$ by replacing the $i^{th}$ column
+by $b$. 
+
+Then $AI_{i}(x)=A_{i}(b)$.
+
+A $2\times 2$ example:
+
+$$
+\left[\begin{matrix} a & b \\ c & d\end{matrix}\right]\left[\begin{matrix} 1 & x \\ 0 & y \end{matrix}\right]
+= \left[\begin{matrix} a & ax+by \\ c & cx+dy\end{matrix}\right] = \left[\begin{matrix} a & u \\ c & v \end{matrix}\right]
+$$
+
+so $\det(A)y = \det(A_{2}(b))$ and therefore
+
+$$
+y=\det(A_{2}(b))/\det(A)
+$$
+
+## More on Cramer's Rule
+
+The general form of Cramer's rule is:
+
+$$
+x_{i}=\frac{\det(A_{i}(b))}{\det(A)}
+$$
+
+This is true because $A_{i}(x)=AI_{i}(x)$.  The determinant of $I_{i}(x)$ is $x_{i}$.
+So
+
+$$
+\det(A)x_{i} = \det(A_{i}(b))
+$$
+
+
+
+## Volumes
+
+Let $A$ be a square matrix of size $n\times n$.  The linear map $x\mapsto Ax$ expands volumes
+by a factor of $|\det(A)|$. 
+
+This is a generalization of the fact that the volume of a parallelogram is the base times the height.
+
+
+

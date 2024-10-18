@@ -1,0 +1,160 @@
+---
+title: Exam 1 Solutions
+author: Jeremy Teitelbaum
+format: pdf
+---
+
+
+1. (20 points; 10 each) Answer each of the following:
+
+a. Let
+
+$$
+A = \left[\begin{matrix}3 & -1 & 5 \\ 2 & 1 & 0 \\ 1 & 0 & 1\end{matrix}\right]
+$$
+
+and
+
+$$
+B = \left[\begin{matrix} 1 & 1 \\ 2 & 3 \\ 3 & 2\end{matrix}\right].
+$$
+
+What is $AB$?
+
+$$
+AB = \left[\begin{matrix}3 & -1 & 5 \\ 2 & 1 & 0 \\ 1 & 0 & 1\end{matrix}\right]\left[\begin{matrix} 1 & 1 \\ 2 & 3 \\ 3 & 2\end{matrix}\right]=
+\left[\begin{matrix}16 & 10 \\ 4 & 5 \\ 4 & 3\end{matrix}\right]
+$$
+
+\strut\vfill
+
+b. Let
+
+$$
+A = \left[\begin{matrix} 1 & 0 & 1 \\ 2 & 3 & 0 \\ -1 & 0 & 1\end{matrix}\right]
+$$
+
+What is the determininant $\det(A)$?
+
+$$
+\det(A) = 1(3) + 1(-(3)(-1))=3+3 = 6
+$$
+
+\strut\vfill
+
+{{<pagebreak>}}
+
+2. (5 points each; 20 total) Carefully complete each of the following definitions:
+
+a. A linear combination of a set of vectors $v_1,v_2,\ldots, v_k$ in $\mathbf{R}^{n}$ is:
+a sum $c_1 v_1 + \cdots c_k v_k$ where $c_1,\ldots, c_k$ are constants.
+
+\strut\vfill
+
+b. The span of a set of vectors $v_1,v_2,\ldots,v_k$ in $\mathbf{R}^{n}$ is:
+the set of all linear combinations of $v_1,\ldots, v_k$. 
+
+\strut\vfill
+
+c. A set of vectors $v_1,v_2,\ldots, v_k$ in $\mathbf{R}^{n}$ is linearly independent if:
+the only set of constants $c_1,\ldots, c_k$ such that $c_1 v_1 + \cdots + c_k v_k=0$ is 
+the set where all $c_i=0$. 
+
+\strut\vfill
+
+d. A function $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$ is one-to-one if: $T(x)=T(y)$ implies that $x=y$.
+
+\strut\vfill
+
+{{<pagebreak>}}
+
+3.  (20 points) Let
+
+    $$
+    A = \left[\begin{matrix} 3 & 2 & -1 \\ -1 & -1 & 0 \\ 1 & 2 & 3 \\-2 & -2 & 1\end{matrix}\right]
+    $$
+
+    and let
+
+    $$
+    b=\left[\begin{matrix} 1 \\ 1 \\ 1 \\ 1\end{matrix}\right]
+    $$
+
+    Explain _briefly_ how you would determine if $b$ lies in the span of the columns of $A$. (For example, what equations would you try to solve, what matrix would you reduce, what would you look for)? You need not actually carry out the solution.
+
+    $b$ is in the span of the columns of $A$ if there is a solution to the equation $Ax=b$ where $x=\left[\begin{matrix} x_1 \\ x_2 \\ x_3\end{matrix}\right]$.  In other words, we need this system of equations to be consistent.
+
+    To determine if it is consistent, apply row reduction to the augmented matrix $[A | b]$.  The system is consistent if there is no pivot in the last column, or in other words if the last row is zero. 
+
+{{<pagebreak>}}
+
+4.  (20 points) Applying row reduction to the augmented matrix of a system of 3 linear equations in 4 unknowns resulted in this matrix:
+
+$$
+A = \left[\begin{matrix} 1 & 0 & -2 & 0 & 1 \\
+                         0 & 1 &  1 & 0 & 1 \\
+                         0 & 0 &  0 & 1 & -3 \end{matrix}\right]
+$$
+
+Write the solution(s) to the system in parametric form
+
+$$
+\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{matrix}\right]=
+u+v
+$$
+
+where $u$ is a solution of the inhomogeneous system and $v$ is the (family of) solutions to the associated homogeneous system.
+
+The row reduced matrix corresponds to the following system:
+$$\begin{aligned}
+x_1 - 2 x_3 &=& 1 \\
+x_2 + x_3 &=& 1\\
+x_3 &=& x_3 \\
+x_4 &=& -3
+\end{aligned}
+$$
+
+So $x_3$ is the free variable and the solutions are
+$$
+\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \\ x_4\end{matrix}\right] = \left[\begin{matrix} 1 \\ 1 \\ 0 \\ -3\end{matrix}\right] + x_3\left[\begin{matrix} 2 \\-1 \\ 1 \\ 0\end{matrix}\right]
+$$
+]
+
+{{<pagebreak>}}
+
+5.  (20 points) Let $T:\mathbf{R}^{3}\to\mathbf{R}^{3}$ be given by $T(x,y,z)=(x-y+z,y+z,x-z)$.
+
+a. (10 points) Find a matrix $A$ so that
+
+$$
+T(x,y,z) = A\left[\begin{matrix} x \\y\\z\end{matrix}\right].
+$$
+
+$$
+A=\left[\begin{matrix} 1 & -1 & 1 \\ 0 & 1 & 1 \\ 1 & 0 & -1\end{matrix}\right]
+$$
+
+\strut\vfill
+
+b. (5 points) Is $T$ one-to-one? Justify your answer.
+
+We can row reduce $A$ by:
+- replace row 3 by row 3 - row 1 yielding
+$$
+\left[\begin{matrix} 1 & -1 & 1 \\ 0 & 1 & 1 \\ 0 & 1 & -2\end{matrix}\right]
+$$
+- replace row 3 by row 3 - row 2 yielding
+$$
+\left[\begin{matrix} 1 & -1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & -3\end{matrix}\right]
+$$
+From this we see that the original matrix is invertible and therefore $T$ is one-to-one by the invertible matrix theorem. 
+
+Alternatively, compute the determinant of $A$ (it is -3); since it is nonzero the matrix is invertible. 
+\strut\vfill
+
+c. (5 points) Is $T$ onto? Justify your answer.
+Since $A$ is square and invertible $T$ is onto by the invertible matrix theorem. 
+
+\strut\vfill
+
+{{<pagebreak>}}

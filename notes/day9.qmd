@@ -1,0 +1,153 @@
+---
+title: Vector Spaces and Subspaces
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## Vector Spaces
+
+Part of the power of linear algebra comes from the observation that
+many problems can be recast in terms of vectors from $\mathbf{R}^{n}$.
+
+This process of abstraction is based on the idea of a *vector space.*
+
+**Definition:** A (real) vector space is a set $V$ (whose elements are called *vectors*)
+with two operations:
+
+- addition, which works on pairs of vectors, converting two vectors into a third: $(v,w)\mapsto v+w$
+- scalar multiplication, which works on a real number $a$ and a vector $v$, yielding a vector $av$.
+
+## Vector Space Axioms
+
+The operations must satisfy the following properties:
+
+- Addition is commutative $u+v=v+u$ and associative $(u+v)+w=u+(v+w)$. 
+- Scalar multiplication is distributve so $a(u+v)=au+av$ and $(a+b)u=au+bu$.
+- Scalar multiplication satisfies $a(bv)=(ab)v$ and $1v=v$.
+- There is a zero vector $0\in V$ satisfying $0+v=v$ for all $v$, and every vector $v$ has an inverse $-v$ so that $v+(-v)=0$.
+
+Clearly the "usual" vectors $\mathbf{R}^{n}$ satisfy all these conditions.
+
+## Other examples of vector spaces
+
+1. The polynomials of degree at most $n$.
+2. The solutions to the differential equation $x''+x=0$.
+3. The possible prices for a stock on the first of each month from January 2019 through December 2023. (Here each stock
+gives a vector of 60 prices).
+
+## Subspaces
+
+A subspace of a vector space is a subset that is also a vector space.  If $W$ is a subset of $V$ that contains
+$0$ and has the closure properties:
+
+- If $w,w'\in W$ then $w+w'\in W$
+- If $w\in W$ then $aw\in W$
+
+then $W$ is a subspace.
+
+- The vectors in $\mathbf{R}^{n}$ whose last entry is zero is a subspace. 
+- It's silly but the set consisting of just $0$ is a subspace of any vector space. 
+- The polynomials of degree at most $3$ are a subspace of the polynomials of degree at most $10$.
+
+
+## Subspaces and spans
+
+If $v_1,\ldots, v_k$ are vectors in $\mathbf{R}^{n}$, then the span of the set of $v_{i}$ is
+a subspace.
+
+This is called the subspace spanned by the $v_{i}$.
+
+- The span of $(1,0,0)$ and $(0,1,0)$ in $\mathbf{R}^{3}$ is the subspace of vectors whose last entry is zero.
+- The span of $(1,1,0)$ and $(1,-1,0)$ is the same.
+- The span of $(2,3,1)$ and $(-1,-1,0)$ is a plane in $\mathbf{R}^{3}$ that is a vector space in its own right.
+
+## Subspaces related to matrices
+
+Let $A$ be an $m\times n$ matrix.  So $x\mapsto Ax$ is a linear map from $\mathbf{R}^{n}\to\mathbf{R}^{m}$.
+
+The set of vectors $v$ such that $Av=0$ is called *the null space of $A$* written $\mathrm{Nul}(A)$. 
+The null space is a subspace of $\mathbf{R}^{n}$.
+
+This follows because:
+
+- $A(0)=0$
+- $A(u+v)=Au+Av=0$ if so $u+v\in\mathrm{Nul}(A)$ if $u$ and $v$ are.
+- $A(av)=aAv=0$ so $av\in\mathrm{Nul}(A)$ if $v$ is. 
+
+Put another way, the solution to a system of *homogeneous* equations is a subspace.
+
+## Finding the null space
+
+To find the Null space of $A$, use row reduction to put $A$ in row reduced echelon form.
+Then write the basic variables in terms of the free variables, and give the general solution
+as a linear combination of vectors where the weights are the free variables.
+
+Let
+
+$$
+A=\left[\begin{matrix}-2 & -2 & 0 & 1 & 2\\1 & -2 & 2 & -1 & -2\\2 & -2 & -3 & 2 & -3\end{matrix}\right]
+$$
+
+Apply row reduction yielding:
+
+$$
+\left[\begin{matrix}1 & 0 & 0 & - \frac{4}{17} & - \frac{22}{17}\\0 & 1 & 0 & - \frac{9}{34} & \frac{5}{17}\\0 & 0 & 1 & - \frac{11}{17} & - \frac{1}{17}\end{matrix}\right]
+$$
+
+## Null Space computation
+
+This gives
+$$\begin{array}{rcl}
+x_1&=&\frac{4}{17}x_4+\frac{22}{17}x_5\\
+x_2 &=&\frac{9}{34}x_4-\frac{5}{17}x_5\\
+x_3 &=&\frac{11}{17}x_4+\frac{1}{17}x_5\\
+\end{array}
+$$
+
+Parametrically
+
+$$
+\left[\begin{matrix} x_1 \\ x_2 \\ x_3 \\x_4\\x_5\end{matrix}\right] =
+x_4\left[\begin{matrix}\frac{4}{17} \\ \frac{9}{34}\\ \frac{11}{17} \\ 1 \\ 0\end{matrix}\right]
++
+x_4\left[\begin{matrix}\frac{22}{17}\\ -\frac{5}{17}\\ \frac{1}{17} \\ 0 \\ 1\end{matrix}\right]
+$$
+
+## Conclusion
+
+Notice that the two vectors *span the null space* and that they are *linearly independent* (look at the last two cooordinates).
+
+Two observations:
+
+- this algorithm will *always* produce a linearly independent spanning set for the null space
+
+- The number of vectors in this spanning set corresponds to the number of free variables in $Ax=0$.
+
+## Column Space
+
+The column space of an $m\times n$ matrix $A$ is the span of the column vectors; that is, the set of all linear combinations of the columns. 
+
+$$
+\mathrm{Col}(A)=\{Ax : x\in\mathbf{R}^{n}\}
+$$
+
+The column space is a subspace because:
+
+- 0 is a linear combination of the columns (all zero coefficients)
+- if $y=Ax_1$ and $z=Ax_2$ then $y+z=A(x_1+x_2)$
+- if $y=Ax_1$ then $ay= A(ax_1)$.
+
+The column space of $A$ is all of $\mathbf{R}^{m}$ means that the map $T(x)=Ax$ is onto and that $Ax=b$ has a solution for any $b$.
+
+## Elements of $\mathrm{Col}(A)$.
+
+The columns of $A$ are "obvious" members of $\mathrm{Col}(A)$.
+
+Given another vector $b\in\mathrm{R}^{m}$, to tell if $b$ is in $\mathrm{Col}(A)$ requires finding an $x$ so that $Ax=b$.
+
+## The Row Space
+
+The row space is the span of the rows of a matrix. 
+
+
+

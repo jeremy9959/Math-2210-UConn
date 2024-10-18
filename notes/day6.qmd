@@ -188,3 +188,9 @@ $$
 A^{-1} = \frac{1}{ad-bc}\left[\begin{matrix} d& -b\\-c&a\end{matrix}\right]$$
 
 Just multiply them out and check that it works. Here $ad-bc\not=0$.  If $ad-bc=0$ then there is no inverse.
+
+## Determinant  
+
+The quantity $ad-bc$ for a $2\times 2$ matrix is called the "determinant" of that matrix.
+
+We will study determinants of bigger matrices later.
