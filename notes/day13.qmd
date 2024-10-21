@@ -255,6 +255,55 @@ L=M.eigenvects()
 display(Latex(f"$${latex(L[0][2][0])}$$ and $${latex(L[1][2][0])}$$"))
 ```
 
+## Bigger matrices
+
+The characteristic polynomial of an $n\times n$ matrix is of degree $n$.
+
+**Theorem:** A polynomial of degree $n$ has $n$ complex roots (counted correctly).
+
+However, in practice one must use numerical methods to find roots of a polynomial of degree 3 or higher. 
+
+If one know an eigenvalue $\lambda$ *exactly* (which usually doesn't happen) then you can find the eigenvectors by computing the null space
+of $A-\lambda$.
+
+## Example
+
+Let 
+$$
+A=\left[\begin{matrix} 5 & -8 & 1 \\ 0& 0 &7 \\ 0 & 0 & -2\end{matrix}\right]
+$$
+
+Since $A$ is (lower) triangular, the eigenvalues are $5$,$0$ and $-2$.
+The vector
+$$
+\left[\begin{matrix} 1 \\ 0 \\ 0\end{matrix}\right]
+$$ 
+is the eigenvector with eigenvalue $5$.
+
+## Example continued
+
+To find the eigenvector with eigenvalue $0$, we must solve
+$$
+Ax = 0.
+$$
+
+By one of our techniques this is
+$$
+\left[\begin{matrix} -8 \\ 5 \\ 0\end{matrix}\right]
+$$
+
+## Example continued
+
+The final eigenvector is in the null space of $A+2I$:
+$$
+A=\left[\begin{matrix} 7 & -8 & 1 \\ 0& 2 &7 \\ 0 & 0 & 0\end{matrix}\right]
+$$
+
+This is
+$$
+\left[\begin{matrix}-58/7 \\ -7 \\ 2\end{matrix}\right]
+$$
+
 ## Similarity
 
 Two (square) matrices $A$ and $B$ are *similar* if there is an invertible matrix $P$ so that 
@@ -267,3 +316,120 @@ $$
 \det(PBP^{-1}-\lambda I) &=& \det(P(B-\lambda I)P^{-1})\\& =& \det(P)\det(B-\lambda I)\det(P^{-1})\\ &=&\det(B-\lambda I)
 \end{array}
 $$
+
+## Diagonalization
+
+Diagonal matrices are the simplest to work with.
+
+**Definition:** A square matrix is diagonalizable if there is an invertible matrix $P$ so that $A=PDP^{-1}$ where $P$ diagonal.  In other words, $A$ is diagonalizable if it is similar to a diagonal matrix. 
+
+**Theorem:** An $n\times n$ matrix $A$ is diagonalizable if and only if it has $n$ linearly independent eigenvectors.
+
+In fact, if $A=PDP^{-1}$, then the columns of $P$ are $n$ linearly independent eigenvectors for $A$, and the diagonal entries of $D$ are the corresponding eigenvalues.  This is because in this situation,
+$$
+AP = PD.
+$$
+
+## Example (from the text)
+
+Let 
+$$
+A=\left[\begin{matrix} 1 & 3 & 3\\-3 & -5 & -3\\3 & 3 & 1\end{matrix}\right]
+$$
+
+1. The eigenvalues of $A$.  The text tells us that the characteristic polynomial of $A$ is $-(\lambda-1)(\lambda+2)^2$ so the eigenvalues are $1$ and $-2$. 
+
+## Example continued
+
+We need three linearly independent eigenvectors.  So we need the null spaces of $A-I$ and $A+2I$.  The book gives us:
+$$
+v_1=\left[\begin{matrix} 1 \\ -1 \\ 1\end{matrix}\right]
+$$
+with eigenvalue $1$.  For the eigenvalue $-2$:
+
+```{python}
+from sympy import Matrix, latex, eye
+from IPython.display import Latex
+
+A = Matrix([[1, 3, 3], [-3, -5, -3], [3, 3, 1]])
+display(Latex(f"A+2I=${latex(A+2*eye(3))}$"))
+display(Latex(f"Reduced form is ${latex((A+2*eye(3)).rref()[0])}$"))
+```
+
+## Example continued
+So null space of $A+2I$ is two dimensional and spanned by
+$$
+\left[\begin{matrix}1 \\ -1 \\0 \end{matrix}\right],\left[\begin{matrix} 1 \\ 0 \\ -1\end{matrix}\right]
+$$
+
+Therefore
+$$
+P = \left[\begin{matrix} 1 & 1 & 1\\ -1 & -1 & 0 \\ 1 & 0 & -1\end{matrix}\right]
+$$
+
+## Example continued
+
+We can compute $AP$:
+```{python}
+P=Matrix([[1,1,1],[-1,-1,0],[1,0,-1]])
+display(Latex(f"AP=${latex(A@P)}$=PD"))
+```
+where
+$$
+D=\left[\begin{matrix} 1 & 0 & 0\\0 & 2 & 0 \\ 0 & 0 & 2\end{matrix}\right]
+$$
+
+So $A=PDP^{-1}$ and $A$ is diagonalizable.
+
+## Not all matrices are diagonalizable
+
+Let 
+$$
+A=\left[\begin{matrix} 1 & 1 \\ 0 & 1\end{matrix}\right].
+$$
+The only eigenvalue is $1$.  The null space of $A-I$ is
+only one dimensional, spanned by 
+$$
+\left[\begin{matrix} 1\\ 0\end{matrix}\right]
+$$
+
+So there's no basis of eigenvectors, so $A$ can't be diagonalized.
+
+## $n$ distinct eigenvalues implies diagonalizable
+If $A$ has $n$ different eigenvalues, then it has $n$ linearly independent 
+eigenvectors; thus there is a basis of eigenvectors.
+
+Therefore in this case $A$ is diagonalizable.
+
+But as we saw above, you can have repeated eigenvalues and still be diagonalizable. 
+
+## The diagonalization Theorem
+
+![Diagonalization Theorem](./diag_theorem.png)
+
+## A numerical example
+
+Let
+$$
+M = \left[\begin{matrix}-6 & 4 & 0 & 9\\-3 & 0 &1 & 6\\-1 & -2 & 1 & 0\\-4 & 4 &0 & 7\end{matrix}\right]
+$$
+
+
+
+
+```{.python}
+import numpy as np
+M = Matrix([[-6, 4, 0, 9], [-3, 0, 1, 6],...
+M = np.array(M).astype(np.float64)
+L, P = np.linalg.eig(M)
+```
+
+The results are
+```{python}
+import numpy as np
+
+M = np.array([[-6,4,0,9],[-3,0,1,6],[-1,-2,1,0],[-4,4,0,7]])
+L, P = np.linalg.eig(M)
+display(Latex(f"Eigenvalues (list L) are ${latex(L)}$"))
+display(Latex(f"P matrix (rounded) is ${latex(Matrix(np.round(P,2)))}$"))
+```
