@@ -168,7 +168,7 @@ $$
 
 ## Triangular Matrices
 
-If $A$ is (upper) triangular then the diagonal entries for $A$ are all eigenvalues.  There are $n$ linearly independent eigenvectors.
+If $A$ is (upper) triangular then the diagonal entries for $A$ are all eigenvalues.  If the diagonal entries are distinct, then there are $n$ linearly independent eigenvectors.
 
 ## Eigenspaces
 
