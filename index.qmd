@@ -88,7 +88,7 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 10/17       | 4.6-4.7  | [Rank, change of basis](notes/day12.pdf)                               |
 | 10/22       | 5.1      | [Eigenvectors/values, characteristic poly](notes/day13.pdf)                          |
 | 10/24       | 5.2-5.3  | [Diagonalization](notes/day13.pdf)         |
-| 10/29       | 5.4      | Eigenvector and linear transformations              |
+| 10/29       | 5.4      | [Eigenvector and linear transformations](notes/day14.qmd)            |
 | 10/31       |          | Review                                              |
 | 11/5        |          | Exam 2                                              |
 | 11/7        | 6.1-6.2  | Inner products, orthogonality                       |

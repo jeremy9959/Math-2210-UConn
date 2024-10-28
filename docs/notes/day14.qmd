@@ -1,0 +1,105 @@
+---
+title: Eigenvectors and Linear Transformations
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## Linear Transformations and Matrices
+
+Remember that a linear transformation $T:\mathbf{R}^{m}\to\mathbf{R}^{n}$ is a function
+that satisfies the two conditions:
+
+- $T(ax)=aT(x)$ for all $x\in\mathbf{R}^{m}$ and $a\in\mathbf{R}$.
+- $T(x+y)=T(x)+T(y)$ for all $x,y\in\mathbf{R}^{m}$. 
+
+We saw earlier that a linear transformation can be represented by an $n\times m$ matrix $A$
+where
+
+$$
+T(x_1,\ldots, x_m) = A\left[\begin{matrix} x_1 \\ \vdots \\ x_n\end{matrix}\right]
+$$
+
+## Linear transformations and bases
+
+We can take a slightly more general point of view on matrices and linear transformations. 
+
+In the earlier version we used "standard coordinates" where $x_1,\ldots, x_n$ are relative to the "standard basis."
+
+Now suppose $B=\{b_1,\ldots, b_n\}$ are a basis for $\mathbf{R}^{n}$.
+Then if
+$$
+x=r_1 b_1 + \cdots + r_n b_n
+$$
+we have the coordinate vector
+$$
+[x]_B=\left[\begin{matrix} r_1 \\ r_2 \\ \vdots \\ r_n\end{matrix}\right].
+$$
+
+## Linear transformations in other bases
+
+By linearity 
+
+$$
+T(x) = T(r_1 b_1 + \cdots + r_n b_n)= r_1 T(b_1)+\cdots+ r_{n}T(b_n)
+$$
+
+In other words, if we make a matrix $M$ whose *columns*
+are the vectors $T(b_i)$, then
+
+$$
+T(x) = M[x]_{B}=\left[\begin{matrix} r_1 \\ \vdots \\ r_n\end{matrix}\right]
+$$
+
+The matrix $M$ is called *the matrix of the linear transformation $T$ in the basis $B$* and is written
+
+$$
+M=[T]_{B}
+$$
+
+## Linear transformations and change of basis
+
+If we write $S$ for the standard basis, the "change of basis matrix" $P_{S\leftarrow B}$ (which the book calls just $P_{B}$ has the property that
+$$
+P_{S\leftarrow B}[x]_{B} = [x]_{S}
+$$
+
+If $T(x) = Ax$, then in our notation above $A=[T]_{S}$ and
+$x=[x]_{S}$.  We can write this equation as 
+$$
+[T(x)]_{S}=[T]_{S}[x]_{S}
+$$
+
+## Linear transformations and change of basis cont'd
+
+So 
+$$
+[T(x)]_{S} = A[x]_{S} = AP_{S\leftarrow B}[x]_{B}
+$$
+But if we want the output of $T$ to *also* be in the $B$-basis, we need one more step:
+
+$$
+[T(x)]_{B} = P_{B\leftarrow S}[T(x)]_{S}=
+P_{B\leftarrow S}AP_{S\leftarrow B}[x]_{B}
+$$
+
+## Linear transformations and change of basis continued
+
+If we simplify the notation and write $P=P_{S\leftarrow B}$
+then we see that
+$$
+[T(x)]_{B}=[T]_{B}[x]_{B}=P^{-1}AP[x]_{B}
+$$
+where $A=[T]_{S}$
+
+In other words, the matrix of $T$ in the $B$-basis
+is *similar* to the matrix in the standard basis.
+
+More generally, the collection of matrices that are similar to $A=[T]_{S}$ are the collectoin of matrix representations of $T$ in the possible bases of $\mathbf{R}^{n}$. 
+
+## Diagonal transformations
+
+If the matrix $A$ is diagonalizable, then one can find a basis $B$
+so that $[T]_{B}$ is a diagonal matrix. 
+
+
+## Example
