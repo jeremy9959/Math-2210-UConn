@@ -103,3 +103,37 @@ so that $[T]_{B}$ is a diagonal matrix.
 
 
 ## Example
+
+Suppose that $B=\{b_1, b_2\}$ is a basis for a vector space $V$ and that
+$T:V\to V$ is the linear transformation defined by
+$$
+T(b_1) = 7b_1+4b_2, T(b_2) = 6b_1-5b_2.
+$$
+
+The matrix 
+$$
+[T]_{B} = \left[\begin{matrix} 7 & 6 \\ 4 & -5\end{matrix}\right]
+$$
+
+## Example continued
+
+Is there a basis in which $T$ is given by a diagonal matrix?
+
+The characteristic polynomial of $[T]_{B}$ is
+$$
+\det\left[\begin{matrix} 7-\lambda & 6 \\ 4 & -5-\lambda\end{matrix}\right]=\lambda^2-2\lambda-59
+$$
+
+The roots are $1\pm 2\sqrt{15}$.  Since these are distinct, the matrix is diagonalizable. 
+
+## Example continued
+
+The eigenvectors are
+$$
+v_{\pm} = \left[\begin{matrix} \frac{3\pm\sqrt{15}}{2} \\ 1\end{matrix}\right]
+$$
+
+and in the basis $E$ given by these eigenvectors the matrix of $T$
+is diagonal.
+
+
