@@ -91,7 +91,7 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 10/29       | 5.4      | [Eigenvector and linear transformations](notes/day14.pdf)            |
 | 10/31       |          | Review                                              |
 | 11/5        |          | Exam 2                                              |
-| 11/7        | 6.1-6.2  | Inner products, orthogonality                       |
+| 11/7        | 6.1-6.2  | [Inner products, orthogonality](notes/day15.pdf)                      |
 | 11/12       | 6.3      | Orthogonal Projection                               |
 | 11/14       | 6.4-6.5  | Gram-Schmidt, least squares                         |
 | 11/19       | 7.1      | Diagonalization of symmetric matrices               |
