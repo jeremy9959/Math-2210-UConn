@@ -1,0 +1,208 @@
+---
+title: Inner Products and Orthogonality
+format: beamer
+author: Jeremy Teitelbaum
+---
+
+## The inner (dot) product.
+
+If $u$ and $v$ are vectors in $\mathbf{R}^{n}$, then the *dot product*
+or *inner product* of $u$ and $v$ is
+$$
+u\cdot v = u^{T}v = u_1 v_1 + \cdots + u_n v_n.
+$$
+
+For example if
+$$
+u=\left[\begin{matrix} 2 \\ 3 \\ -1\end{matrix}\right],v=\left[\begin{matrix} 1 \\ -1 \\0\end{matrix}\right]
+$$
+then
+$$
+u\cdot v = (2)(1) + (3)(-1) + (-1)(0)=2-3=-1\dots
+$$
+
+## Key properties of the dot product
+
+![Theorem 1 (p. 375)](./InnerProduct.png)
+
+## Length and distance
+
+The *length* or *norm* of a vector (written $\|v\|$)
+is
+$$
+\|v\|=\sqrt{v_1^2+\cdots+v_n^2}
+$$
+
+It is the "euclidean length" of the vector by the Pythagorean theorem.
+
+Scaling a vector scales its length:
+$$
+\|cv\|=|c|\|v\|
+$$
+
+The distance between $u$ and $v$ is $\|u-v\|$ (this is the "distance formula"). 
+
+## Unit vectors
+
+If $v$ is a vector, then 
+$$
+u = \frac{v}{\|v\|}
+$$
+is a vector of length one that "points in the same direction as $v$".
+
+Such a vector is called a *unit vector*. 
+
+## Orthogonality
+
+Two vectors are "orthogonal" (or "perpendicular") if they meet at a right angle.
+
+One way to describe this is to say that $u$ and $v$ are perpendicular 
+if *the distance from $u$ to $v$ is the same as the distance from $u$ to $-v$.*:
+$$
+\|u-v\|^2 = \|u+v\|^2
+$$
+
+![Perpendicular Vectors](./perpendicular.png){width=2in}
+
+## Dot product zero means orthogonal
+
+In other words
+$$
+\|u\|^2+\|v\|^2 - 2(u\cdot v) = \|u\|^2+\|v\|^2 + 2(u\cdot v)
+$$
+or
+$$
+u\cdot v = 0
+$$
+
+**Key idea:** $u$ and $v$ are orthognal if and only if  $u\cdot v = 0$.
+
+## Orthogonal Complements
+
+Let $W$ be a subspace of $\mathbf{R}^{n}$.  
+
+The "orthogonal complement" to $W$, written $W^{\perp}$, is
+$$
+W^{\perp}=\{v | v\cdot w=0 \mathrm{\ for\ all\ w\in W}\}
+$$
+
+For example, if $W$ is the plane in $\mathbf{R}^{3}$ spanned
+by $w_1=(2,3,1)$ and $w_2=(-1,1,0)$, then $z\in W^{\perp}$ means
+$$
+z\cdot (aw_1+bw_2)=0
+$$
+for any $a,b$.  
+
+It's enough that $z\cdot w_1=0$ and $z\cdot w_2=0$.
+
+## Orthogonal complements continued
+
+This gives two equations:
+$$
+\begin{aligned}
+2z_1+3z_2+z_3 &= 0 \\
+-z_1+z_2 &=0 \\ 
+\end{aligned}
+$$
+
+which has a one dimensional solution space spanned by
+$$
+(1,1,-5)
+$$
+
+## Orthogonal complements - properties
+
+Suppose $W$ is a subspace of $\mathbf{R}^{n}$.
+
+1. $x\in W^{\perp}$ if and only if $x\cdot u=0$ for all $u$ in a spanning set of $W$. (so you only need to check finitely many vectors to cover all of the elements of $W$).
+
+2.  $W^{\perp}$ is a subspace of $\mathbf{R}^{n}$.
+
+## Orthogonal complements and matrices
+
+Let $A$ be an $n\times m$ matrix.  Then
+$$\begin{aligned}
+\mathrm{Null}(A)^{\perp} &=\mathrm{Row}(A) \\
+\mathrm{Null}(A) &= \mathrm{Row}(A)^{\perp}
+\end{aligned}
+$$
+and
+$$
+\begin{aligned}
+\mathrm{Col}(A)^{\perp} &=\mathrm{Nul}(A^{T}) \\
+\mathrm{Col}(A) &= \mathrm{Null}(A^{T})^{\perp}
+\end{aligned}
+$$
+
+## Angles
+
+The "Law of Cosines" tells us that
+$$
+u\cdot v = \|u\| \|v\| \cos\theta
+$$
+
+where $\theta$ is the angle between $u$ and $v$.
+
+## Orthogonal sets
+
+A set $u_1,\ldots, u_k$ of vectors in $\mathbf{R}^{n}$
+is an *orthogonal set* if any pair of (different) vectors
+from the  set are orthogonal.
+
+It is an *orthonormal* set if in addition the vectors have length one. 
+
+*Key point:* An orthogonal set is linearly independent.  Therefore
+if $S$ is orthogonal then it is a basis for its span.
+
+## Orthogonal basis
+
+A basis for a subspace $W$ is orthogonal if it is an orthogonal set. 
+
+Suppose $y$ is any vector in $W$ and $u_1,\ldots, u_k$ are an orthogonal basis.   Then
+$$
+y= \frac{y\cdot u_1}{u_1\cdot u_1} u_1 +\cdots + \frac{y\cdot u_k}{u_k\cdot u_k} u_k
+$$
+
+To see this, write
+$$
+y=c_1 u_1 + \cdots + c_k u_k
+$$
+and compute $y\cdot u_j$ on both sides to solve for $c_j$. 
+
+## Orthogonal projection
+
+Let $u$ be a vector in $\mathbf{R}^{n}$. We can decompose a vector
+$y$ into a part that is "parallel" to $u$ and a part that is *perpendicular* to $u$.
+
+![Orthogonal Projection](./orthoproj.png){width=2in}
+
+## Orthogonal projection continued
+
+In particular:
+
+$$
+\hat{y} = \frac{y\cdot u}{u\cdot u}u 
+$$
+is parallel to $u$, and $z=y-\hat{y}$ is perpendicular to $u$.
+
+If $u_1,\ldots, u_k$ are an orthogonal basis for a subspace $W$,
+then the projection of $y$ into $W$ is
+$$
+\mathrm{proj}_{W}(y) = \sum\frac{y\cdot u_i}{u_i\cdot u_i} u_i 
+$$
+and $y-\mathrm{proj}_{W}(y)$ is perpendicular to $W$.
+
+
+## Orthonormal sets
+
+The formulae above for projections are simplified for orthonormal sets because in that case $u_i\cdot u_i=1$.
+
+Let $U$ be an $m\times n$ matrix.  The columns of $U$ are orthonormal if and only if $U^{T}U=I$ where $I$ is the $n\times n$ identity matrix. 
+
+If $U$ is $m\times n$ and has orthonormal columns and $x$ and $y$ are vectors in $\mathbf{R}^{n}$ then:
+
+1. $\|Ux\|=\|x\|$
+
+2. $(Ux)\cdot (Uy) = x\cdot y$
+
+3. $(Ux)\cdot (Uy) =0$ if and only if $x\cdot y=0$. 
