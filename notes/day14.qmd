@@ -43,11 +43,18 @@ $$
 T(x) = T(r_1 b_1 + \cdots + r_n b_n)= r_1 T(b_1)+\cdots+ r_{n}T(b_n)
 $$
 
-In other words, if we make a matrix $M$ whose *columns*
-are the vectors $T(b_i)$, then
+Furthermore, each $T(b_{i})$ has coordinates $[T(b_i)]_{B}$ so that
+$$
+T(b_i) = t_{i1}b_{1} + t_{i2}b_{2} + \cdots + t_{in}b_{n}
+$$
+
+## Linear transformations in other bases continued
+
+If we make a matrix $M$ whose *columns*
+are the vectors $[T(b_i)]_{B}$, then
 
 $$
-T(x) = M[x]_{B}=\left[\begin{matrix} r_1 \\ \vdots \\ r_n\end{matrix}\right]
+[T(x)]_{B} = [ T(\sum _{i=1}^{n} r_i b_i)]_{B} = \sum r_{i}[T(b_{i})]_{B}=M[x]_{B}
 $$
 
 The matrix $M$ is called *the matrix of the linear transformation $T$ in the basis $B$* and is written
@@ -94,7 +101,7 @@ where $A=[T]_{S}$
 In other words, the matrix of $T$ in the $B$-basis
 is *similar* to the matrix in the standard basis.
 
-More generally, the collection of matrices that are similar to $A=[T]_{S}$ are the collectoin of matrix representations of $T$ in the possible bases of $\mathbf{R}^{n}$. 
+More generally, the collection of matrices that are similar to $A=[T]_{S}$ are the collection of matrix representations of $T$ in the possible bases of $\mathbf{R}^{n}$. 
 
 ## Diagonal transformations
 

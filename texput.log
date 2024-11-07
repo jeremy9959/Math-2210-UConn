@@ -1,21 +1,30 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.6.7)  4 NOV 2024 09:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.11.5)  7 NOV 2024 09:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**day15
+**\relax
 
-! Emergency stop.
-<*> day15
-         
-End of file on the terminal!
+*\end
 
+*\end
+! Missing \endcsname inserted.
+<to be read again> 
+                   \end/ 
+<*> \end
+        
+? X
  
 Here is how much of TeX's memory you used:
- 5 strings out of 480247
- 125 string characters out of 5896152
- 283961 words of memory out of 5000000
- 18049 multiletter control sequences out of 15000+600000
- 469259 words of font info for 28 fonts, out of 8000000 for 9000
+ 16 strings out of 476182
+ 408 string characters out of 5795595
+ 1922975 words of memory out of 5000000
+ 22120 multiletter control sequences out of 15000+600000
+ 558069 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 0i,0n,0p,17b,6s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 11i,0n,13p,37b,8s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.
+PDF statistics:
+ 0 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
