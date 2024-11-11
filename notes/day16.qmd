@@ -95,3 +95,103 @@ entries are the $u_{i}\cdot y$.
 $U^{T}y$ is a vector with $p$ entries,
 and $UU^{T}y$ is the sum of the columns of $U$ -- the $u_{i}$ weighted by the
 elements of $U^{T}y$. 
+
+## Examples
+
+Let $u_1=\left[\begin{matrix} 1 \\ 3 \\ -2\end{matrix}\right]$
+and $u_2=\left[\begin{matrix} 5 \\ 1 \\4\end{matrix}\right]$.
+
+These are orthogonal vectors.  Let $W$ be their span. ($W$ is a plane in $\mathbf{R}^{3}$. )
+
+Let $y=\left[\begin{matrix} 1 \\ 3 \\ 5\end{matrix}\right]$. 
+
+These are orthogonal but not orthonormal. 
+
+## Examples (continued)
+
+We can make them orthogonal by dividing them by their lengths:
+
+$$
+v_1 = \frac{1}{\sqrt{14}}u_1
+$$
+and
+$$
+v_2 = \frac{1}{\sqrt{42}}u_2
+$$
+
+
+Then we can make the matrix $U$:
+$$
+U = \left[\begin{matrix} 1/\sqrt{14} & 5/\sqrt{42} \\ 3/\sqrt{14} & 1/\sqrt{42} \\ -2/\sqrt{14} & 4/\sqrt{42}\end{matrix}\right]
+$$
+
+
+## Examples (continued)
+
+The projection of $y$ into $W$ is $UU^{T}y$.
+
+$$
+U^{T}y = \left[\begin{matrix} 1/\sqrt{14} & 3/\sqrt{14} & -2/\sqrt{14} \\ 5/\sqrt{42} & 1/\sqrt{42} & 4/\sqrt{42}\end{matrix}\right]
+\left[\begin{matrix} 1 \\ 3 \\ 5\end{matrix}\right]
+=\left[\begin{matrix} 0 \\ 28/\sqrt{42}\end{matrix}\right]
+$$
+
+so 
+$$
+UU^{T}y = \left[\begin{matrix} 10/3 \\ 2/3 \\  8/3 \end{matrix}\right]
+$$
+
+```{python}
+# | echo: false
+# | output: false
+from sympy import Matrix
+import numpy as np
+
+U = np.array([[1, 3, -2], [5, 1, 4]]).transpose()
+U = U / np.linalg.norm(U, axis=0)
+(U @ U.transpose()) @ np.array([[1], [3], [5]])
+np.linalg.matrix_rank(U)
+```
+
+## Examples (continued)
+
+The matrix $UU^{T}$ computed directly is
+$$
+\left[\begin{matrix} 2/3 & 1/3 & 1/3 \\ 1/3 & 2/3 & -1/3 \\ 1/3 & -1/3 & 2/3\end{matrix}\right]
+$$
+
+This is a *rank 2* matrix.
+
+That is because its column space is $W$ (which is two dimensional) and its null space is the one dimensional perpendicular to $W$.
+
+## Examples (continued)
+
+Find the distance from $y=\left[\begin{matrix} 5 \\ -9 \\5\end{matrix}\right]$
+to the plane spanned by 
+$$
+u_1=\left[\begin{matrix} -3\\-5\\1\end{matrix}\right],u_2 = \left[\begin{matrix}-3 \\2 \\1\end{matrix}\right]
+$$
+
+The desired distance
+is
+$$
+\|y-\hat{y}\|
+$$
+where $\hat{y}$ is the projection of $y$ into the plane spanned by $u$.
+
+## Examples (continued)
+
+Since
+$$
+\hat{y} =\frac{y\cdot u_1}{u_1\cdot u_1}u_1 + \frac{y\cdot u_2}{u_2 \cdot u_2}u_2
+$$
+
+we get 
+$$
+\hat{y} = \frac{35}{35}u_1 + \frac{(-28)}{14}u_2 = u_1-2u_2=\left[\begin{matrix} 3 \\ -9 \\ -1\end{matrix}\right]
+$$
+
+so 
+$$
+\|y-\hat{y}\| = \sqrt{(2)^2+0^2+(6)^2}=\sqrt{40}
+$$
