@@ -1,0 +1,86 @@
+---
+title: Gram Schmidt
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## Gram Schmidt
+
+In our discussion so far we have been handed orthogonal bases for various subspaces.
+
+How do we find such a thing?
+
+**Problem:** Given a set of vectors $v_1,\ldots, v_k$ in $\mathbf{R}^{n}$,
+find an orthogonal basis (or an orthonormal basis) for the span $W$ of those
+vectors. 
+
+Strategy: Work systematically:
+
+- Start with $v_1$; it becomes $u_1$. 
+- Subtract the component of $v_2$ in the $v_1$ direction from $v_2$; call this $u_2$.
+- Subtract the projection of $v_3$ into the span of $u_1$ and $u_2$ from $v_3$, and call that $u_3$.
+- Continue in this way, subtracting the projection of $v_n$ from the span of $u_1,\ldots, u_{n-1}$, to obtain $u_{n}$. 
+
+
+If you normalize these vectors $u_{i}$ you get an  orthonormal basis. 
+
+## Gram Schmidt (Example)
+
+```{python}
+import numpy as np
+
+def GS(M):
+    N = M[:, 0].reshape(-1, 1)
+    for i in range(1, M.shape[1]):
+        X = GS_step(M[:, i].reshape(-1, 1), N)
+        print(X)
+        N = np.column_stack((N, X))
+    return N
+
+def GS_step(v, M):
+    A = v - M @ np.linalg.inv(M.transpose() @ M) @ (M.transpose() @ v)
+    return A
+```
+
+Suppose 
+$$
+v_1=\left[\begin{matrix} 1 \\ 1 \\ 1 \\ 1\end{matrix}\right],v_2=\left[\begin{matrix} 0 \\ 1 \\ 1 \\ 1 \end{matrix}\right], v_3=\left[\begin{matrix} 0 \\ 0 \\ 1 \\ 1\end{matrix}\right]
+$$
+
+The first two vectors in the sequence of G-S vectors is
+$$
+u_1=v_1, u_2 = v_2 - 3/4 v_1=\left[\begin{matrix} -3/4 \\ 1/4 \\ 1/4 \\ 1/4\end{matrix}\right]
+$$
+
+## Example (continued)
+
+The third vector 
+$$
+u_3=v_3 - \frac{v_3\cdot u_1}{u_1\cdot u_1}u_1 -\frac{v_3\cdot u_2}{u_2\cdot u_2}
+$$
+
+Now $u_1\cdot u_1=4$ and
+$$
+u_2\cdot u_2=v_2\cdot v_2 - 3/2 v_2\cdot v_1 + 9/16 v_1\cdot v_1=3-9/2+9/4=3/4
+$$
+
+Also $v_3\cdot u_2 = v_3\cdot v_2 -3/4v_3\cdot v_1 = 1/2$.
+So 
+$$
+u_3 = v_3 -\frac{2}{4}u_1 - \frac{2}{3}u_2 = \left[\begin{matrix}0 \\ -2/3 \\ 1/3 \\ 1/3\end{matrix}\right]
+$$
+
+## The QR decomposition
+
+Suppose that $A$ is an $n\times m$ matrix with linearly independent columns. Then
+there is an orthogonal matrix $Q$ (of size $n\times m$) and an upper triangular matrix $R$ of size $m\times m$ so that
+$$
+A=QR
+$$
+The columns of $Q$ form an orthonormal basis for the column space of $A$; $Q^{T}Q=I$;
+and the diagonal entries of $R$ are positive. 
+
+
+(This is called the "QR" decomposition of $A$).
+
+It's really a restatement of the Gram-Schmidt process. 
