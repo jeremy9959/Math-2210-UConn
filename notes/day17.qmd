@@ -84,3 +84,4 @@ and the diagonal entries of $R$ are positive.
 (This is called the "QR" decomposition of $A$).
 
 It's really a restatement of the Gram-Schmidt process. 
+
