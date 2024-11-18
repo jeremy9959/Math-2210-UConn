@@ -72,7 +72,7 @@ $$
 
 ## The QR decomposition
 
-Suppose that $A$ is an $n\times m$ matrix with linearly independent columns. Then
+Suppose that $A$ is an $n\times m$ matrix with **linearly independent columns.** Then
 there is an orthogonal matrix $Q$ (of size $n\times m$) and an upper triangular matrix $R$ of size $m\times m$ so that
 $$
 A=QR
@@ -84,4 +84,147 @@ and the diagonal entries of $R$ are positive.
 (This is called the "QR" decomposition of $A$).
 
 It's really a restatement of the Gram-Schmidt process. 
+
+## The QR decomposition
+
+Let $A$ be an $n\times m$ matrix.  To compute the $QR$ decomposition,
+we apply Gram-Schmidt to the columns of $A$.  
+
+Each step in $GS$ corresponds to multiplying $A$ on the right by an upper triangular matrix.
+
+## GS and QR example
+
+Suppose that 
+$$
+A=\left[\begin{matrix} 1 & 2 & -1 \\ 3 & -5 & 2 \\ 0 & 2 & -4 \end{matrix}\right]
+$$
+
+We wish to apply Gram-Schmidt to the columns of $A$.  We leave the first column
+alone.   Multiplying $A$ on the right by 
+$$
+e = \left[\begin{matrix} 1 \\ 0 \\ 0\end{matrix}\right]
+$$
+extracts the first column:
+$$
+Ae_1 = \left[\begin{matrix} 1 \\ 3 \\ 0\end{matrix}\right].
+$$
+
+## GS/QR continued
+
+The next step is to compute 
+$$
+u_2 = v_2 - \frac{v2\cdot u_1}{u_1\cdot u_1}u_1
+$$
+
+Since $v_2\cdot u_1 =2-15=-13$ and $u_1\cdot u_1=9+1=10$ this means
+$$
+u_2 = v_2 +\frac{13}{10}u_1=\left[\begin{matrix} 33/10 \\ -11/10\\ 2\end{matrix}\right].
+$$
+
+This second vector can be obtained by multiplying $A$ on the right by
+$$
+e_2 = \left[\begin{matrix} 13/10 \\ 1 \\0\end{matrix}\right]
+$$
+so that
+$$
+Ae_2 = \left[\begin{matrix} 33/10 \\ -11/10 \\ 2\end{matrix}\right]
+$$
+
+```{python}
+#| output: false
+A = np.array([[1],[3],[0]])
+B=GS_step(np.array([[2],[-5],[2]]),A)
+u1 = A
+u2 = B
+
+```
+
+## GS and QR continued
+
+Combining steps 1 and 2 we have
+
+$$
+A\left[\begin{matrix} 1 & 13/10 \\ 0 & 1 \\ 0 & 0 \end{matrix}\right] = \left[\begin{matrix} 1  & 33/10 \\ 3 & -11/10\\ 0& 2\end{matrix}\right]
+$$
+
+The last step is to compute
+$$
+u_3 = v_3 - \frac{v_3\cdot u_2}{u_2\cdot u_2}u_2 - \frac{v_3\cdot u_1}{u_1\cdot u_1}u_1
+$$
+
+```{python}
+v3 = np.array([[-1],[2],[-4]])
+```
+
+This gives
+$$
+u_3 = v_3 - \frac{-27/2}{161/10}u_2 - \frac{5}{10}u_1 = \frac{1}{322}\left[\begin{matrix} 408 \\ -136 \\ -748\end{matrix}\right].
+$$
+
+## QR and GS continuedf
+
+In terms of the matrix $A$, computing $u_3$ comes from multiplying $A$ on the right by
+$$
+e_3 = \left[\begin{matrix} -1/2 \\ 270/322 \\ 1\end{matrix}\right]
+$$
+
+So we've shown that
+
+$$
+\left[\begin{matrix} 1 & 2 & -1 \\ 3 & -5 & 2 \\ 0 & 2 & -4 \end{matrix}\right]
+\left[\begin{matrix} 1 & 13/10 & -1/2 \\ 0 & 1 & 270/32 \\ 0 & 0 & 1\end{matrix}\right]
+ = 
+ \left[\begin{matrix} 1 & 33/10 & 408/322 \\ 3 & -11/10 & -136/322 \\ 0 & 2 & -748/322\end{matrix}\right]
+$$
+
+## QR and GS continued
+
+If we let 
+$$
+Q = \left[\begin{matrix} 1 & 33/10 & 408/322 \\ 3 & -11/10 & -136/322 \\ 0 & 2 & -748/322\end{matrix}\right]
+$$
+
+and
+$$
+R = \left[\begin{matrix} 1 & 13/10 & -1/2 \\ 0 & 1 & 270/32 \\ 0 & 0 & 1\end{matrix}\right]
+$$
+
+then $Q^{T}Q=I$ and $AR=Q$.  
+
+Also $R$ is invertible (it's diagonal with ones on the diagonal) so $A=QR^{-1}$. 
+
+## Orthogonal decomposition
+
+The $QR$ decomposition usually has $A$ a square matrix and $Q$ an *orthogonal* matrix meaning that
+its columns aren't only orthogonal but orthonormal.  We can do this by normalizing the columns. 
+
+We have
+$$
+u_1\cdot u_1 = 10, u_2 \cdot u_2 = 161/10, u_3\cdot u_3 = 2312/322
+$$
+
+$$
+Q' = QZ
+$$
+where
+$$
+Z=\left[\begin{matrix} 1/\sqrt{10} & 0 & 0 \\ 0 & 1/\sqrt{161/10} &  0 \\ 0 & 0 & 1/\sqrt{2312/322}\end{matrix}\right] 
+$$
+
+## QR decomposition concluded
+
+Then $Q'$ satisfies $Q^{-1}=Q^{T}$ and
+$$
+A = Q'Z^{-1}R^{-1}=Q'R'
+$$
+where
+$$
+R' = Z^{-1}R^{-1}
+$$
+is still upper triangular.
+
+
+## Geometric interpretation
+
+A linear transformation like $x\mapsto Ax$ splits into two parts -- a shear (coming from the $R$) and a rotation (coming from $Q$).
 
