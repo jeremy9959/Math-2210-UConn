@@ -93,7 +93,7 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 11/5        |          | Exam 2                                              |
 | 11/7        | 6.1-6.2  | [Inner products, orthogonality](notes/day15.pdf)                      |
 | 11/12       | 6.3      | [Orthogonal Projection](notes/day16.pdf)                              |
-| 11/14       | 6.4-6.5  | [Gram-Schmidt, least squares](notes/day17.qmd)                         |
+| 11/14       | 6.4-6.5  | [Gram-Schmidt, least squares](notes/day17.pdf)                         |
 | 11/19       | 7.1      | Diagonalization of symmetric matrices               |
 | 11/21       | 7.2-7.3  | Quadratic forms, constrained optimization           |
 | 11/26-11/28 |          | No Class; Thanksgiving break                        |
