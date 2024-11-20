@@ -1,0 +1,32 @@
+---
+title: The Spectral Theorem
+author: Jeremy Teitelbaum
+format: pdf
+---
+
+## Every matrix has at least one complex eigenvalue.
+
+This follows from the fact that the characteristic equation of $A$ must have a root in $\mathbf{C}$. 
+
+## Eigenvalues of symmetric matrices are real numbers (digression)
+
+Suppose that $Av=\lambda v$ is an eigenvector for $A$ corresponding to the eigenvalue $\lambda$.  
+
+Then $A\overline{v}=\overline{\lambda}\overline{v}$ so $\overline{v}$ is an eigenvector with eigenvalue $\overline{\lambda}$.  Then
+$$
+\overline{v}^{T}A^{T}=\overline{v}^{T}A=\overline{\lambda}\overline{v}^{T}.
+$$
+
+Therefore $\overline{v}^{T}Av =\overline{\lambda}(\overline{v}\cdot v)$
+and also $\overline{v}^{T}Av=\lambda(\overline{v}\cdot v)$.
+
+Now $\overline{v}\cdot v$ is a positive real number. Therefore $\overline{\lambda}=\lambda$, so $\lambda$ is a real number.
+
+## Inductive step
+
+Suppose $v$ is an eigenvector of $A$ with eigenvalue $\lambda$.  Let $W$ be the 
+orthogonal complement of $v$.  If $w\in W$ then $Aw\in W$ because
+$$
+v^{T}Aw = w^{T}Av=\lambda(w^{T}v) = \lambda(w\cdot v)=0
+$$
+

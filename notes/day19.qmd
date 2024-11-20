@@ -36,29 +36,107 @@ $$
 
 Since $\lambda\not=\mu$ this means $w\cdot v=0$. 
 
-## Every matrix has at least one complex eigenvalue.
+## Orthogonal Diagonalizability
 
-This follows from the fact that the characteristic equation of $A$ must have a root in $\mathbf{C}$. 
+Remember that a square matrix $A$ is diagonalizable if there is a matrix $P$ so that
+$A=PDP^{-1}$ where $D$ is a diagonal matrix (whose entries are the eigenvalues of $A$).
 
-## Eigenvalues of symmetric matrices are real numbers (digression)
+**Definition:** An $n\times n$ matrix $A$ is *orthogonally diagonalizable* if is an
+orthonormal set $u_1,\ldots, u_n$ of eigenvectors of $A$.
 
-Suppose that $Av=\lambda v$ is an eigenvector for $A$ corresponding to the eigenvalue $\lambda$.  
+In other words, $A$ has $n$ mutually orthogonal eigenvectors of length $1$.
 
-Then $A\overline{v}=\overline{\lambda}\overline{v}$ so $\overline{v}$ is an eigenvector with eigenvalue $\overline{\lambda}$.  Then
+## Orthogonal Diagonalizability example
+
+Let 
 $$
-\overline{v}^{T}A^{T}=\overline{v}^{T}A=\overline{\lambda}\overline{v}^{T}.
-$$
-
-Therefore $\overline{v}^{T}Av =\overline{\lambda}(\overline{v}\cdot v)$
-and also $\overline{v}^{T}Av=\lambda(\overline{v}\cdot v)$.
-
-Now $\overline{v}\cdot v$ is a positive real number. Therefore $\overline{\lambda}=\lambda$, so $\lambda$ is a real number.
-
-## Inductive step
-
-Suppose $v$ is an eigenvector of $A$ with eigenvalue $\lambda$.  Let $W$ be the 
-orthogonal complement of $v$.  If $w\in W$ then $Aw\in W$ because
-$$
-v^{T}Aw = w^{T}Av=\lambda(w^{T}v) = \lambda(w\cdot v)=0
+A = \left[\begin{matrix} 1 & 2 \\ 2 & 1 \end{matrix}\right]
 $$
 
+Note that $A$ is symmetric.  The characteristic polynomial of $A$ is
+$$
+T^2-2T-3=(T-3)(T+1)
+$$
+so the eigenvalues are $3$ and $-1$.
+
+The eigenvectors are 
+$$
+v_1=\left[\begin{matrix} 1 \\ 1\end{matrix}\right],v_2=\left[\begin{matrix} -1 \\ 1 \end{matrix}\right].
+$$
+
+
+## Orthogonal diagonalizabiilty example (cont'd)
+
+Notice that $v_1$ and $v_2$ are orthogonal.  To make them orthonormal, divide by their norms to get
+$$
+u_1=\left[\begin{matrix} \sqrt{2}/2 \\ \sqrt{2}/2\end{matrix}\right],u_2 = \left[\begin{matrix} -\sqrt{2}/{2}\\\sqrt{2}/{2}\end{matrix}\right]
+$$
+
+We therefore have the equation:
+$$
+A\left[\begin{matrix} \sqrt{2}/2 & -\sqrt{2}/2 \\ \sqrt{2}/2 & \sqrt{2}/2\end{matrix}\right]=\left[\begin{matrix} \sqrt{2}/2 & -\sqrt{2}/2 \\ \sqrt{2}/2 & \sqrt{2}/2\end{matrix}\right]\left[\begin{matrix} 3 & 0 \\ 0 & -1\end{matrix}\right]
+$$
+
+and
+$$
+A = PDP^{-1}
+$$
+where
+$$
+P = \left[\begin{matrix} \sqrt{2}/2 & -\sqrt{2}/2 \\ \sqrt{2}/2 & \sqrt{2}/2\end{matrix}\right], D=\left[\begin{matrix} 3 & 0 \\ 0 & -1\end{matrix}\right]
+$$
+
+## Orthogonal diagonalizabiilty example (cont'd)
+
+The matrix $P$ is an *orthogonal* matrix:
+
+- its columns are an orthonormal set.
+- $P^T=P^{-1}$
+
+## The Spectral Theorem
+
+Symmetric  matrices are *special.*  
+
+![Spectral Theorem](./spectral_thm.png)
+
+## Spectral Decomposition
+
+Let $u_1,\ldots, u_n$ be the orthonormal eigenvectors of $A$, where $A$ is symmetric.
+Let $\lambda_{1},\ldots, \lambda_{n}$ be the eigenvalues (with multiplicity)
+
+Then
+$$
+A = \lambda_{1} u_{1}u_{1}^{T} + \cdots + \lambda_{n}u_{n}u_{n}^{T}
+$$
+
+This writes $A$ as a (weighted) sum of projection operators since $u_{i}u_{i}^{T}v$
+gives the projection of $v$ into the $u$ direction.
+
+## Spectral Decomposition example
+
+In our $2\times 2$ example we had 
+$$
+u_1 =\left[\begin{matrix} \sqrt{2}/2 \\ \sqrt{2}/2\end{matrix}\right],
+u_2 = \left[\begin{matrix}-\sqrt{2}/2 \\ \sqrt{2}/2\end{matrix}\right]
+$$
+
+So 
+$$
+u_{1}u_{1}^{T} =\left[\begin{matrix} \sqrt{2}/2 \\ \sqrt{2}/2\end{matrix}\right]\left[\begin{matrix} \sqrt{2}/2 & \sqrt{2}/2 \end{matrix}\right] =
+\left[\begin{matrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{matrix}\right]
+$$
+
+and
+
+$$
+u_{2}u_{2}^{T} = \left[\begin{matrix} -\sqrt{2}/2 \\ \sqrt{2}/2\end{matrix}\right]
+\left[\begin{matrix} -\sqrt{2}/2 & \sqrt{2}/2 \end{matrix}\right] = \left[\begin{matrix} 1/2 & -1/2 \\ -1/2 & 1/2\end{matrix}\right]
+$$
+
+And
+
+$$
+A=3\left[\begin{matrix} 1/2 & 1/2 \\ 1/2 & 1/2\end{matrix}\right] -\left[\begin{matrix} 1/2 & -1/2 \\ -1/2 & 1/2\end{matrix}\right]
+$$
+
+##

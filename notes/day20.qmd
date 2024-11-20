@@ -1,0 +1,105 @@
+---
+title: The Singular Value Decomposition
+author: Jeremy Teitelbaum
+format: beamer
+---
+
+## The singular value decomposition (SVD)
+
+The SVD is a way to study rectangular matrices using tools that come
+from our work with symmetric matrices.
+
+It doesn't make direct sense to diagonalize a rectangular matrix, but in some sense the SVD
+is the closest we can come. 
+
+It is a widely used result in applied mathematics. 
+
+## Singular Values
+
+Let $A$ by an $m\times n$ matrix.  The *singular values* $\sigma_{i}$ of $A$ are
+the (positive) square roots of the eigenvalues of the $n\times n$ symmetric matrix $A^{T}A$
+$$
+\sigma_{i}=\sqrt{\lambda_{i}}
+$$
+
+Remember that, by the spectral theorem, $A^{T}A$ has real, nonnegative eigenvalues,
+so these square roots make sense. 
+
+We arrange the singular values in decreasing order so that 
+$$
+\sigma_1\ge \sigma_2\ge\cdots\ge\sigma_{n}\ge 0
+$$
+
+## Singular values
+
+If $v_1,\ldots, v_n$ are the unit eigenvectors of $A^{T}A$, then
+$$
+\|Av_i\|^2=(Av_i)\cdot(Av_i) = v_{i}^{T}A^{T}Av_{i}=\lambda_{i}\|v_{i}\|^2
+$$
+so the singular values $\sigma_{i}$ measure the amount that $A$ "stretches" $v_i$.
+
+
+## Nonzero singular values give rank
+
+Some of the singular values $\sigma_{i}$ of $A$ and corresponding eigenvalues $\lambda_{i}$ of $A^{T}A$ could be zero. 
+
+If $\lambda_k$ is zero, then
+$$
+Av_{k}\cdot Av_{k} = v_{k}^{T}A^{T}Av_{k}=\lambda_{k}(v_{k}\cdot v_{k})=0
+$$
+so $Av_{k}=0$. 
+
+ Suppose that the first $r$ of them are non zero.
+Then, if $v_{i}$ are the corresponding eigenvectors of $A^{T}A$, the vectors
+$$
+Av_{1},\ldots, Av_{r}
+$$
+
+form an orthogonal basis for the column space $\mathrm{Col}(A)$, and $A$ has rank $r$.
+
+## Nonzero singular values give rank (continued)
+
+To see that they are orthogonal, compute
+$$
+Av_{i}\cdot Av_{j} = v_{i}^{T}A^{T}Av_{j} = \lambda_{j}v_{i}^{T}v_{j}=0
+$$
+
+since the $v_{i}$ are orthogonal.  The $Av_{i}$ also all belong to the column space of $A$.
+
+Suppose that $y$ is any vector in the column space of $A$.  Then $y=Ax$ for some $x$,
+and 
+$$
+x=\sum_{i=1}^{n} (x\cdot v_{i})v_{i}.
+$$
+
+Apply $A$ to this and since $Av_{k}=0$ for $k>r$, we see that $Ax$ is in the span of
+$Av_{1},\ldots, Av_{r}$.
+
+So $Av_{1},\ldots,Av_{r}$ are orthogonal (hence linearly independent) and span the column space of $A$.
+
+## The SVD
+
+Suppose that $A$ is an $m\times n$ matrix of rank $r$. Then there exists an $m\times n$
+matrix $\Sigma$ which is "diagonal" in the sense that it looks like this:
+
+!["Diagonal" Matrix for SVD](./pseudo_diagonal.png){width=3in}
+
+where $D$ is a truly diagonal $r\times r$ matrix whose entries are the nonzero singular values of $A$ (in descending order), and orthogonal matrices $U$ of size $m\times m$ and $V$ of size $n\times n$ such that
+
+$$
+A = U\Sigma V^{T}.
+$$
+
+Note: $U$ and $V$ are not uniquely determined here, but $\Sigma$ is.
+
+## Constructing the SVD
+
+1. Let $u_{i}=\frac{Av_{i}}{\|Av_{i}\|}=\sigma_{i}^{-1}Av_{i}$ for $i=1,\ldots, r$.
+This gives an orthonormal family.  Extend this to an orthonormal basis $u_{1}\ldots, u_{m}$ of $\mathbf{R}^{m}$. 
+
+2.  Let $U$ be the matrix whose columsn are the $u_{i}$ and $V$ be the matrix whose columns are the $v_{i}$. 
+
+3.  Notice that $AV$ has columns $\sigma_{i} u_{i}$ for $i=1,\ldots, r$ and the rest zero.
+That's what you get if you compute $U\Sigma$. 
+
+4.  So $AV=U\Sigma$ or $A=U\Sigma V^{-1}=U\Sigma V^{T}$.
