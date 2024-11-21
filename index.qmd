@@ -97,7 +97,7 @@ harassment, and related interpersonal violence.](https://policy.uconn.edu/2015/1
 | 11/19       | 7.1      | [Diagonalization of symmetric matrices](notes/day19.pdf)            |
 | 11/21       | 7.2-7.3  | Quadratic forms, constrained optimization (skipped)          |
 | 11/26-11/28 |          | No Class; Thanksgiving break                        |
-| 12/3        |      7.4 | Singular Value Decomposition                        |
+| 12/3        |      7.4 | [Singular Value Decomposition](day20.pdf)                        |
 | 12/5        |          | Review/Catch-up                                     |
 | 12/9-12/11  |          | Finals Period                                       | Final Exam TBD |
 | 12/12       |          | Reading Day                                         |
