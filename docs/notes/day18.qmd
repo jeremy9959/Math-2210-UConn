@@ -1,0 +1,102 @@
+---
+title: Least Squares 
+author: Jeremy Teitelbaum
+format: beamer
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "base"
+---
+
+
+## Example Application: Least Squares Regression
+
+```{python}
+import pandas as pd
+import numpy as np
+from IPython.display import display, Latex
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("advertising_islr.csv",index_col=0)
+data.head(10)
+```
+
+10 rows of a 200 row table. Predict sales using a linear model:
+$$
+sales = A(TV) + B(Radio) + C(Newspaper)+U
+$$
+
+## Least squares
+
+Create a $200\times 4$ matrix $D$ by removing the sales column and adding a column of ones.
+Let $Y$ be the column of sales data. 
+
+```{python}
+D = np.column_stack([np.ones(200).reshape(200,1),data.values[:,:3]])
+Y = data.values[:,3].reshape(200,1)
+```
+If sales *were* a perfect linear function, then we would have
+$$
+Y = D\left[\begin{matrix} U\\ A \\ B \\ D \end{matrix}\right]
+$$
+
+But this isn't true.  So instead we try to minimize $\|Y-DM\|$
+where 
+$$
+M=\left[\begin{matrix} U \\ A \\ B \\ D\end{matrix}\right]
+$$
+is a variable.  
+
+## Geometry
+
+The four columns of the data matrix span a four dimensional space $W$ in $\mathbf{R}^{200}$.
+We try to find a point in this span that is as close to $Y$ as possible. 
+
+We know this is given by orthogonal projection.  That is, we want to find $\hat{Y}=DM$
+so that $\hat{Y}-Y$ is perpendicular to the vectors spanning $W$.  This boils down
+to the requirement that
+$$
+D^{T}(\hat{Y}-Y)=0
+$$
+
+## Least Squares solution
+
+This gives the equation
+$$
+D^{T}DM-D^{T}Y=0
+$$
+
+or 
+
+$$
+M = (D^{T}D)^{-1}D^{T}Y
+$$
+
+The predicted values are
+$$
+\hat{Y} = DM = D(D^{T}D)^{-1}D^{T}Y
+$$
+
+## Computer Calculation
+
+This shows the true and computed values for sales.
+
+```{python}
+
+M=np.linalg.inv(D.transpose() @ D)@D.transpose()@Y
+print(f"U={M[0,0]:.4f} A={M[1,0]:.4f} B={M[2,0]:.4f} C = {M[3,0]:.4f}")
+```
+
+## Residuals
+```{python}
+Yhat = D @ M
+x = list(np.arange(200))
+#plt.figure(figsize=(8,8))
+j=plt.scatter(x,Y-Yhat)
+plt.ylim(-8,8)
+plt.axhline(y=0,color='r')
+plt.xlabel("Row Number")
+plt.ylabel("Difference between observed and modelled sales")
+j=plt.title("Residual plot")
+```
