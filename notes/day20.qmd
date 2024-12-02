@@ -97,9 +97,129 @@ Note: $U$ and $V$ are not uniquely determined here, but $\Sigma$ is.
 1. Let $u_{i}=\frac{Av_{i}}{\|Av_{i}\|}=\sigma_{i}^{-1}Av_{i}$ for $i=1,\ldots, r$.
 This gives an orthonormal family.  Extend this to an orthonormal basis $u_{1}\ldots, u_{m}$ of $\mathbf{R}^{m}$. 
 
-2.  Let $U$ be the matrix whose columsn are the $u_{i}$ and $V$ be the matrix whose columns are the $v_{i}$. 
+2.  Let $U$ be the matrix whose columns are the $u_{i}$ and $V$ be the matrix whose columns are the $v_{i}$. 
 
 3.  Notice that $AV$ has columns $\sigma_{i} u_{i}$ for $i=1,\ldots, r$ and the rest zero.
 That's what you get if you compute $U\Sigma$. 
 
 4.  So $AV=U\Sigma$ or $A=U\Sigma V^{-1}=U\Sigma V^{T}$.
+
+## Terminology
+
+Let $A=U\Sigma V^{T}$ be a singular value decomposition of $A$. 
+
+The *columns* of $U$ are called the *left singular vectors* of $A$.
+
+The *columns* of $V$ are called the *right singular vectors* of $A$.
+
+## Numerical Example
+
+```{python}
+
+# | echo: true
+
+import numpy as np
+from sympy import latex, Matrix
+from IPython.display import Latex
+
+A = np.array([[1, 3, 2], [2, 5, 6]])
+# note that the routine returns "V"
+# but we would call it "V^T"
+U, Sigma, V = np.linalg.svd(A, full_matrices=True)
+
+```
+
+## Results
+
+```{python}
+U, Sigma, V = np.round(U, 2), np.round(Sigma, 2), np.round(V, 2)
+display(Latex("Matrix $A$ =" + f"${latex(Matrix(A))}$"))
+display(Latex("$U=" + f"{latex(Matrix(U))}$"))
+display(Latex("$\Sigma=" + f"{latex(Matrix(np.diag(np.append(Sigma,0))[:2,:]))}$"))
+display(Latex("$V^{T}=" + f"{latex(Matrix(V))}$"))
+```
+
+## Four Fundamental Subspaces
+
+Let $A$ be an $m\times n$ matrix with left singular vectors $u_1,\ldots, u_m$,
+right singular vectors $v_1,\ldots, v_n$, singular values $\sigma_1,\ldots, \sigma_n$,
+and rank $r$.
+
+1. $u_1,\ldots, u_r$ form an orthonormal basis for the column space of $A$. Remember
+that the $u_{i}$ are normalized versions of $Av_{i}$ where $v_{i}$ are the right singular vectors.  The $Av_{i}$ for $i=1,\ldots,r$ span the column space of $A$.
+
+2. $u_{r+1},\ldots, r_{n}$ form an orthonormal basis for the null space of $A^{T}$ (which is the same as the $Col(A)^{\perp}$.)
+
+## Four subspaces continued
+
+3.  $v_{r+1},\ldots, v_{n}$ form an orthonormal basis for the null space of $A$. This
+is because $Av_{j}=0$ for $j=r+1,\ldots, n$, they are independent (because orthonormal),
+and the rank of $A$ is $r$ so the dimension of the null space is $n-r$.
+
+4. $v_{1},\ldots, v_{r}$ form an orthonormal basis for the row space of $A$. This is 
+because they are an orthonormal basis for $Null(A)^{\perp}$ which is the same as $Col(A^{T})$ which is $Row(A)$.
+
+## The Pseudoinverse
+
+One can use the SVD to solve linear systems and to "approximate" the inverse of 
+matrices that aren't square.  
+
+Suppose that $A$ has rank $r$, so that $\Sigma$ has $r$ nonzero entries. Let $\Sigma_{r}$ be the square $r\times r$ matrix with the nonzero signular values.
+
+Split up $U$ and $V$ so that $U_{r}$ consists of only the first $r$ columns of $U$,
+and $V_{r}$ consists of only the first $r$ columns of $V$. Then $U$ is $m\times r$
+and $V$ is $n\times r$.
+
+Then $A=U_{r}\Sigma_{r}V_{r}^{T}$.  The "pseudoinverse" of $A$ is
+$$
+V_{r}\Sigma_{r}^{-1}U_{r}^{T}
+$$.
+
+## Application of the pseudoinverse
+
+Consider the matrix equation $Ax=b$ (here we don't assume $A$ is square).
+
+If we set $\hat{x}=A^{+}b$ where $A^{+}$ is the pseudoinverse, then
+$\hat{x}$ is the vector so that $A\hat{x}$ is as close to $b$ as possible.
+
+If $A$ is invertible, or if $b$ is in the column space of $A$, then $\hat{x}$
+is an exact solution.  
+
+## Example
+
+```{python}
+# | echo: true
+import numpy as np
+from sympy import latex, Matrix
+from IPython.display import Latex
+
+A = np.array([[1, 3, 2], [2, 5, 6]])
+# note that the routine returns "V"
+# but we would call it "V^T"
+U, Sigma, V = np.linalg.svd(A, full_matrices=True)
+Sigmar=np.diag(Sigma)
+Vt=V.transpose()
+Ap = Vt[:,:2]@np.linalg.inv(np.diag(Sigma))@U.transpose()
+display(Latex("$A^{+}=" + f"{latex(Matrix(np.round(Ap,2)))}$"))
+```
+
+## Example continued.
+
+Consider the equation
+$$
+Ax = \left[\begin{matrix} 6 \\ 13\end{matrix}\right]
+$$
+
+It has infinitely many solutions.  If we use the pseudo inverse, we find one of them:
+$$
+A^{+}\left[\begin{matrix} 6 \\ 13 \end{matrix}\right] = \hat{x}
+$$
+
+```{python}
+Ap = np.linalg.pinv(A)
+display(Latex(f"$\hat x = {latex(Matrix(np.round(Ap @ np.array([[6],[13]]),3)))}$"))
+```
+
+This turns out to be the solution with minimal norm (that is, the shortest vector that solves the linear system).
+
+
